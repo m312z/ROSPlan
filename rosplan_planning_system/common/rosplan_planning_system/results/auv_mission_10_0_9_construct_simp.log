@@ -1,0 +1,71 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/auv_mission_10_0_9_construct_simp.res
+[runlim] argv[4]:		construct
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/domains/pandora_domain_strategic_for_validation.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/problems/mission_10_0_9.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/stns_params_with_values/stn_plan_mission_10_0_9_params
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		monolithic
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		z3
+[runlim] argv[13]:		-q
+[runlim] argv[14]:		msat_lw
+[runlim] start:			Tue Jan 15 08:02:49 2019
+[runlim] main pid:		11225
+[runlim] sample:		9.9 seconds, 52.0 MB
+[runlim] sample:		19.9 seconds, 61.1 MB
+[runlim] sample:		29.9 seconds, 70.9 MB
+[runlim] sample:		39.9 seconds, 76.9 MB
+[runlim] sample:		49.9 seconds, 83.0 MB
+[runlim] sample:		59.9 seconds, 89.8 MB
+[runlim] sample:		69.9 seconds, 103.6 MB
+[runlim] sample:		79.9 seconds, 126.9 MB
+[runlim] sample:		89.9 seconds, 132.4 MB
+[runlim] sample:		99.9 seconds, 135.6 MB
+[runlim] sample:		109.8 seconds, 178.5 MB
+[runlim] sample:		119.8 seconds, 196.8 MB
+[runlim] sample:		129.8 seconds, 204.2 MB
+[runlim] sample:		139.8 seconds, 206.5 MB
+[runlim] sample:		149.8 seconds, 209.3 MB
+[runlim] sample:		159.8 seconds, 213.5 MB
+[runlim] sample:		169.8 seconds, 214.0 MB
+[runlim] sample:		179.8 seconds, 217.6 MB
+[runlim] sample:		189.8 seconds, 220.6 MB
+[runlim] sample:		199.8 seconds, 225.0 MB
+[runlim] sample:		209.8 seconds, 225.8 MB
+[runlim] sample:		219.8 seconds, 226.6 MB
+[runlim] sample:		229.8 seconds, 228.0 MB
+[runlim] sample:		239.8 seconds, 229.6 MB
+[runlim] sample:		249.8 seconds, 229.6 MB
+[runlim] sample:		259.8 seconds, 231.2 MB
+[runlim] sample:		269.8 seconds, 232.4 MB
+[runlim] sample:		279.8 seconds, 232.6 MB
+[runlim] sample:		289.8 seconds, 234.4 MB
+[runlim] sample:		299.8 seconds, 234.6 MB
+[runlim] sample:		309.8 seconds, 236.5 MB
+[runlim] sample:		319.8 seconds, 236.5 MB
+[runlim] sample:		329.8 seconds, 237.4 MB
+[runlim] sample:		339.8 seconds, 237.8 MB
+[runlim] sample:		349.8 seconds, 239.2 MB
+[runlim] sample:		359.8 seconds, 239.6 MB
+[runlim] sample:		369.8 seconds, 240.5 MB
+[runlim] sample:		379.8 seconds, 241.9 MB
+[runlim] sample:		389.8 seconds, 242.4 MB
+[runlim] sample:		399.8 seconds, 242.5 MB
+[runlim] sample:		409.8 seconds, 243.5 MB
+[runlim] sample:		419.8 seconds, 243.5 MB
+[runlim] end:			Tue Jan 15 08:09:54 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			425.03 seconds
+[runlim] time:			424.57 seconds
+[runlim] space:			243.8 MB
+[runlim] samples:		4248

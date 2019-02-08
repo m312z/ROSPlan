@@ -1,0 +1,49 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/generator_linear_07_1_envelope_nosimp.res
+[runlim] argv[4]:		envelope
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/generator_linear/gen_linear_domain.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/generator_linear/gen_linear_prob07.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/generator_linear/stns_params_with_values/output07_1pram.stn
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		partial
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		msat
+[runlim] argv[13]:		-e
+[runlim] argv[14]:		-q
+[runlim] argv[15]:		msat_lw
+[runlim] argv[16]:		-c
+[runlim] start:			Mon Jan 14 20:45:19 2019
+[runlim] main pid:		122040
+[runlim] sample:		9.9 seconds, 70.7 MB
+[runlim] sample:		19.9 seconds, 80.8 MB
+[runlim] sample:		29.9 seconds, 94.1 MB
+[runlim] sample:		39.9 seconds, 98.5 MB
+[runlim] sample:		49.9 seconds, 98.8 MB
+[runlim] sample:		59.9 seconds, 114.0 MB
+[runlim] sample:		69.9 seconds, 116.5 MB
+[runlim] sample:		79.9 seconds, 116.5 MB
+[runlim] sample:		89.9 seconds, 121.9 MB
+[runlim] sample:		99.9 seconds, 121.9 MB
+[runlim] sample:		109.9 seconds, 122.1 MB
+[runlim] sample:		119.9 seconds, 122.1 MB
+[runlim] sample:		129.9 seconds, 125.9 MB
+[runlim] sample:		139.9 seconds, 142.8 MB
+[runlim] sample:		149.9 seconds, 210.4 MB
+[runlim] sample:		159.9 seconds, 236.5 MB
+[runlim] sample:		169.9 seconds, 260.6 MB
+[runlim] sample:		179.9 seconds, 273.0 MB
+[runlim] end:			Mon Jan 14 20:48:27 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			188.95 seconds
+[runlim] time:			188.58 seconds
+[runlim] space:			280.7 MB
+[runlim] samples:		1887

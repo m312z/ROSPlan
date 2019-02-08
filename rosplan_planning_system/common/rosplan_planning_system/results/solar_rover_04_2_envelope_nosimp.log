@@ -1,0 +1,247 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/solar_rover_04_2_envelope_nosimp.res
+[runlim] argv[4]:		envelope
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/solarrover_linear.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/prob04.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/stns_params_with_values/output04_2pram.stn
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		partial
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		msat
+[runlim] argv[13]:		-e
+[runlim] argv[14]:		-q
+[runlim] argv[15]:		msat_lw
+[runlim] argv[16]:		-c
+[runlim] start:			Tue Jan 15 01:25:04 2019
+[runlim] main pid:		151219
+[runlim] sample:		9.9 seconds, 103.5 MB
+[runlim] sample:		19.9 seconds, 201.3 MB
+[runlim] sample:		29.9 seconds, 277.4 MB
+[runlim] sample:		39.9 seconds, 349.9 MB
+[runlim] sample:		49.9 seconds, 469.6 MB
+[runlim] sample:		59.9 seconds, 511.4 MB
+[runlim] sample:		69.9 seconds, 599.2 MB
+[runlim] sample:		79.9 seconds, 597.9 MB
+[runlim] sample:		89.9 seconds, 755.5 MB
+[runlim] sample:		99.9 seconds, 840.9 MB
+[runlim] sample:		109.9 seconds, 851.1 MB
+[runlim] sample:		119.9 seconds, 956.1 MB
+[runlim] sample:		129.9 seconds, 1005.2 MB
+[runlim] sample:		139.9 seconds, 1057.2 MB
+[runlim] sample:		149.9 seconds, 1133.2 MB
+[runlim] sample:		159.9 seconds, 1351.5 MB
+[runlim] sample:		169.9 seconds, 1403.5 MB
+[runlim] sample:		179.9 seconds, 1423.2 MB
+[runlim] sample:		189.9 seconds, 1529.5 MB
+[runlim] sample:		199.9 seconds, 1577.1 MB
+[runlim] sample:		209.9 seconds, 1612.3 MB
+[runlim] sample:		219.9 seconds, 1688.2 MB
+[runlim] sample:		229.9 seconds, 1767.1 MB
+[runlim] sample:		239.9 seconds, 1815.1 MB
+[runlim] sample:		249.9 seconds, 1864.4 MB
+[runlim] sample:		259.9 seconds, 1926.5 MB
+[runlim] sample:		269.9 seconds, 1974.1 MB
+[runlim] sample:		279.9 seconds, 2124.6 MB
+[runlim] sample:		289.9 seconds, 2096.5 MB
+[runlim] sample:		299.9 seconds, 2110.5 MB
+[runlim] sample:		309.9 seconds, 2808.4 MB
+[runlim] sample:		319.9 seconds, 2563.4 MB
+[runlim] sample:		329.9 seconds, 2625.3 MB
+[runlim] sample:		339.9 seconds, 2679.1 MB
+[runlim] sample:		349.9 seconds, 2729.2 MB
+[runlim] sample:		359.9 seconds, 2799.3 MB
+[runlim] sample:		369.9 seconds, 2845.1 MB
+[runlim] sample:		379.9 seconds, 2893.1 MB
+[runlim] sample:		389.9 seconds, 2953.1 MB
+[runlim] sample:		399.9 seconds, 2997.1 MB
+[runlim] sample:		409.9 seconds, 3043.4 MB
+[runlim] sample:		419.9 seconds, 3070.6 MB
+[runlim] sample:		429.9 seconds, 3150.8 MB
+[runlim] sample:		439.9 seconds, 3194.8 MB
+[runlim] sample:		449.9 seconds, 3254.6 MB
+[runlim] sample:		459.9 seconds, 3294.8 MB
+[runlim] sample:		469.9 seconds, 3342.8 MB
+[runlim] sample:		479.9 seconds, 3413.1 MB
+[runlim] sample:		489.9 seconds, 3462.8 MB
+[runlim] sample:		499.9 seconds, 3475.9 MB
+[runlim] sample:		509.9 seconds, 3572.8 MB
+[runlim] sample:		519.9 seconds, 3623.3 MB
+[runlim] sample:		529.9 seconds, 3671.4 MB
+[runlim] sample:		539.9 seconds, 3737.1 MB
+[runlim] sample:		549.9 seconds, 3783.3 MB
+[runlim] sample:		559.9 seconds, 3795.2 MB
+[runlim] sample:		569.9 seconds, 3872.2 MB
+[runlim] sample:		579.9 seconds, 3929.6 MB
+[runlim] sample:		589.9 seconds, 3928.2 MB
+[runlim] sample:		599.9 seconds, 3971.2 MB
+[runlim] sample:		609.9 seconds, 4076.1 MB
+[runlim] sample:		619.8 seconds, 4076.1 MB
+[runlim] sample:		629.8 seconds, 4128.5 MB
+[runlim] sample:		639.8 seconds, 4181.3 MB
+[runlim] sample:		649.9 seconds, 5521.1 MB
+[runlim] sample:		659.8 seconds, 4960.2 MB
+[runlim] sample:		669.9 seconds, 5006.4 MB
+[runlim] sample:		679.9 seconds, 5342.3 MB
+[runlim] sample:		689.9 seconds, 5122.5 MB
+[runlim] sample:		699.9 seconds, 5171.5 MB
+[runlim] sample:		709.9 seconds, 5238.1 MB
+[runlim] sample:		719.8 seconds, 5296.8 MB
+[runlim] sample:		729.9 seconds, 5363.3 MB
+[runlim] sample:		739.9 seconds, 5410.9 MB
+[runlim] sample:		749.9 seconds, 5458.1 MB
+[runlim] sample:		759.9 seconds, 5508.4 MB
+[runlim] sample:		769.9 seconds, 5556.7 MB
+[runlim] sample:		779.9 seconds, 5871.1 MB
+[runlim] sample:		789.9 seconds, 5678.4 MB
+[runlim] sample:		799.9 seconds, 5725.5 MB
+[runlim] sample:		809.9 seconds, 5770.3 MB
+[runlim] sample:		819.9 seconds, 5818.5 MB
+[runlim] sample:		829.9 seconds, 5949.3 MB
+[runlim] sample:		839.9 seconds, 5932.1 MB
+[runlim] sample:		849.9 seconds, 5962.2 MB
+[runlim] sample:		859.9 seconds, 6008.5 MB
+[runlim] sample:		869.9 seconds, 6056.8 MB
+[runlim] sample:		879.9 seconds, 5485.3 MB
+[runlim] sample:		889.9 seconds, 6168.8 MB
+[runlim] sample:		899.9 seconds, 6217.5 MB
+[runlim] sample:		909.9 seconds, 6261.7 MB
+[runlim] sample:		919.9 seconds, 6308.1 MB
+[runlim] sample:		929.9 seconds, 6352.6 MB
+[runlim] sample:		939.9 seconds, 5742.4 MB
+[runlim] sample:		949.9 seconds, 6460.3 MB
+[runlim] sample:		959.9 seconds, 6506.3 MB
+[runlim] sample:		969.9 seconds, 6544.6 MB
+[runlim] sample:		979.9 seconds, 6588.5 MB
+[runlim] sample:		989.9 seconds, 6634.3 MB
+[runlim] sample:		999.9 seconds, 6682.1 MB
+[runlim] sample:		1009.9 seconds, 6445.3 MB
+[runlim] sample:		1019.9 seconds, 6798.4 MB
+[runlim] sample:		1029.8 seconds, 6847.0 MB
+[runlim] sample:		1039.9 seconds, 6893.6 MB
+[runlim] sample:		1049.9 seconds, 6938.3 MB
+[runlim] sample:		1059.8 seconds, 6984.6 MB
+[runlim] sample:		1069.8 seconds, 7032.9 MB
+[runlim] sample:		1079.8 seconds, 7060.2 MB
+[runlim] sample:		1089.8 seconds, 7143.4 MB
+[runlim] sample:		1099.8 seconds, 7191.4 MB
+[runlim] sample:		1109.8 seconds, 7236.8 MB
+[runlim] sample:		1119.8 seconds, 7281.5 MB
+[runlim] sample:		1129.8 seconds, 7326.0 MB
+[runlim] sample:		1139.8 seconds, 7371.9 MB
+[runlim] sample:		1149.8 seconds, 7419.5 MB
+[runlim] sample:		1159.8 seconds, 7465.8 MB
+[runlim] sample:		1169.9 seconds, 7510.5 MB
+[runlim] sample:		1179.9 seconds, 7555.0 MB
+[runlim] sample:		1189.8 seconds, 7600.1 MB
+[runlim] sample:		1199.8 seconds, 7645.5 MB
+[runlim] sample:		1209.8 seconds, 7690.0 MB
+[runlim] sample:		1219.8 seconds, 7736.5 MB
+[runlim] sample:		1229.8 seconds, 7782.6 MB
+[runlim] sample:		1239.9 seconds, 7830.9 MB
+[runlim] sample:		1249.8 seconds, 7875.4 MB
+[runlim] sample:		1259.9 seconds, 7922.9 MB
+[runlim] sample:		1269.9 seconds, 7970.1 MB
+[runlim] sample:		1279.9 seconds, 8015.7 MB
+[runlim] sample:		1289.9 seconds, 8046.4 MB
+[runlim] sample:		1299.9 seconds, 8085.7 MB
+[runlim] sample:		1309.8 seconds, 8316.9 MB
+[runlim] sample:		1319.8 seconds, 7371.4 MB
+[runlim] sample:		1329.9 seconds, 7400.2 MB
+[runlim] sample:		1339.9 seconds, 8233.4 MB
+[runlim] sample:		1349.8 seconds, 8270.5 MB
+[runlim] sample:		1359.9 seconds, 8300.7 MB
+[runlim] sample:		1369.9 seconds, 8331.4 MB
+[runlim] sample:		1379.9 seconds, 8371.8 MB
+[runlim] sample:		1389.9 seconds, 11009.4 MB
+[runlim] sample:		1399.9 seconds, 9729.3 MB
+[runlim] sample:		1409.9 seconds, 9772.8 MB
+[runlim] sample:		1419.9 seconds, 9817.7 MB
+[runlim] sample:		1429.9 seconds, 9861.4 MB
+[runlim] sample:		1439.9 seconds, 9905.7 MB
+[runlim] sample:		1449.9 seconds, 9947.9 MB
+[runlim] sample:		1459.9 seconds, 9987.4 MB
+[runlim] sample:		1469.9 seconds, 10032.1 MB
+[runlim] sample:		1479.9 seconds, 10080.5 MB
+[runlim] sample:		1489.9 seconds, 10268.8 MB
+[runlim] sample:		1499.9 seconds, 9511.8 MB
+[runlim] sample:		1509.9 seconds, 10187.0 MB
+[runlim] sample:		1519.8 seconds, 10229.4 MB
+[runlim] sample:		1529.8 seconds, 10275.4 MB
+[runlim] sample:		1539.8 seconds, 10356.1 MB
+[runlim] sample:		1549.8 seconds, 10389.2 MB
+[runlim] sample:		1559.8 seconds, 10427.2 MB
+[runlim] sample:		1569.8 seconds, 10465.1 MB
+[runlim] sample:		1579.8 seconds, 10509.3 MB
+[runlim] sample:		1589.8 seconds, 10548.6 MB
+[runlim] sample:		1599.8 seconds, 10593.4 MB
+[runlim] sample:		1609.8 seconds, 10334.8 MB
+[runlim] sample:		1619.8 seconds, 9615.2 MB
+[runlim] sample:		1629.8 seconds, 10704.0 MB
+[runlim] sample:		1639.8 seconds, 10748.1 MB
+[runlim] sample:		1649.8 seconds, 10793.7 MB
+[runlim] sample:		1659.8 seconds, 10837.4 MB
+[runlim] sample:		1669.8 seconds, 10882.0 MB
+[runlim] sample:		1679.8 seconds, 10928.0 MB
+[runlim] sample:		1689.8 seconds, 11522.4 MB
+[runlim] sample:		1699.8 seconds, 10062.9 MB
+[runlim] sample:		1709.8 seconds, 11026.2 MB
+[runlim] sample:		1719.8 seconds, 11062.7 MB
+[runlim] sample:		1729.8 seconds, 11108.0 MB
+[runlim] sample:		1739.8 seconds, 11152.6 MB
+[runlim] sample:		1749.8 seconds, 11188.9 MB
+[runlim] sample:		1759.8 seconds, 11232.2 MB
+[runlim] sample:		1769.8 seconds, 11771.9 MB
+[runlim] sample:		1779.8 seconds, 10691.4 MB
+[runlim] sample:		1789.8 seconds, 11331.0 MB
+[runlim] sample:		1799.8 seconds, 11367.6 MB
+[runlim] sample:		1809.8 seconds, 11414.4 MB
+[runlim] sample:		1819.8 seconds, 11460.7 MB
+[runlim] sample:		1829.8 seconds, 11971.6 MB
+[runlim] sample:		1839.8 seconds, 10427.3 MB
+[runlim] sample:		1849.8 seconds, 11570.4 MB
+[runlim] sample:		1859.8 seconds, 11615.1 MB
+[runlim] sample:		1869.8 seconds, 11659.6 MB
+[runlim] sample:		1879.8 seconds, 11698.4 MB
+[runlim] sample:		1889.8 seconds, 10691.6 MB
+[runlim] sample:		1899.8 seconds, 11767.0 MB
+[runlim] sample:		1909.8 seconds, 11809.1 MB
+[runlim] sample:		1919.8 seconds, 11857.3 MB
+[runlim] sample:		1929.8 seconds, 11901.8 MB
+[runlim] sample:		1939.8 seconds, 11606.6 MB
+[runlim] sample:		1949.8 seconds, 11969.5 MB
+[runlim] sample:		1959.8 seconds, 12014.8 MB
+[runlim] sample:		1969.8 seconds, 12060.6 MB
+[runlim] sample:		1979.8 seconds, 12747.2 MB
+[runlim] sample:		1989.8 seconds, 12121.3 MB
+[runlim] sample:		1999.8 seconds, 12302.4 MB
+[runlim] sample:		2009.8 seconds, 10940.5 MB
+[runlim] sample:		2019.8 seconds, 10971.1 MB
+[runlim] sample:		2029.8 seconds, 10993.3 MB
+[runlim] sample:		2039.8 seconds, 11031.5 MB
+[runlim] sample:		2049.8 seconds, 11097.7 MB
+[runlim] sample:		2059.8 seconds, 11108.7 MB
+[runlim] sample:		2069.8 seconds, 11134.9 MB
+[runlim] sample:		2079.8 seconds, 11140.7 MB
+[runlim] sample:		2089.8 seconds, 11156.8 MB
+[runlim] sample:		2099.8 seconds, 11191.8 MB
+[runlim] sample:		2109.8 seconds, 11223.0 MB
+[runlim] sample:		2119.8 seconds, 11292.8 MB
+[runlim] sample:		2129.8 seconds, 11342.5 MB
+[runlim] sample:		2139.8 seconds, 11345.3 MB
+[runlim] sample:		2149.8 seconds, 12596.8 MB
+[runlim] sample:		2159.8 seconds, 8585.9 MB
+[runlim] end:			Tue Jan 15 02:01:08 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			2164.33 seconds
+[runlim] time:			2163.93 seconds
+[runlim] space:			13349.6 MB
+[runlim] samples:		21641

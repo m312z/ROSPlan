@@ -1,0 +1,6 @@
+durative-action instance g : (generate gen);
+durative-action instance r : (refuel gen tank1);
+c: g.start - .zero in [0, inf];
+c: g.end - g.start in [1000, 1000];
+c: r.start - g.start in [4, 990];
+c: r.end - r.start in [5, 5];

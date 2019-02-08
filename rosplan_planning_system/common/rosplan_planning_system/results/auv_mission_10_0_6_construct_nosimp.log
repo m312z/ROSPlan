@@ -1,0 +1,38 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/auv_mission_10_0_6_construct_nosimp.res
+[runlim] argv[4]:		construct
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/domains/pandora_domain_strategic_for_validation.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/problems/mission_10_0_6.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/stns_params_with_values/stn_plan_mission_10_0_6_params
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		monolithic
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		z3
+[runlim] argv[13]:		-q
+[runlim] argv[14]:		msat_lw
+[runlim] argv[15]:		-c
+[runlim] start:			Tue Jan 15 09:18:10 2019
+[runlim] main pid:		127640
+[runlim] sample:		9.9 seconds, 78.1 MB
+[runlim] sample:		19.9 seconds, 123.7 MB
+[runlim] sample:		29.9 seconds, 129.8 MB
+[runlim] sample:		39.9 seconds, 132.7 MB
+[runlim] sample:		49.9 seconds, 135.1 MB
+[runlim] sample:		59.9 seconds, 138.4 MB
+[runlim] sample:		69.9 seconds, 139.2 MB
+[runlim] sample:		79.9 seconds, 140.3 MB
+[runlim] end:			Tue Jan 15 09:19:38 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			88.67 seconds
+[runlim] time:			88.41 seconds
+[runlim] space:			141.5 MB
+[runlim] samples:		885

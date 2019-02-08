@@ -11,7 +11,8 @@
 #include "PlanDispatcher.h"
 
 #include "rosplan_knowledge_msgs/KnowledgeItem.h"
-#include "rosplan_dispatch_msgs/EsterelPlan.h"
+#include "rosplan_dispatch_msgs/EsterelPlanEdge.h"
+#include "rosplan_planning_system/PlanParsing/PDDLEsterelPlanParser.h"
 
 #include "std_msgs/String.h"
 

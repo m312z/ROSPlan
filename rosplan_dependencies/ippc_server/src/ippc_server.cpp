@@ -558,9 +558,9 @@ std::string XMLServer_t::get_encoded_task(const std::string &domain_path, const 
 
     task_str += "\n\n";
 
-    ifs = std::ifstream(instance_path);
-    if (ifs.good()) {
-        task_str.append((std::istreambuf_iterator<char>(ifs)),
+    std::ifstream ifs2(instance_path);
+    if (ifs2.good()) {
+        task_str.append((std::istreambuf_iterator<char>(ifs2)),
                        (std::istreambuf_iterator<char>()));
     }
     else {

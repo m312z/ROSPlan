@@ -1,0 +1,6 @@
+durative-action instance n0 : (do_hover auv wp_auv0 mission_site_start_point_1);
+durative-action instance n1 : (complete_mission auv mission1 mission_site_start_point_1);
+c: n0.end - n0.start in [112,112];
+c: n0.start - .zero in [0,0];
+c: n1.start - n0.end in [0.001,0.001];
+c: n1.end - n1.start in [242.00,242.00];

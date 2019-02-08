@@ -1,0 +1,12 @@
+(define (problem reach)
+  (:domain example)
+  (:objects s1 s2 - sample)
+  (:init
+    (= distance 0)
+  )
+  (:goal (and (>= distance 100)
+              (<= distance 150)
+              (collected s1)
+              (collected s2))
+  )
+)

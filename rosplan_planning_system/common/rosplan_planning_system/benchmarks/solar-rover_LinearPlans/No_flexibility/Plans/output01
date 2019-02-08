@@ -1,0 +1,9 @@
+; States evaluated: 37
+; Cost: 31.004
+; Time 0.02
+0.000: (switchgenbatteryon GB r)  [18.000]
+18.001: (usebattery b1 r)  [4.000]
+22.002: (usebattery b2 r)  [4.000]
+26.003: (usebattery b3 r)  [4.000]
+30.004: (senddata r)  [1.000]
+

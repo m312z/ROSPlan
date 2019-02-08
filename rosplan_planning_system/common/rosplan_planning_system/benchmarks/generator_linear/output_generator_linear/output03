@@ -1,0 +1,11 @@
+Grounded:	0.000956 seconds
+Algebra:	0.002671 seconds
+Encoded 2:	0.002593 seconds
+Solved 2:	0.002513 seconds
+Encoded 3:	0.001473 seconds
+0.0:	(generate gen) [1000.0]
+0.0:	(refuel gen tank2) [10.0]
+0.0:	(refuel gen tank3) [10.0]
+Solved 3:	0.007763 seconds
+Total time:	0.019979 seconds
+

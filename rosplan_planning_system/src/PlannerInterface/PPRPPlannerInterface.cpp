@@ -105,8 +105,8 @@ namespace KCL_rosplan {
                 if (std::regex_search(line, match, actionline_rgx)) {
                     line = match[1].str() +  match[2].str();
                 }*/
-                line = std::regex_replace(line, actionline_rgx, ""); // Remove trailing whitespaces
-                line = std::regex_replace(line, tr_ws, "$1"); // Remove trailing whitespaces
+                //line = std::regex_replace(line, actionline_rgx, ""); // Remove trailing whitespaces
+                //line = std::regex_replace(line, tr_ws, "$1"); // Remove trailing whitespaces
 
                 planner_output += line;
                 planner_output += ")  [0.001]\n"; // Close parenthesis and add duration

@@ -36,17 +36,18 @@ namespace KCL_rosplan {
 	/* Plan subscription */
 	/*-------------------*/
 
-	void EsterelPlanDispatcher::planCallback(const rosplan_dispatch_msgs::EsterelPlan plan) {
-		if(finished_execution) {
-			ROS_INFO("KCL: (%s) Plan received.", ros::this_node::getName().c_str());
-			plan_received = true;
-			mission_start_time = ros::WallTime::now().toSec();
-			current_plan = plan;
-			printPlan();
-		} else {
-			ROS_INFO("KCL: (%s) Plan received, but current execution not yet finished.", ros::this_node::getName().c_str());
-		}
-	}
+	
+        void EsterelPlanDispatcher::planCallback(const rosplan_dispatch_msgs::EsterelPlan plan) {
+                if(finished_execution) {
+                        ROS_INFO("KCL: (%s) Plan received.", ros::this_node::getName().c_str());
+                        plan_received = true;
+                        mission_start_time = ros::WallTime::now().toSec();
+                        current_plan = plan;
+                        printPlan();
+                } else {
+                        ROS_INFO("KCL: (%s) Plan received, but current execution not yet finished.", ros::this_node::getName().c_str());
+                }
+        }
 
 	/*-----------------*/
 	/* action dispatch */
@@ -93,20 +94,52 @@ namespace KCL_rosplan {
 
 				rosplan_dispatch_msgs::EsterelPlanNode node = *ci;
 
-				// activate plan start edges
-				if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::PLAN_START && !plan_started) {
 
+				// activate plan start edges
+                                //parisa: compare the dispatch time with the lower bound
+				if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::PLAN_START && !plan_started && (node.action.dispatch_time+planStartTime-missionStartTime) >= 0 ) {
+                                    // find the minimum and maximum bound on the incoming edges
+                                    float minimum_dispatch_time = 0;
+                                    float maximum_dispatch_time = 0;
+                                    for(int i = 0; i < node.edges_in.size(); ++i){
+                                           int edge_id_in = node.edges_in[i];
+                                           for(std::vector<rosplan_dispatch_msgs::EsterelPlanEdge>::const_iterator ci = current_plan.edges.begin(); ci != current_plan.edges.end(); ci++) {
+                                                rosplan_dispatch_msgs::EsterelPlanEdge edge = *ci;
+                                                if (edge_id_in == edge.edge_id){
+                                                    //std::cout<<edge.duration_lower_bound<<std::endl;
+                                                     if (edge.duration_lower_bound < minimum_dispatch_time || edge.duration_upper_bound > maximum_dispatch_time){
+                                                         minimum_dispatch_time == edge.duration_lower_bound;
+                                                         maximum_dispatch_time == edge.duration_upper_bound;
+                                                          //std::cout<<minimum_dispatch_time<<std::endl;
+                                                     } 
+                                                }                                             
+                                           }       
+                                    }
+                                    //if the dispatch time is less than minimum lower bound, then wait
+                                    if ((node.action.dispatch_time+planStartTime-missionStartTime)< minimum_dispatch_time ) {
+                                        continue;
+                                    }
+                                    //if the dispatch time is more than maximum upper bound, then replan
+                                    if ((node.action.dispatch_time+planStartTime-missionStartTime)> maximum_dispatch_time ) {
+                                        replan_requested;
+                                        ROS_INFO("KCL: (%s) Replan requested.", ros::this_node::getName().c_str());
+                                        
+                                    }
+                                    //if the dispatch time is within the minimum lower bound and maximum upper bound, then dispatch
+                                     if ((node.action.dispatch_time+planStartTime-missionStartTime)> minimum_dispatch_time && (node.action.dispatch_time+planStartTime-missionStartTime)< minimum_dispatch_time ) {
+                                        std::cout<<minimum_dispatch_time<<std::endl;
+                                 
 					// activate new edges
 					std::vector<int>::const_iterator ci = node.edges_in.begin();
-					ci = node.edges_out.begin();
-					for(; ci != node.edges_out.end(); ci++) {
+					ci = node.edges_in.begin();
+					for(; ci != node.edges_in.end(); ci++) {
 						edge_active[*ci] = true;
 					}
 
 					finished_execution = false;
 					state_changed = true;
 					plan_started = true;
-				}
+                                     }}
 
 				// do not check actions for nodes which are not action nodes
 				if(node.node_type != rosplan_dispatch_msgs::EsterelPlanNode::ACTION_START && node.node_type != rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END)
