@@ -38,7 +38,6 @@ class RobustEnvelope(object):
         rospy.Subscriber('rosplan_problem_interface/problem_instance', String, self.problemCallback, queue_size=1)
         # I think we don't need this
         rospy.Subscriber('rosplan_plan_dispatcher/plan_graph', String, self.stnCallback, queue_size=1)
-        #rospy.Subscriber('rosplan_dispatch_msgs/EsterelPlan', EsterelPlan, self.esterelCallback, queue_size=1)
         rospy.Subscriber('rosplan_parsing_interface/complete_plan', EsterelPlan, self.esterelCallback, queue_size=1)
         rospy.logdebug('Ready to compute robust envelopes')
         
@@ -49,27 +48,24 @@ class RobustEnvelope(object):
         rospy.Service('Update_Esterel', Empty, self.serviceCB2)
 
     def serviceCB(self, req):
-        '''
-        callback for the STN tool service
-        '''
         # call STN python tool
         rospy.loginfo('Calling STN python tool')
-        #stream = sys.stdout
-        #res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
-                               ###,debug=debug, splitting=args.splitting,
-                               ###early_forall_elimination=args.early_elimination,
-                               ###compact_encoding=compact_encoding,
-                               ###solver=args.solver,
-                               ###qelim_name=args.qelim,
-                               ###epsilon=Fraction(args.epsilon),
-                               ###simplify_effects=simplify_effects,
-                               ###learn=not args.no_learning
-                               ###)
-        #if res:
-            #for p, (l, u) in res.items():
-                #stream.write("%s in [%s, %s]\n" % (p.name, l, u))
-        #else:
-            #stream.write("The problem is unsatisfiable!\n")
+        stream = sys.stdout
+        res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
+                               ##,debug=debug, splitting=args.splitting,
+                               ##early_forall_elimination=args.early_elimination,
+                               ##compact_encoding=compact_encoding,
+                               ##solver=args.solver,
+                               ##qelim_name=args.qelim,
+                               ##epsilon=Fraction(args.epsilon),
+                               ##simplify_effects=simplify_effects,
+                               ##learn=not args.no_learning
+                               ##)
+        if res:
+            for p, (l, u) in res.items():
+                stream.write("%s in [%s, %s]\n" % (p.name, l, u))
+        else:
+            stream.write("The problem is unsatisfiable!\n")
                                
 
     def serviceCB2(self, req):
