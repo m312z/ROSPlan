@@ -16,42 +16,49 @@ class RobustEnvelope(object):
     todo
     '''
     def __init__(self):
-        rospy.loginfo('Updating the esterele plan bounds')
-        # publications
-        self.pub_EsterelBounds = rospy.Publisher('rosplan_parsing_interface/complete_plan', EsterelPlan , queue_size=10) # template stuff, TODO: fill
-        rospy.loginfo('Starting robust envelope node')
-        # setup the strings
-        # setup paths
-        rospack = rospkg.RosPack()
         
         # get path of pkg
+        rospack = rospkg.RosPack()
         pkg_path = rospack.get_path('rosplan_planning_system')
-        self.data_path = pkg_path + '/common/rosplan_planning_system/';
-        self.domain_path = self.data_path + 'domain.pddl';
-        self.problem_path = self.data_path + 'problem.pddl';
-        self.plan_path = self.data_path + 'plan.pddl';
-        self.STN_plan_path = self.data_path + 'STN_plan.stn';
-        self.Esterel_plan_path = self.data_path + 'Esterel_plan.txt';
-        self.Esterel_plan_msg_path = self.data_path + 'Esterel_plan_msg.txt';
+        self.data_path = pkg_path + '/common/rosplan_planning_system/'
+        self.domain_path = self.data_path + 'domain.pddl'
+        self.problem_path = self.data_path + 'problem.pddl'
+        self.plan_path = self.data_path + 'plan.pddl'
+        self.STN_plan_path = self.data_path + 'STN_plan.stn'
+        self.Esterel_plan_path = self.data_path + 'Esterel_plan.txt'
+
+        rospy.loginfo('Updating the esterele plan bounds')
+
+        # publications
+        self.pub_robust_plan= rospy.Publisher('rosplan_parsing_interface/robust_plan', EsterelPlan , queue_size=10) # template stuff, TODO: fill
+        
         # subscriptions
         rospy.Subscriber('rosplan_planner_interface/planner_output', String, self.planCallback, queue_size=1)
         rospy.Subscriber('rosplan_problem_interface/problem_instance', String, self.problemCallback, queue_size=1)
         # I think we don't need this
         rospy.Subscriber('rosplan_plan_dispatcher/plan_graph', String, self.stnCallback, queue_size=1)
-        rospy.Subscriber('rosplan_parsing_interface/complete_plan', EsterelPlan, self.esterelCallback, queue_size=1)
+        rospy.Subscriber('rosplan_parsing_interface/complete_plan', EsterelPlan, self.esterelPlanCallback, queue_size=1)
+        
+        # Var for better readability
+        self.esterel_plan_received = False
+        self.output_robust_plan_msg = None
+        rospy.loginfo('Starting robust envelope node')
+        
+        # to control the frequency at which this node will run
+        self.loop_rate = rospy.Rate(rospy.get_param('~loop_rate', 10.0))
+        
+        # give some time for the node to subscribe to the topic
+        rospy.sleep(0.2)
         rospy.logdebug('Ready to compute robust envelopes')
         
         # STN service offered by this node
         rospy.Service('run_STN', Empty, self.serviceCB)
-        
-        # uodating Esterel plan service offered by this node
-        rospy.Service('Update_Esterel', Empty, self.serviceCB2)
 
     def serviceCB(self, req):
         # call STN python tool
         rospy.loginfo('Calling STN python tool')
-        stream = sys.stdout
-        res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
+        #stream = sys.stdout
+        #res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
                                ##,debug=debug, splitting=args.splitting,
                                ##early_forall_elimination=args.early_elimination,
                                ##compact_encoding=compact_encoding,
@@ -61,24 +68,38 @@ class RobustEnvelope(object):
                                ##simplify_effects=simplify_effects,
                                ##learn=not args.no_learning
                                ##)
-        if res:
-            for p, (l, u) in res.items():
-                stream.write("%s in [%s, %s]\n" % (p.name, l, u))
-        else:
-            stream.write("The problem is unsatisfiable!\n")
+        #if res:
+            #for p, (l, u) in res.items():
+                #stream.write("%s in [%s, %s]\n" % (p.name, l, u))
+        #else:
+            #stream.write("The problem is unsatisfiable!\n")
                                
 
-    def serviceCB2(self, req):
+    #def serviceCB2(self, req):
 
         # call STN python tool
-        rospy.loginfo('Updateing the Esterel plan')  
+        #rospy.loginfo('Updateing the Esterel plan')  
     
+    def esterelPlanCallback(self, input_esterel_plan):
+        '''
+        Callback function that gets executed upon receiving a msg in the /input_esterel_plan topic
+        the esterel plan comes in input_esterel_plan variable, that the function receives as argument
+        '''
+        # save in member variable
+        self.output_robust_plan_msg = input_esterel_plan
+        # raise flag indicating that msg has been received
+        self.esterel_plan_received = True  
+        
+    def publish_robust_plan(self):
+        # modify partially the msg
+        #self.output_robust_plan_msg.nodes[0].node_id = 
+        # publish
+        self.pub_robust_plan.publish(self.output_robust_plan_msg)
         
     def problemCallback(self, msg):
         file = open(self.problem_path,'w')
         file.write(msg.data)
-        file.close()
-        
+        file.close()    
         
     def planCallback(self, msg):
         '''
@@ -86,15 +107,7 @@ class RobustEnvelope(object):
         '''
         file = open(self.plan_path,'w')
         file.write(msg.data)
-        file.close()
-        
-        
-    def esterelCallback(self, EsterelPlan):
-        self.pub_EsterelBounds.publish(EsterelPlan)
-        file = open(self.Esterel_plan_msg_path,'w')
-        file.write(str(EsterelPlan))
-        file.close()
-  
+        file.close()        
        
     def stnCallback(self, msg):
         '''                                 
@@ -105,6 +118,8 @@ class RobustEnvelope(object):
         file.close()
         
         Esterel_plan_file = open(self.Esterel_plan_path,'r')
+        print("plan path:"+self.Esterel_plan_path)
+
 
         #number of parameters added to the stn_plan
         n = 0
@@ -170,24 +185,19 @@ class RobustEnvelope(object):
                     # adding parameters
                 else:
                     stn_plan_file.write('c: ' + str(dict_stn[int(lineSplit[3])]) + ' - ' + str(dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n')
-                
-                    
-
+ 
     def start_robust_envelope(self):
         # wait for user to press ctrl + c (prevent the node from dying)
         rospy.spin()
+        print("Start")
+
         while not rospy.is_shutdown():
-            self.pub_EsterelBounds.publish(msg)
-            #if self.emotion_received == True:
-                ## lower flag
-                #self.emotion_received = False
-                ## update mouth emotion
-                #self.mouth_emotion_update()
-                ## update eyes emotion
-                #self.eyes_emotion_update()
-            #self.loop_rate.sleep()
-            
-    
+            if self.esterel_plan_received == True:
+                # lower flag
+                self.esterel_plan_received = False
+                # modify and publish msg
+                self.publish_robust_plan()
+            self.loop_rate.sleep()
 
 if __name__ == '__main__':
     rospy.init_node('robust_envelope_node', anonymous=False)

@@ -1,9 +1,9 @@
 digraph plan {
 0[ label="plan_start",style=filled,fillcolor=black,fontcolor=white];
 1[ label="do_hover_start
-(auv,wp_auv0,mission_site_start_point_1)"];
+(auv,wp_auv0,mission_site_start_point_1)",style=filled,fillcolor=darkgoldenrod2];
 2[ label="do_hover_end
-(auv,wp_auv0,mission_site_start_point_1)"];
+(auv,wp_auv0,mission_site_start_point_1)",style=filled,fillcolor=darkgoldenrod2];
 3[ label="complete_mission_start
 (auv,mission0,mission_site_start_point_1)"];
 4[ label="complete_mission_end
