@@ -44,15 +44,15 @@ class RobustEnvelope(object):
         self.output_robust_plan_msg = None
         rospy.loginfo('Starting robust envelope node')
         
+        # STN service offered by this node
+        rospy.Service('run_STN', Empty, self.serviceCB)
+
         # to control the frequency at which this node will run
         self.loop_rate = rospy.Rate(rospy.get_param('~loop_rate', 10.0))
-        
+
         # give some time for the node to subscribe to the topic
         rospy.sleep(0.2)
         rospy.logdebug('Ready to compute robust envelopes')
-        
-        # STN service offered by this node
-        rospy.Service('run_STN', Empty, self.serviceCB)
 
     def serviceCB(self, req):
         # call STN python tool
@@ -89,12 +89,14 @@ class RobustEnvelope(object):
         self.output_robust_plan_msg = input_esterel_plan
         # raise flag indicating that msg has been received
         self.esterel_plan_received = True  
-        
-    def publish_robust_plan(self):
+
+
+    def republish_plan(self):
         # modify partially the msg
         #self.output_robust_plan_msg.nodes[0].node_id = 
         # publish
         self.pub_robust_plan.publish(self.output_robust_plan_msg)
+        
         
     def problemCallback(self, msg):
         file = open(self.problem_path,'w')
@@ -188,15 +190,14 @@ class RobustEnvelope(object):
  
     def start_robust_envelope(self):
         # wait for user to press ctrl + c (prevent the node from dying)
-        rospy.spin()
-        print("Start")
-
+        #rospy.spin()
         while not rospy.is_shutdown():
-            if self.esterel_plan_received == True:
+            #if self.esterel_plan_received == True:
                 # lower flag
-                self.esterel_plan_received = False
+             #   self.esterel_plan_received = False
                 # modify and publish msg
-                self.publish_robust_plan()
+              #  self.republish_plan()
+            self.republish_plan()
             self.loop_rate.sleep()
 
 if __name__ == '__main__':
