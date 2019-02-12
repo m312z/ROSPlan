@@ -5,8 +5,12 @@ durative-action instance n3 : (complete_mission auv mission2 mission_site_start_
 durative-action instance n4 : (complete_mission auv mission3 mission_site_start_point_1);
 durative-action instance n5 : (complete_mission auv mission4 mission_site_start_point_1);
 durative-action instance n6 : (complete_mission auv mission5 mission_site_start_point_1);
+parameter dur_1;
+c: n0.start - .zero in [dur_1,dur_1];
 c: n0.start - .zero in [0.001, +inf];
 c: n0.end - n0.start in [5, 5];
+parameter dur_2;
+c: n0.end - .zero in [dur_2,dur_2];
 c: n0.end - .zero in [0.001, +inf];
 c: n1.start - n0.end in [0.001, +inf];
 c: n1.end - n1.start in [5, 5];
