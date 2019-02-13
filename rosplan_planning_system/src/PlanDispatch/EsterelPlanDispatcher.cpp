@@ -89,6 +89,12 @@ namespace KCL_rosplan {
 
 			finished_execution = true;
 			state_changed = false;
+						//mapping the lower bound and uppper bound of the edges to edge_id
+						for(std::vector<rosplan_dispatch_msgs::EsterelPlanEdge>::const_iterator ci = current_plan.edges.begin(); ci != current_plan.edges.end(); ci++) {
+					    	rosplan_dispatch_msgs::EsterelPlanEdge edge = *ci;
+							upper_bound_edge[edge.edge_id] = edge.duration_upper_bound;
+							lower_bound_edge[edge.edge_id] = edge.duration_lower_bound;
+						}
                         
                         // for each node check completion, conditions, and dispatch
                         for(std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::const_iterator ci = current_plan.nodes.begin(); ci != current_plan.nodes.end(); ci++) {
@@ -137,7 +143,11 @@ namespace KCL_rosplan {
 //                                     //if ((node.action.dispatch_time+planStartTime-missionStartTime)> minimum_dispatch_time && (node.action.dispatch_time+planStartTime-missionStartTime)< minimum_dispatch_time ) {
 //                                         //std::cout<<minimum_dispatch_time<<std::endl;
                                     
-                                        // activate new edges
+                                        // record the time for the PLAN_START node
+                                		double NOW = ros::Time::now().toSec();	
+                                		node_real_dispatch_time.insert (std::pair<int,double>(node.node_id, NOW)); 
+
+                                		// activate new edges
                                         std::vector<int>::const_iterator ci = node.edges_in.begin();
                                         ci = node.edges_out.begin();
                                         for(; ci != node.edges_out.end(); ci++) {
@@ -166,9 +176,24 @@ namespace KCL_rosplan {
 				std::vector<int>::iterator eit = node.edges_in.begin();
 				for (; eit != node.edges_in.end(); ++eit) {
 					if(!edge_active[(*eit)]) edges_activate_action = false;
+						//define a minimum and maximum dispatch time for each edge
+						float minimum_dispatch_time = planStartTime + node_real_dispatch_time[node.node_id] + lower_bound_edge[*eit];
+						float maximum_dispatch_time =planStartTime + node_real_dispatch_time[node.node_id] + lower_bound_edge[*eit];
+						// check the current time with the lower bound
+						double NOW = ros::Time::now().toSec();
+						if (NOW < minimum_dispatch_time) continue;
+						//{
+
+							//ros::Duration(NOW - minimum_dispatch_time).sleep();
+						//};
+						// check the current time with the upper bound
+						if (NOW > maximum_dispatch_time){
+							(replan_requested);
+							ROS_INFO("KCL: (%s) Replan requested.", ros::this_node::getName().c_str());
+						}
 				}
 				if(!edges_activate_action) continue;
-                                //add code bfore here 
+				
 				// dispatch new action
 				if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_START && !action_dispatched[node.action.action_id]) {
 
@@ -196,6 +221,11 @@ namespace KCL_rosplan {
 								node.action.duration);
 
 						action_dispatch_publisher.publish(node.action);
+						
+						// record the dispatch time for action start node
+	                    double NOW = ros::Time::now().toSec();	
+                        node_real_dispatch_time.insert (std::pair<int,double>(node.node_id, NOW));
+
 						state_changed = true;
 
 						// deactivate incoming edges
@@ -289,6 +319,21 @@ namespace KCL_rosplan {
 
 		// action completed (successfuly)
 		if(!action_completed[msg->action_id] && 0 == msg->status.compare("action achieved")) {
+			for(std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::const_iterator ci = current_plan.nodes.begin(); ci != current_plan.nodes.end(); ci++) {
+				rosplan_dispatch_msgs::EsterelPlanNode node = *ci;
+			 	if (node.action.action_id == msg->action_id){
+			 		// record the time for the end action node
+            		double NOW = ros::Time::now().toSec();	
+            		node_real_dispatch_time.insert (std::pair<int,double>(node.node_id, NOW)); 
+            	}
+            }
+
+
+
+
+			// record the dispatch time for action end node
+            double NOW = ros::Time::now().toSec();	
+            //node_real_dispatch_time.insert (std::pair<int,double>(, NOW));
 
 			// check action is part of current plan
 			if(!action_received[msg->action_id]) {

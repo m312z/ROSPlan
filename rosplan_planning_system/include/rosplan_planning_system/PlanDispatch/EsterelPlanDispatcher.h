@@ -53,6 +53,17 @@ namespace KCL_rosplan
 		bool state_changed;
 		bool finished_execution;
 
+		//map real time dispatch for each node
+		std::map<int,double> node_real_dispatch_time;
+
+		// map lower duration bound for each edge_id
+		std::map<int,float> lower_bound_edge;
+
+		// map upper duration bound for each edge_id
+		std::map<int,float> upper_bound_edge;
+
+
+
 		/* plan graph publisher */
 		bool printPlan();
 		ros::Publisher plan_graph_publisher;
