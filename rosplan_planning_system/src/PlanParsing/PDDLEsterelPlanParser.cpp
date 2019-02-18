@@ -22,6 +22,10 @@ namespace KCL_rosplan {
 		get_propositions_client = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>(ss.str().c_str());
 		ss.str("");
 
+		ss << "/" << kb << "/state/timed_knowledge";
+		get_tils_client = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>(ss.str().c_str());
+		ss.str("");
+
 		ss << "/" << kb << "/state/functions";
 		get_functions_client = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>(ss.str().c_str());
 		ss.str("");
@@ -230,7 +234,7 @@ namespace KCL_rosplan {
 
 			rosplan_knowledge_msgs::GetAttributeService attsrv;
 			attsrv.request.predicate_name = pit->name;
-			if(!get_propositions_client.call(attsrv)) {
+			if(!get_tils_client.call(attsrv)) {
 				ROS_ERROR("KCL: (%s) could not call Knowledge Base for (%s)", ros::this_node::getName().c_str(), pit->name.c_str());
 				continue;
 			}
@@ -364,7 +368,6 @@ namespace KCL_rosplan {
 						rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
 				}
 			}
-
 			tit++;
 		}
 
