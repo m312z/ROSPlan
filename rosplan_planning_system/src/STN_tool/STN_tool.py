@@ -20,13 +20,16 @@ class RobustEnvelope(object):
         # get path of pkg
         rospack = rospkg.RosPack()
         pkg_path = rospack.get_path('rosplan_planning_system')
+        #print('searching for param:')
+        domain_name = rospy.get_param('/rosplan_planner_interface/domain_path').split('/')[-1]
+        problem_name = rospy.get_param('/rosplan_planner_interface/problem_path').split('/')[-1]
         self.data_path = pkg_path + '/common/rosplan_planning_system/'
-        self.domain_path = self.data_path + 'domain.pddl'
-        self.problem_path = self.data_path + 'problem.pddl'
-        self.plan_path = self.data_path + 'plan.pddl'
-        self.STN_plan_path = self.data_path + 'STN_plan.stn'
-        self.Esterel_plan_path = self.data_path + 'Esterel_plan.txt'
-        self.Robust_plan_path = self.data_path + 'Robust_plan.txt'
+        self.domain_path = self.data_path + domain_name
+        self.problem_path = self.data_path + problem_name 
+        self.plan_path = self.data_path + 'plan_' + problem_name 
+        self.STN_plan_path = self.data_path + 'STN_plan_' + problem_name[:-5] + '.stn' 
+        self.Esterel_plan_path = self.data_path + 'Esterel_plan_' + problem_name[:-5] +'.txt'
+        self.Robust_plan_path = self.data_path + 'Robust_plan_' + problem_name[:-5] + '.txt_' 
         #relate the parameter to the source node and the sink node
         self.dict_pram_source_node = dict()
         self.dict_pram_sink_node = dict()
@@ -89,35 +92,21 @@ class RobustEnvelope(object):
         # call STN python tool
         rospy.loginfo('Calling STN python tool')
         stream = sys.stdout
-        res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
-                               ##,debug=debug, splitting=args.splitting,
-                               ##early_forall_elimination=args.early_elimination,
-                               ##compact_encoding=compact_encoding,
-                               ##solver=args.solver,
-                               ##qelim_name=args.qelim,
-                               ##epsilon=Fraction(args.epsilon),
-                               ##simplify_effects=simplify_effects,
-                               ##learn=not args.no_learning
-                               ##)
+        res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path,debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver=None, qelim_name=None,epsilon=None, simplify_effects=True)
+        # rectangle_callback=None)
+
         if res:
             for p, (l, u) in res.items():
                 stream.write("%s in [%s, %s]\n" % (p.name, l, u))
+                #the upper and lower bound on the edges for parameters
                 self.dict_dur_lower[p.name] = float(l)
                 self.dict_dur_upper[p.name] = float(u)
-                print(self.dict_dur_upper)
         else:
             stream.write("The problem is unsatisfiable!\n")
         
         if bool(self.dict_dur_lower[p.name] and self.dict_dur_upper[p.name]):
             self.paramter_relate_edge()
 
-
-
-    #def serviceCB2(self, req):
-
-        # call STN python tool
-        #rospy.loginfo('Updateing the Esterel plan')  
-    
     def stnCallback(self, msg):
         '''                                 
         write msg.data to textfile
@@ -127,11 +116,11 @@ class RobustEnvelope(object):
         file.close()
         
         Esterel_plan_file = open(self.Esterel_plan_path,'r')
-        print("plan path:"+self.Esterel_plan_path)
+        #print("plan path:"+self.Esterel_plan_path)
 
 
         #number of parameters added to the stn_plan
-        n = 3
+        n = 0
         #counter on the number of the parameters added
         l = 1
         # esterel nodes dictioanry
@@ -154,7 +143,6 @@ class RobustEnvelope(object):
                     endln = endln + word1 + ' '
                 dict_esterel[key] = dict_esterel[key]+ ' ' +endln[:-1]
                 key = 0
-        #print (dict_esterel)
         
         # map esterel node to stn node dictionary
         for key in dict_esterel:
@@ -166,7 +154,6 @@ class RobustEnvelope(object):
                 self.dict_stn[key] = stn_key_end
                 STN_node += 1
             self.dict_stn[0] = '.zero'
-        print (self.dict_stn)
         
         STN_node = 0
         stn_plan_file = open(self.STN_plan_path, 'w')
@@ -179,21 +166,31 @@ class RobustEnvelope(object):
         for line in Esterel_plan_file:
             if line[0] == '"' :
                 lineSplit = line.split('"')
+                # parameterizing all the start-end actions 
+                if int(lineSplit[1]) % 2 ==1 and int(lineSplit[3]) == int(lineSplit[1]) +1 and dict_esterel[int(lineSplit[1])].split('_')[0] == 'goto':
+                    default_value= lineSplit[5].split(',')[1].split(']')
+                    stn_plan_file.write('parameter dur_' + str(l) + ' default' + str(default_value[0]) + '; \n')
+                    stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in [dur_' + str(l) + ',dur_' + str(l) + '];\n')
+                    l+=1
                 ##add parameters start from the first constraint:
                 #if l < n:
                 #add parameters to the nodes and start plan
-                if l < n and lineSplit[1] == '0':
-                    stn_plan_file.write('parameter dur_' + str(l) + ';\n')
-                    stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in [dur_' + str(l) + ',dur_' + str(l) + '];\n')
+                # if l < n and lineSplit[1] == '0':
+                #     stn_plan_file.write('parameter dur_' + str(l) + ';\n')
+                #     stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in [dur_' + str(l) + ',dur_' + str(l) + '];\n')
                     
-                    l += 1
-                if line.find('inf') > 0:
-                    new_stn_line = 'c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n'
-                    #stn_plan_file.write(new_stn_line.replace('inf', str(sys.maxsize)))
-                    stn_plan_file.write(new_stn_line.replace('inf', '+inf'))
-                    # adding parameters
+                #     l += 1
+                # if line.find('inf') > 0:
+                #     new_stn_line = 'c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n'
+                #     #stn_plan_file.write(new_stn_line.replace('inf', str(sys.maxsize)))
+                #     stn_plan_file.write(new_stn_line.replace('inf', '+inf'))
+                #     # adding parameters
                 else:
-                    stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n')      
+                    stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n')   
+                #stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n') 
+        # stn_plan_file = open(self.STN_plan_path, 'r')
+        # for line in stn_plan_file:
+        #     if line[3] 
 
     
      # publishing the robutst plan    

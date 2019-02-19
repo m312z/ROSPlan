@@ -1,0 +1,66 @@
+digraph plan {
+0[ label="plan_start",style=filled,fillcolor=black,fontcolor=white];
+1[ label="goto_waypoint_start
+(robot0,wp0,printer0)"];
+2[ label="goto_waypoint_end
+(robot0,wp0,printer0)"];
+3[ label="goto_waypoint_start
+(robot1,wp0,printer0)"];
+4[ label="goto_waypoint_end
+(robot1,wp0,printer0)"];
+5[ label="goto_waypoint_start
+(robot2,wp0,printer0)"];
+6[ label="goto_waypoint_end
+(robot2,wp0,printer0)"];
+7[ label="wait_load_at_printer_start
+(robot0,robot1,printer0)"];
+8[ label="wait_load_at_printer_end
+(robot0,robot1,printer0)"];
+9[ label="goto_waypoint_start
+(robot0,printer0,wp0)"];
+10[ label="goto_waypoint_end
+(robot0,printer0,wp0)"];
+11[ label="goto_waypoint_start
+(robot1,printer0,wp0)"];
+12[ label="goto_waypoint_end
+(robot1,printer0,wp0)"];
+13[ label="ask_unload_start
+(robot0,wp0)"];
+14[ label="ask_unload_end
+(robot0,wp0)"];
+15[ label="wait_unload_start
+(robot0,wp0)"];
+16[ label="wait_unload_end
+(robot0,wp0)"];
+"0" -> "1" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"0" -> "3" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"0" -> "5" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"1" -> "2" [ label="[90, 90]" , penwidth=2, color="red"]
+"0" -> "2" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"3" -> "4" [ label="[90, 90]" , penwidth=2, color="red"]
+"0" -> "4" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"5" -> "6" [ label="[90, 90]" , penwidth=2, color="red"]
+"0" -> "6" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"2" -> "7" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"4" -> "7" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"7" -> "8" [ label="[15, 15]" , penwidth=2, color="red"]
+"0" -> "8" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"2" -> "9" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"8" -> "9" [ label="[0.001, inf]" , penwidth=2, color="blue"]
+"4" -> "11" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"8" -> "11" [ label="[0.001, inf]" , penwidth=2, color="blue"]
+"9" -> "10" [ label="[90, 90]" , penwidth=2, color="red"]
+"1" -> "10" [ label="[0.001, inf]" , penwidth=2, color="blue"]
+"11" -> "12" [ label="[90, 90]" , penwidth=2, color="red"]
+"3" -> "12" [ label="[0.001, inf]" , penwidth=2, color="blue"]
+"8" -> "13" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"10" -> "13" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"13" -> "14" [ label="[5, 5]" , penwidth=2, color="red"]
+"9" -> "14" [ label="[0.001, inf]" , penwidth=2, color="blue"]
+"1" -> "14" [ label="[0.001, inf]" , penwidth=2, color="blue"]
+"14" -> "15" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"8" -> "15" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"10" -> "15" [ label="[0.001, inf]" , penwidth=2, color="green"]
+"15" -> "16" [ label="[15, 15]" , penwidth=2, color="red"]
+"7" -> "16" [ label="[0.001, inf]" , penwidth=2, color="blue"]
+}
