@@ -1,0 +1,8 @@
+0.000: (goto_waypoint robot0 wp0 printer2)  [155.000]
+0.000: (goto_waypoint robot1 wp0 printer2)  [155.000]
+0.000: (goto_waypoint robot2 wp0 printer2)  [155.000]
+155.001: (wait_load_at_printer robot0 robot1 printer2)  [15.000]
+170.001: (goto_waypoint robot0 printer2 wp6)  [410.000]
+190.002: (goto_waypoint robot1 printer2 wp6)  [410.000]
+580.001: (ask_unload robot0 wp6)  [5.000]
+585.002: (wait_unload robot0 wp6)  [15.000]

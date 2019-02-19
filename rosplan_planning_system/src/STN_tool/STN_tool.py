@@ -39,7 +39,7 @@ class RobustEnvelope(object):
 
         #mapping the stn node to esterel node
         self.dict_stn = dict()
-
+        
 
         rospy.loginfo('Updating the esterele plan bounds')
 
@@ -68,6 +68,10 @@ class RobustEnvelope(object):
         rospy.sleep(0.2)
         rospy.logdebug('Ready to compute robust envelopes')
     
+        while not rospy.is_shutdown(): 
+            self.loop_rate.sleep()
+    
+    
     def esterelPlanCallback(self, input_esterel_plan):
         # save in member variable
         self.output_robust_plan_msg = input_esterel_plan
@@ -86,15 +90,24 @@ class RobustEnvelope(object):
                         par_edge_id = int(par_edge[1:(len(par_edge)-1)])
                         self.output_robust_plan_msg.edges[par_edge_id].duration_lower_bound = self.dict_dur_lower[line[(line.find('[')+1):line.find(',')]]
                         self.output_robust_plan_msg.edges[par_edge_id].duration_upper_bound = self.dict_dur_upper[line[(line.find('[')+1):line.find(',')]]
+          
 
+
+       
     
     def serviceCB(self, req):
+        rospy.loginfo(self.domain_path)
+        rospy.loginfo(self.problem_path)
+        rospy.loginfo(self.STN_plan_path)
+        rospy.loginfo(self.Esterel_plan_path)
         # call STN python tool
         rospy.loginfo('Calling STN python tool')
         stream = sys.stdout
-        res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path,debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver=None, qelim_name=None,epsilon=None, simplify_effects=True)
+        res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
+                                         #debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver=None, qelim_name=None,epsilon=None, simplify_effects=True)
         # rectangle_callback=None)
-
+        rospy.loginfo('It worksssssssssssssssss')
+        
         if res:
             for p, (l, u) in res.items():
                 stream.write("%s in [%s, %s]\n" % (p.name, l, u))
@@ -106,7 +119,9 @@ class RobustEnvelope(object):
         
         if bool(self.dict_dur_lower[p.name] and self.dict_dur_upper[p.name]):
             self.paramter_relate_edge()
-
+        self.republish_plan()
+        
+        
     def stnCallback(self, msg):
         '''                                 
         write msg.data to textfile
@@ -191,12 +206,15 @@ class RobustEnvelope(object):
         # stn_plan_file = open(self.STN_plan_path, 'r')
         # for line in stn_plan_file:
         #     if line[3] 
-
+        stn_plan_file.close()
     
      # publishing the robutst plan    
     def republish_plan(self):
         # publish
-        self.pub_robust_plan.publish(self.output_robust_plan_msg)
+        if self.output_robust_plan_msg != None:
+            self.pub_robust_plan.publish(self.output_robust_plan_msg)
+        
+            
         
     # writing the PDDL problem genrated by ROSPlan in a file       
     def problemCallback(self, msg):
@@ -210,19 +228,19 @@ class RobustEnvelope(object):
         file.write(msg.data)
         file.close()        
  
-    def start_robust_envelope(self):
-        # wait for user to press ctrl + c (prevent the node from dying)
-        #rospy.spin()
-        while not rospy.is_shutdown():
-            #if self.esterel_plan_received == True:
-                # lower flag
-             #   self.esterel_plan_received = False
-                # modify and publish msg
-              #  self.republish_plan()
-            self.republish_plan()
-            self.loop_rate.sleep()
+    #def start_robust_envelope(self):
+        ## wait for user to press ctrl + c (prevent the node from dying)
+        ##rospy.spin()
+        #while not rospy.is_shutdown():
+            ##if self.esterel_plan_received == True:
+                ## lower flag
+             ##   self.esterel_plan_received = False
+                ## modify and publish msg
+              ##  self.republish_plan()
+            #self.republish_plan()
+            #self.loop_rate.sleep()
 
 if __name__ == '__main__':
     rospy.init_node('robust_envelope_node', anonymous=False)
     robust_envelope_node = RobustEnvelope()
-    robust_envelope_node.start_robust_envelope()
+    #robust_envelope_node.start_robust_envelope()

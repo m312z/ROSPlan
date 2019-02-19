@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+
+        <!-- arguments -->
+        <arg name="node_name"            default="rosplan_STN_tool" />
+        <arg name="use_problem_topic"    default="true" />
+        <arg name="problem_topic"        default="/rosplan_problem_interface/problem_instance" />
+        <arg name="robust_domain_path"          default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_robot_delivery_robust.pddl" />
+        <arg name="problem_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05_ROSPlan.pddl" />
+        <arg name="init_problem_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05.pddl" />
+        <arg name="data_path"            default="$(find rosplan_planning_system)/common/rosplan_planning_system" />
+        <arg name="plan_topic"       default="complete_plan" />
+
+
+        <!-- STN tool -->
+        <node name="$(arg node_name)" pkg="rosplan_planning_system" type="STN_tool.py" respawn="false" output="screen">
+
+                <!-- general options -->
+                <param name="use_problem_topic" value="$(arg use_problem_topic)" />
+
+                <!-- ros topics -->
+                <param name="problem_topic" value="$(arg problem_topic)" />
+                <param name="plan_topic" value="$(arg plan_topic)" />
+
+                <!-- directory for files -->
+                <param name="robust_domain_path" value="$(arg robust_domain_path)" />
+                <param name="problem_path" value="$(arg problem_path)" />
+                <param name="data_path" value="$(arg data_path)" />
+
+        </node>
+
+</launch>
+

@@ -2,50 +2,36 @@
 (:domain turtlebot)
 (:objects
     wp0 wp1 wp2 wp3 wp4 wp5 wp6 wp7 wp8 - waypoint
-    robot0 robot1 robot2 - robot
     printer0 printer1 printer2 printer3 - printer
+    robot0 robot1 robot2 - robot
 )
 (:init
     (robot_at robot0 wp0)
-    (robot_at robot1 wp0)
-    (robot_at robot2 wp0)
-
+    (nocarrying_papers robot0)
     (undocked robot0)
-    (undocked robot1)
-    (undocked robot2)
-
-
     (localised robot0)
+
+    (robot_at robot1 wp0)
+    (nocarrying_papers robot1)
+    (undocked robot1)
     (localised robot1)
+
+    (robot_at robot2 wp0)
+    (nocarrying_papers robot2)
+    (undocked robot2)
     (localised robot2)
 
     (dock_at wp0)
 
-
-    (nocarrying_papers robot0)
-    (nocarrying_papers robot1)
-    (nocarrying_papers robot2)
-
-
-
     (delivery_destination wp0)
-    (at 733.75 (not (delivery_destination wp0)))
     (delivery_destination wp1)
-    (at 733.75 (not (delivery_destination wp1)))
     (delivery_destination wp2)
-    (at 733.75 (not (delivery_destination wp2)))
     (delivery_destination wp3)
-    (at 733.75 (not (delivery_destination wp3)))
     (delivery_destination wp4)
-    (at 733.75 (not (delivery_destination wp4)))
     (delivery_destination wp5)
-    (at 733.75 (not (delivery_destination wp5)))
     (delivery_destination wp6)
-    (at 733.75 (not (delivery_destination wp6)))
     (delivery_destination wp7)
-    (at 733.75 (not (delivery_destination wp7)))
     (delivery_destination wp8)
-    (at 733.75 (not (delivery_destination wp8)))
 
     (= (distance wp0 wp1) 26)
     (= (distance wp1 wp0) 26)
@@ -203,7 +189,6 @@
     (= (distance printer3 printer1) 54)
     (= (distance printer2 printer3) 78)
     (= (distance printer3 printer2) 78)
-
 )
 (:goal (and
     (papers_delivered wp3)
