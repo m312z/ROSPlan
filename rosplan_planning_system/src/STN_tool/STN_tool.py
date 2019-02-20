@@ -12,9 +12,7 @@ from rosplan_planning_system.main import compute_envelope_construct
 
 
 class RobustEnvelope(object):
-    '''
-    todo
-    '''
+
     def __init__(self):
         
         # get path of pkg
@@ -56,6 +54,8 @@ class RobustEnvelope(object):
         # Var for better readability
         self.esterel_plan_received = False
         self.output_robust_plan_msg = None
+        self.publish_robust = False
+
         rospy.loginfo('Starting robust envelope node')
         
         # STN service offered by this node
@@ -67,9 +67,6 @@ class RobustEnvelope(object):
         # give some time for the node to subscribe to the topic
         rospy.sleep(0.2)
         rospy.logdebug('Ready to compute robust envelopes')
-    
-        while not rospy.is_shutdown(): 
-            self.loop_rate.sleep()
     
     
     def esterelPlanCallback(self, input_esterel_plan):
@@ -90,10 +87,8 @@ class RobustEnvelope(object):
                         par_edge_id = int(par_edge[1:(len(par_edge)-1)])
                         self.output_robust_plan_msg.edges[par_edge_id].duration_lower_bound = self.dict_dur_lower[line[(line.find('[')+1):line.find(',')]]
                         self.output_robust_plan_msg.edges[par_edge_id].duration_upper_bound = self.dict_dur_upper[line[(line.find('[')+1):line.find(',')]]
-          
 
-
-       
+   
     
     def serviceCB(self, req):
         rospy.loginfo(self.domain_path)
@@ -119,7 +114,8 @@ class RobustEnvelope(object):
         
         if bool(self.dict_dur_lower[p.name] and self.dict_dur_upper[p.name]):
             self.paramter_relate_edge()
-        self.republish_plan()
+            self.publish_robust = True
+        	
         
         
     def stnCallback(self, msg):
@@ -203,18 +199,19 @@ class RobustEnvelope(object):
                 else:
                     stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n')   
                 #stn_plan_file.write('c: ' + str(self.dict_stn[int(lineSplit[3])]) + ' - ' + str(self.dict_stn[int(lineSplit[1])]) + ' in ' + str(lineSplit[5]) + ';\n') 
-        # stn_plan_file = open(self.STN_plan_path, 'r')
-        # for line in stn_plan_file:
-        #     if line[3] 
         stn_plan_file.close()
-    
+
      # publishing the robutst plan    
     def republish_plan(self):
         # publish
-        if self.output_robust_plan_msg != None:
-            self.pub_robust_plan.publish(self.output_robust_plan_msg)
-        
-            
+        #if self.output_robust_plan_msg != None:
+
+        while not rospy.is_shutdown():
+        	if self.publish_robust:
+        		self.pub_robust_plan.publish(self.output_robust_plan_msg)
+        		self.publish_robust = False
+        	self.loop_rate.sleep()
+                   
         
     # writing the PDDL problem genrated by ROSPlan in a file       
     def problemCallback(self, msg):
@@ -228,19 +225,19 @@ class RobustEnvelope(object):
         file.write(msg.data)
         file.close()        
  
-    #def start_robust_envelope(self):
-        ## wait for user to press ctrl + c (prevent the node from dying)
-        ##rospy.spin()
-        #while not rospy.is_shutdown():
-            ##if self.esterel_plan_received == True:
-                ## lower flag
-             ##   self.esterel_plan_received = False
-                ## modify and publish msg
-              ##  self.republish_plan()
-            #self.republish_plan()
-            #self.loop_rate.sleep()
+    # def start_robust_envelope(self):
+    #     # wait for user to press ctrl + c (prevent the node from dying)
+    #     while not rospy.is_shutdown():
+    #         # if self.esterel_plan_received == True:
+    #         #     # lower flag
+    #         #    self.esterel_plan_received = False
+    #         #     # modify and publish msg
+    #         #    self.republish_plan()
+    #     	self.republish_plan()
+    #     	self.loop_rate.sleep()
 
 if __name__ == '__main__':
     rospy.init_node('robust_envelope_node', anonymous=False)
     robust_envelope_node = RobustEnvelope()
-    #robust_envelope_node.start_robust_envelope()
+    # robust_envelope_node.start_robust_envelope()
+    robust_envelope_node.republish_plan()

@@ -34,12 +34,6 @@
     (delivery_destination wp3)
     (delivery_destination wp4)
 
-    (at 239.226 (not (delivery_destination wp0)))
-    (at 239.226 (not (delivery_destination wp1)))
-    (at 239.226 (not (delivery_destination wp2)))
-    (at 239.226 (not (delivery_destination wp3)))
-    (at 239.226 (not (delivery_destination wp4)))
-
     (= (distance wp0 wp1) 33)
     (= (distance wp1 wp0) 33)
     (= (distance wp0 wp2) 62)
