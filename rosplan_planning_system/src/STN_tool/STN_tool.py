@@ -7,7 +7,7 @@ import sys
 
 from rosplan_dispatch_msgs.msg import *
 from std_msgs.msg import String
-from std_srvs.srv import Empty
+from std_srvs.srv import Empty, EmptyResponse
 from rosplan_planning_system.main import compute_envelope_construct
 
 
@@ -17,66 +17,100 @@ class RobustEnvelope(object):
         
         # get path of pkg
         rospack = rospkg.RosPack()
-        pkg_path = rospack.get_path('rosplan_planning_system')
-        #print('searching for param:')
-        domain_name = rospy.get_param('/rosplan_planner_interface/domain_path').split('/')[-1]
-        problem_name = rospy.get_param('/rosplan_planner_interface/problem_path').split('/')[-1]
-        self.data_path = pkg_path + '/common/rosplan_planning_system/'
-        self.domain_path = self.data_path + domain_name
-        self.problem_path = self.data_path + problem_name 
-        self.plan_path = self.data_path + 'plan_' + problem_name 
-        self.STN_plan_path = self.data_path + 'STN_plan_' + problem_name[:-5] + '.stn' 
-        self.Esterel_plan_path = self.data_path + 'Esterel_plan_' + problem_name[:-5] +'.txt'
-        self.Robust_plan_path = self.data_path + 'Robust_plan_' + problem_name[:-5] + '.txt_' 
+
+        self.domain_path = rospy.get_param('~robust_domain_path', "domain.pddl")#.split('/')[-1]
+        self.problem_path = rospy.get_param('~problem_path', "problem.pddl")#.split('/')[-1]
+        self.STN_plan_path = self.problem_path [:-5] + "_plan.stn" #self.data_path + 'STN_plan_' + problem_name[:-5] + '.stn' 
+        self.Esterel_plan_path = self.problem_path [:-5] + "_plan.strl" #self.data_path + 'Esterel_plan_' + problem_name[:-5] +'.txt'
+        self.max_parameters = rospy.get_param('~max_parameters', 1)
+
         #relate the parameter to the source node and the sink node
         self.dict_pram_source_node = dict()
         self.dict_pram_sink_node = dict()
+        self.dict_params = dict()
+
         #getting the value of the dur from service
         self.dict_dur_lower = dict()
         self.dict_dur_upper = dict()
 
         #mapping the stn node to esterel node
         self.dict_stn = dict()
-        
-
-        rospy.loginfo('Updating the esterele plan bounds')
 
         # publications
-        self.pub_robust_plan = rospy.Publisher('rosplan_parsing_interface/robust_plan', EsterelPlan , queue_size=10) # template stuff, TODO: fill
+        self.pub_robust_plan = rospy.Publisher(rospy.get_param('~robust_plan_topic'), EsterelPlan , queue_size=10) # template stuff, TODO: fill
         
         # subscriptions
-        rospy.Subscriber('rosplan_planner_interface/planner_output', String, self.planCallback, queue_size=1)
-        rospy.Subscriber('rosplan_problem_interface/problem_instance', String, self.problemCallback, queue_size=1)
-        # I think we don't need this
-        rospy.Subscriber('rosplan_plan_dispatcher/plan_graph', String, self.stnCallback, queue_size=1)
-        rospy.Subscriber('rosplan_parsing_interface/complete_plan', EsterelPlan, self.esterelPlanCallback, queue_size=1)
+        rospy.Subscriber(rospy.get_param('~plan_topic'), EsterelPlan, self.esterelPlanCallback, queue_size=1)
+
+        # STN service offered by this node
+        rospy.Service('run_STN', Empty, self.serviceCB)
         
         # Var for better readability
         self.esterel_plan_received = False
         self.output_robust_plan_msg = None
         self.publish_robust = False
-
-        rospy.loginfo('Starting robust envelope node')
         
-        # STN service offered by this node
-        rospy.Service('run_STN', Empty, self.serviceCB)
-
         # to control the frequency at which this node will run
         self.loop_rate = rospy.Rate(rospy.get_param('~loop_rate', 10.0))
 
         # give some time for the node to subscribe to the topic
         rospy.sleep(0.2)
-        rospy.logdebug('Ready to compute robust envelopes')
+        rospy.loginfo('KCL: (' + rospy.get_name() + ') Using domain: ' + self.domain_path)
+        rospy.loginfo('KCL: (' + rospy.get_name() + ') Using problem: ' + self.problem_path)
+        rospy.loginfo('KCL: (' + rospy.get_name() + ') Ready to compute robust envelopes')
     
     
     def esterelPlanCallback(self, input_esterel_plan):
         # save in member variable
         self.output_robust_plan_msg = input_esterel_plan
         # raise flag indicating that msg has been received
-        self.esterel_plan_received = True  
+        self.esterel_plan_received = True
+
+        stn_plan_file = open(self.STN_plan_path, 'w')
+
+        # print the actions
+        for node in input_esterel_plan.nodes:
+            if node.node_type == 0: # ACTION_START
+                pddl_action = "(" + node.action.name
+                for param in node.action.parameters:
+                    pddl_action = pddl_action + " " + param.value
+                pddl_action = pddl_action + ")"
+                stn_plan_file.write("durative-action instance n" + str(node.node_id) + " : " + pddl_action + ";\n")
+
+        # print the constraints
+        parameter_count = 0
+        for edge in input_esterel_plan.edges:
+
+            if parameter_count < self.max_parameters and edge.edge_type == 1 and input_esterel_plan.nodes[edge.source_ids[0]].action.name == "goto_waypoint":
+                stn_plan_file.write("parameter dur_" + str(parameter_count) + " default " + str(edge.duration_lower_bound) + ";\n")
+                self.dict_params["dur_" + str(parameter_count)] = edge.edge_id
+                bounds = "[dur_" + str(parameter_count) + ", dur_" + str(parameter_count) + "]"
+                parameter_count += 1
+            else:
+                bounds = "[" + str(edge.duration_lower_bound) + ", "
+                if edge.duration_upper_bound >= sys.float_info.max:
+                    bounds = bounds + "inf]"
+                else:
+                    bounds = bounds + str(edge.duration_upper_bound) + "]"
+
+            source = ".zero"
+            if input_esterel_plan.nodes[edge.source_ids[0]].node_type == 0: # ACTION_START
+                source = "n" + str(input_esterel_plan.nodes[edge.source_ids[0]].node_id) + ".start"
+            if input_esterel_plan.nodes[edge.source_ids[0]].node_type == 1: # ACTION_END
+                source = "n" + str(input_esterel_plan.nodes[edge.source_ids[0]].node_id-1) + ".end"
+
+            sink = ".zero"
+            if input_esterel_plan.nodes[edge.sink_ids[0]].node_type == 0: # ACTION_START
+                sink = "n" + str(input_esterel_plan.nodes[edge.sink_ids[0]].node_id) + ".start"
+            if input_esterel_plan.nodes[edge.sink_ids[0]].node_type == 1: # ACTION_END
+                sink = "n" + str(input_esterel_plan.nodes[edge.sink_ids[0]].node_id-1) + ".end"
+
+            stn_plan_file.write("c: " + sink + " - " + source + " in " + bounds + ";\n")
+        stn_plan_file.close()
 
 
     def paramter_relate_edge(self):
+        rospy.loginfo("EMRE SAVAS " + self.STN_plan_path)
         stn_plan_file = open(self.STN_plan_path, 'r')
         for line in stn_plan_file:
             if line.find('[dur_') > 0:
@@ -86,38 +120,41 @@ class RobustEnvelope(object):
                         par_edge = str(set(self.output_robust_plan_msg.nodes[0].edges_out).intersection(self.output_robust_plan_msg.nodes[key].edges_in))
                         par_edge_id = int(par_edge[1:(len(par_edge)-1)])
                         self.output_robust_plan_msg.edges[par_edge_id].duration_lower_bound = self.dict_dur_lower[line[(line.find('[')+1):line.find(',')]]
-                        self.output_robust_plan_msg.edges[par_edge_id].duration_upper_bound = self.dict_dur_upper[line[(line.find('[')+1):line.find(',')]]
-
-   
+                        self.output_robust_plan_msg.edges[par_edge_id].duration_upper_bound = self.dict_dur_upper[line[(line.find('[')+1):line.find(',')]] 
     
     def serviceCB(self, req):
-        rospy.loginfo(self.domain_path)
-        rospy.loginfo(self.problem_path)
-        rospy.loginfo(self.STN_plan_path)
-        rospy.loginfo(self.Esterel_plan_path)
-        # call STN python tool
-        rospy.loginfo('Calling STN python tool')
-        stream = sys.stdout
-        res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
-                                         #debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver=None, qelim_name=None,epsilon=None, simplify_effects=True)
-        # rectangle_callback=None)
-        rospy.loginfo('It worksssssssssssssssss')
+
+        if not self.esterel_plan_received:
+            rospy.loginfo('KCL: (' + rospy.get_name() + ') No plan received yet!')
         
-        if res:
-            for p, (l, u) in res.items():
-                stream.write("%s in [%s, %s]\n" % (p.name, l, u))
-                #the upper and lower bound on the edges for parameters
-                self.dict_dur_lower[p.name] = float(l)
-                self.dict_dur_upper[p.name] = float(u)
         else:
-            stream.write("The problem is unsatisfiable!\n")
+            # call STN python tool
+            rospy.loginfo('KCL: (' + rospy.get_name() + ') Calling STN python tool')
+
+            res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
+                #, self.debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver='z3', qelim_name='msat_fm', epsilon=0.001, simplify_effects=True)
+
+            if res:
+                for p, (l, u) in res.items():
+                    print(p.name + " in [" + str(l) + ", " + str(u)  + "]")
+                    #the upper and lower bound on the edges for parameters
+                    self.dict_dur_lower[p.name] = float(l)
+                    self.dict_dur_upper[p.name] = float(u)
+
+                    self.output_robust_plan_msg.edges[self.dict_params[p.name]].duration_lower_bound = float(l)
+                    self.output_robust_plan_msg.edges[self.dict_params[p.name]].duration_upper_bound = float(u)
+                #self.paramter_relate_edge()
+                self.publish_robust = True
+            else:
+               rospy.logwarning("The problem is unsatisfiable!")
         
-        if bool(self.dict_dur_lower[p.name] and self.dict_dur_upper[p.name]):
-            self.paramter_relate_edge()
-            self.publish_robust = True
+        return EmptyResponse()
+
+        #if bool(self.dict_dur_lower[p.name] and self.dict_dur_upper[p.name]):
+            
+            
         	
-        
-        
+
     def stnCallback(self, msg):
         '''                                 
         write msg.data to textfile
@@ -204,27 +241,12 @@ class RobustEnvelope(object):
      # publishing the robutst plan    
     def republish_plan(self):
         # publish
-        #if self.output_robust_plan_msg != None:
-
         while not rospy.is_shutdown():
         	if self.publish_robust:
         		self.pub_robust_plan.publish(self.output_robust_plan_msg)
         		self.publish_robust = False
         	self.loop_rate.sleep()
                    
-        
-    # writing the PDDL problem genrated by ROSPlan in a file       
-    def problemCallback(self, msg):
-        file = open(self.problem_path,'w')
-        file.write(msg.data)
-        file.close()  
-
-    # writing the PDDL plan in a file : Just need it if we wanna validate the plan    
-    def planCallback(self, msg):
-        file = open(self.plan_path,'w')
-        file.write(msg.data)
-        file.close()        
- 
     # def start_robust_envelope(self):
     #     # wait for user to press ctrl + c (prevent the node from dying)
     #     while not rospy.is_shutdown():

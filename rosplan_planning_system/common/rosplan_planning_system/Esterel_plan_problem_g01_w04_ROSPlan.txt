@@ -1,37 +1,21 @@
 digraph plan {
 0[ label="plan_start",style=filled,fillcolor=black,fontcolor=white];
-1[ label="goto_waypoint_start
-(robot0,wp0,printer3)"];
-2[ label="goto_waypoint_end
-(robot0,wp0,printer3)"];
-3[ label="goto_waypoint_start
-(robot1,wp0,printer3)"];
-4[ label="goto_waypoint_end
-(robot1,wp0,printer3)"];
-5[ label="goto_waypoint_start
-(robot2,wp0,printer3)"];
-6[ label="goto_waypoint_end
-(robot2,wp0,printer3)"];
-7[ label="wait_load_at_printer_start
-(robot0,robot1,printer3)"];
-8[ label="wait_load_at_printer_end
-(robot0,robot1,printer3)"];
-9[ label="goto_waypoint_start
-(robot0,printer3,wp1)"];
-10[ label="goto_waypoint_end
-(robot0,printer3,wp1)"];
-11[ label="goto_waypoint_start
-(robot1,printer3,wp1)"];
-12[ label="goto_waypoint_end
-(robot1,printer3,wp1)"];
-13[ label="ask_unload_start
-(robot0,wp1)"];
-14[ label="ask_unload_end
-(robot0,wp1)"];
-15[ label="wait_unload_start
-(robot0,wp1)"];
-16[ label="wait_unload_end
-(robot0,wp1)"];
+1[ label="goto_waypoint_start (robot0,wp0,printer3)"];
+2[ label="goto_waypoint_end (robot0,wp0,printer3)"];
+3[ label="goto_waypoint_start (robot1,wp0,printer3)"];
+4[ label="goto_waypoint_end (robot1,wp0,printer3)"];
+5[ label="goto_waypoint_start (robot2,wp0,printer3)"];
+6[ label="goto_waypoint_end (robot2,wp0,printer3)"];
+7[ label="wait_load_at_printer_start (robot0,robot1,printer3)"];
+8[ label="wait_load_at_printer_end (robot0,robot1,printer3)"];
+9[ label="goto_waypoint_start (robot0,printer3,wp1)"];
+10[ label="goto_waypoint_end (robot0,printer3,wp1)"];
+11[ label="goto_waypoint_start (robot1,printer3,wp1)"];
+12[ label="goto_waypoint_end (robot1,printer3,wp1)"];
+13[ label="ask_unload_start (robot0,wp1)"];
+14[ label="ask_unload_end (robot0,wp1)"];
+15[ label="wait_unload_start (robot0,wp1)"];
+16[ label="wait_unload_end (robot0,wp1)"];
 "0" -> "1" [ label="[0.001, inf]" , penwidth=2, color="green"]
 "0" -> "3" [ label="[0.001, inf]" , penwidth=2, color="green"]
 "0" -> "5" [ label="[0.001, inf]" , penwidth=2, color="green"]

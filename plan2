@@ -1,0 +1,618 @@
+nodes: 
+  - 
+    node_type: 2
+    node_id: 0
+    name: plan_start
+    action: 
+      action_id: 0
+      name: ''
+      parameters: []
+      duration: 0.0
+      dispatch_time: 0.0
+    edges_out: [0, 1, 2, 4, 6, 8, 12]
+    edges_in: []
+  - 
+    node_type: 0
+    node_id: 1
+    name: goto_waypoint_start
+    action: 
+      action_id: 0
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot0
+        - 
+          key: from
+          value: wp0
+        - 
+          key: to
+          value: printer0
+      duration: 90.0
+      dispatch_time: 0.0
+    edges_out: [3, 18, 25]
+    edges_in: [0]
+  - 
+    node_type: 1
+    node_id: 2
+    name: goto_waypoint_end
+    action: 
+      action_id: 0
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot0
+        - 
+          key: from
+          value: wp0
+        - 
+          key: to
+          value: printer0
+      duration: 90.0
+      dispatch_time: 0.0
+    edges_out: [9, 13]
+    edges_in: [3, 4]
+  - 
+    node_type: 0
+    node_id: 3
+    name: goto_waypoint_start
+    action: 
+      action_id: 1
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot1
+        - 
+          key: from
+          value: wp0
+        - 
+          key: to
+          value: printer0
+      duration: 90.0
+      dispatch_time: 0.0
+    edges_out: [5, 20]
+    edges_in: [1]
+  - 
+    node_type: 1
+    node_id: 4
+    name: goto_waypoint_end
+    action: 
+      action_id: 1
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot1
+        - 
+          key: from
+          value: wp0
+        - 
+          key: to
+          value: printer0
+      duration: 90.0
+      dispatch_time: 0.0
+    edges_out: [10, 15]
+    edges_in: [5, 6]
+  - 
+    node_type: 0
+    node_id: 5
+    name: goto_waypoint_start
+    action: 
+      action_id: 2
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot2
+        - 
+          key: from
+          value: wp0
+        - 
+          key: to
+          value: printer0
+      duration: 90.0
+      dispatch_time: 0.0
+    edges_out: [7]
+    edges_in: [2]
+  - 
+    node_type: 1
+    node_id: 6
+    name: goto_waypoint_end
+    action: 
+      action_id: 2
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot2
+        - 
+          key: from
+          value: wp0
+        - 
+          key: to
+          value: printer0
+      duration: 90.0
+      dispatch_time: 0.0
+    edges_out: []
+    edges_in: [7, 8]
+  - 
+    node_type: 0
+    node_id: 7
+    name: wait_load_at_printer_start
+    action: 
+      action_id: 3
+      name: wait_load_at_printer
+      parameters: 
+        - 
+          key: r
+          value: robot0
+        - 
+          key: h
+          value: robot1
+        - 
+          key: p
+          value: printer0
+      duration: 15.0
+      dispatch_time: 90.0009994507
+    edges_out: [11, 30]
+    edges_in: [9, 10]
+  - 
+    node_type: 1
+    node_id: 8
+    name: wait_load_at_printer_end
+    action: 
+      action_id: 3
+      name: wait_load_at_printer
+      parameters: 
+        - 
+          key: r
+          value: robot0
+        - 
+          key: h
+          value: robot1
+        - 
+          key: p
+          value: printer0
+      duration: 15.0
+      dispatch_time: 90.0009994507
+    edges_out: [14, 16, 21, 27]
+    edges_in: [11, 12]
+  - 
+    node_type: 0
+    node_id: 9
+    name: goto_waypoint_start
+    action: 
+      action_id: 4
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot0
+        - 
+          key: from
+          value: printer0
+        - 
+          key: to
+          value: wp0
+      duration: 90.0
+      dispatch_time: 105.000999451
+    edges_out: [17, 24]
+    edges_in: [13, 14]
+  - 
+    node_type: 1
+    node_id: 10
+    name: goto_waypoint_end
+    action: 
+      action_id: 4
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot0
+        - 
+          key: from
+          value: printer0
+        - 
+          key: to
+          value: wp0
+      duration: 90.0
+      dispatch_time: 105.000999451
+    edges_out: [22, 28]
+    edges_in: [17, 18]
+  - 
+    node_type: 0
+    node_id: 11
+    name: goto_waypoint_start
+    action: 
+      action_id: 5
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot1
+        - 
+          key: from
+          value: printer0
+        - 
+          key: to
+          value: wp0
+      duration: 90.0
+      dispatch_time: 105.000999451
+    edges_out: [19]
+    edges_in: [15, 16]
+  - 
+    node_type: 1
+    node_id: 12
+    name: goto_waypoint_end
+    action: 
+      action_id: 5
+      name: goto_waypoint
+      parameters: 
+        - 
+          key: v
+          value: robot1
+        - 
+          key: from
+          value: printer0
+        - 
+          key: to
+          value: wp0
+      duration: 90.0
+      dispatch_time: 105.000999451
+    edges_out: []
+    edges_in: [19, 20]
+  - 
+    node_type: 0
+    node_id: 13
+    name: ask_unload_start
+    action: 
+      action_id: 6
+      name: ask_unload
+      parameters: 
+        - 
+          key: r
+          value: robot0
+        - 
+          key: w
+          value: wp0
+      duration: 5.0
+      dispatch_time: 195.00100708
+    edges_out: [23]
+    edges_in: [21, 22]
+  - 
+    node_type: 1
+    node_id: 14
+    name: ask_unload_end
+    action: 
+      action_id: 6
+      name: ask_unload
+      parameters: 
+        - 
+          key: r
+          value: robot0
+        - 
+          key: w
+          value: wp0
+      duration: 5.0
+      dispatch_time: 195.00100708
+    edges_out: [26]
+    edges_in: [23, 24, 25]
+  - 
+    node_type: 0
+    node_id: 15
+    name: wait_unload_start
+    action: 
+      action_id: 7
+      name: wait_unload
+      parameters: 
+        - 
+          key: r
+          value: robot0
+        - 
+          key: w
+          value: wp0
+      duration: 15.0
+      dispatch_time: 200.001998901
+    edges_out: [29]
+    edges_in: [26, 27, 28]
+  - 
+    node_type: 1
+    node_id: 16
+    name: wait_unload_end
+    action: 
+      action_id: 7
+      name: wait_unload
+      parameters: 
+        - 
+          key: r
+          value: robot0
+        - 
+          key: w
+          value: wp0
+      duration: 15.0
+      dispatch_time: 200.001998901
+    edges_out: []
+    edges_in: [29, 30]
+edges: 
+  - 
+    edge_type: 0
+    edge_id: 0
+    edge_name: edge_0
+    signal_type: 0
+    source_ids: [0]
+    sink_ids: [1]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 1
+    edge_name: edge_1
+    signal_type: 0
+    source_ids: [0]
+    sink_ids: [3]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 2
+    edge_name: edge_2
+    signal_type: 0
+    source_ids: [0]
+    sink_ids: [5]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 3
+    edge_name: edge_3
+    signal_type: 0
+    source_ids: [1]
+    sink_ids: [2]
+    duration_lower_bound: 0.0
+    duration_upper_bound: 99.84375
+  - 
+    edge_type: 0
+    edge_id: 4
+    edge_name: edge_4
+    signal_type: 0
+    source_ids: [0]
+    sink_ids: [2]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 5
+    edge_name: edge_5
+    signal_type: 0
+    source_ids: [3]
+    sink_ids: [4]
+    duration_lower_bound: 90.0
+    duration_upper_bound: 90.0
+  - 
+    edge_type: 0
+    edge_id: 6
+    edge_name: edge_6
+    signal_type: 0
+    source_ids: [0]
+    sink_ids: [4]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 7
+    edge_name: edge_7
+    signal_type: 0
+    source_ids: [5]
+    sink_ids: [6]
+    duration_lower_bound: 90.0
+    duration_upper_bound: 90.0
+  - 
+    edge_type: 0
+    edge_id: 8
+    edge_name: edge_8
+    signal_type: 0
+    source_ids: [0]
+    sink_ids: [6]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 9
+    edge_name: edge_9
+    signal_type: 0
+    source_ids: [2]
+    sink_ids: [7]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 10
+    edge_name: edge_10
+    signal_type: 0
+    source_ids: [4]
+    sink_ids: [7]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 11
+    edge_name: edge_11
+    signal_type: 0
+    source_ids: [7]
+    sink_ids: [8]
+    duration_lower_bound: 15.0
+    duration_upper_bound: 15.0
+  - 
+    edge_type: 0
+    edge_id: 12
+    edge_name: edge_12
+    signal_type: 0
+    source_ids: [0]
+    sink_ids: [8]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 13
+    edge_name: edge_13
+    signal_type: 0
+    source_ids: [2]
+    sink_ids: [9]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 2
+    edge_id: 14
+    edge_name: edge_14
+    signal_type: 0
+    source_ids: [8]
+    sink_ids: [9]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 15
+    edge_name: edge_15
+    signal_type: 0
+    source_ids: [4]
+    sink_ids: [11]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 2
+    edge_id: 16
+    edge_name: edge_16
+    signal_type: 0
+    source_ids: [8]
+    sink_ids: [11]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 17
+    edge_name: edge_17
+    signal_type: 0
+    source_ids: [9]
+    sink_ids: [10]
+    duration_lower_bound: 90.0
+    duration_upper_bound: 90.0
+  - 
+    edge_type: 2
+    edge_id: 18
+    edge_name: edge_18
+    signal_type: 0
+    source_ids: [1]
+    sink_ids: [10]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 19
+    edge_name: edge_19
+    signal_type: 0
+    source_ids: [11]
+    sink_ids: [12]
+    duration_lower_bound: 90.0
+    duration_upper_bound: 90.0
+  - 
+    edge_type: 2
+    edge_id: 20
+    edge_name: edge_20
+    signal_type: 0
+    source_ids: [3]
+    sink_ids: [12]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 21
+    edge_name: edge_21
+    signal_type: 0
+    source_ids: [8]
+    sink_ids: [13]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 22
+    edge_name: edge_22
+    signal_type: 0
+    source_ids: [10]
+    sink_ids: [13]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 23
+    edge_name: edge_23
+    signal_type: 0
+    source_ids: [13]
+    sink_ids: [14]
+    duration_lower_bound: 5.0
+    duration_upper_bound: 5.0
+  - 
+    edge_type: 2
+    edge_id: 24
+    edge_name: edge_24
+    signal_type: 0
+    source_ids: [9]
+    sink_ids: [14]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 2
+    edge_id: 25
+    edge_name: edge_25
+    signal_type: 0
+    source_ids: [1]
+    sink_ids: [14]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 26
+    edge_name: edge_26
+    signal_type: 0
+    source_ids: [14]
+    sink_ids: [15]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 27
+    edge_name: edge_27
+    signal_type: 0
+    source_ids: [8]
+    sink_ids: [15]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 0
+    edge_id: 28
+    edge_name: edge_28
+    signal_type: 0
+    source_ids: [10]
+    sink_ids: [15]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+  - 
+    edge_type: 1
+    edge_id: 29
+    edge_name: edge_29
+    signal_type: 0
+    source_ids: [15]
+    sink_ids: [16]
+    duration_lower_bound: 15.0
+    duration_upper_bound: 15.0
+  - 
+    edge_type: 2
+    edge_id: 30
+    edge_name: edge_30
+    signal_type: 0
+    source_ids: [7]
+    sink_ids: [16]
+    duration_lower_bound: 0.001
+    duration_upper_bound: 1.79769313486e+308
+---

@@ -89,28 +89,28 @@ namespace KCL_rosplan {
 
 			finished_execution = true;
 			state_changed = false; 
-                        // for each node check completion, conditions, and dispatch
-                        for(std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::const_iterator ci = current_plan.nodes.begin(); ci != current_plan.nodes.end(); ci++) {
-                            //the main loop
-                                rosplan_dispatch_msgs::EsterelPlanNode node = *ci;
-                                // activate plan start edges
-                                //parisa: compare the dispatch time with the lower bound
-                                if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::PLAN_START && !plan_started) {
-                                        // record the time for the PLAN_START node
-                                		double NOW = ros::Time::now().toSec();	
-                                		node_real_dispatch_time.insert (std::pair<int,double>(node.node_id, NOW)); 
 
-                                		// activate new edges
-                                        std::vector<int>::const_iterator ci = node.edges_in.begin();
-                                        ci = node.edges_out.begin();
-                                        for(; ci != node.edges_out.end(); ci++) {
-                                                edge_active[*ci] = true;
-                                        }
-                                        finished_execution = false;
-                                        state_changed = true;
-                                        plan_started = true;
-                                    
-                                }
+            // for each node check completion, conditions, and dispatch
+            for(std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::const_iterator ci = current_plan.nodes.begin(); ci != current_plan.nodes.end(); ci++) {
+                //the main loop
+                rosplan_dispatch_msgs::EsterelPlanNode node = *ci;
+                // activate plan start edges
+                //parisa: compare the dispatch time with the lower bound
+                if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::PLAN_START && !plan_started) {
+                        // record the time for the PLAN_START node
+                		double NOW = ros::Time::now().toSec();	
+                		node_real_dispatch_time.insert (std::pair<int,double>(node.node_id, NOW)); 
+
+                		// activate new edges
+                        std::vector<int>::const_iterator ci = node.edges_in.begin();
+                        ci = node.edges_out.begin();
+                        for(; ci != node.edges_out.end(); ci++) {
+                                edge_active[*ci] = true;
+                        }
+                        finished_execution = false;
+                        state_changed = true;
+                        plan_started = true;
+                }
 
                                  
 				// do not check actions for nodes which are not action nodes
@@ -121,32 +121,36 @@ namespace KCL_rosplan {
 				if (action_dispatched[node.action.action_id] && !action_completed[node.action.action_id]) {
 					finished_execution = false;
 				}
-                                //if the bounds are aero infinity
                                 
 				// check action edges
 				bool edges_activate_action = true;
 				std::vector<int>::iterator eit = node.edges_in.begin();
 				for (; eit != node.edges_in.end(); ++eit) {
-					if(!edge_active[(*eit)]) edges_activate_action = false;
-						rosplan_dispatch_msgs::EsterelPlanEdge edge = current_plan.edges[*eit];
-						//define a minimum and maximum dispatch time for each edge
-						float minimum_dispatch_time = planStartTime + node_real_dispatch_time[edge.source_ids[0]] + edge.duration_lower_bound; 
-						float maximum_dispatch_time = planStartTime + node_real_dispatch_time[edge.source_ids[0]] + edge.duration_upper_bound;
-						// check the current time with the lower bound
-						 double NOW = ros::Time::now().toSec();
-						 if (NOW < minimum_dispatch_time) { 
-							edges_activate_action = false;
-							 break; 
-						}
-						// check the current time with the upper bound
-						if (NOW > maximum_dispatch_time){
-							replan_requested =  true;
-							edges_activate_action = false;
-							ROS_INFO("KCL: (%s) Replan requested.", ros::this_node::getName().c_str());
-						}
+					if(!edge_active[(*eit)]) {
+						edges_activate_action = false;
+						continue;
+					}
+
+					rosplan_dispatch_msgs::EsterelPlanEdge edge = current_plan.edges[*eit];
+					//define a minimum and maximum dispatch time for each edge
+					float minimum_dispatch_time = node_real_dispatch_time[edge.source_ids[0]] + edge.duration_lower_bound; 
+					float maximum_dispatch_time = node_real_dispatch_time[edge.source_ids[0]] + edge.duration_upper_bound;
+					// check the current time with the lower bound
+					 double NOW = ros::Time::now().toSec();
+					 if (NOW < minimum_dispatch_time) { 
+						edges_activate_action = false;
+						finished_execution = false;
+						 break; 
+					}
+					// check the current time with the upper bound
+					if (NOW > maximum_dispatch_time){
+						replan_requested =  true;
+						edges_activate_action = false;
+						ROS_INFO("KCL: (%s) Deadline passed: %f > %f.", ros::this_node::getName().c_str(), NOW, maximum_dispatch_time);\
+					}
 				}
 				if(!edges_activate_action) continue;
-				
+
 				// dispatch new action
 				if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_START && !action_dispatched[node.action.action_id]) {
 
