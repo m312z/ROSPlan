@@ -42,6 +42,15 @@ def main():
     parser.add_argument('--no-learning', '-l', action='store_true',
                         default=False, help='Assert learned proof obligations '
                         'when performing validation')
+    parser.add_argument('--assume-positive', '-A', action='store_true',
+                        default=False, help='Assumes all parameters are positive')
+
+    parser.add_argument('--bound', '-b', type=float,
+                        default=1, help='Bound for construct algorithm')
+
+    parser.add_argument('--timeout', '-t', type=int,
+                        default=60, help='timeout for construct algorithm')
+
 
     parser.add_argument('--debug', '-d', action='store_true',
                         default=False, help='Print debug information')
@@ -165,7 +174,9 @@ def main():
                                qelim_name=args.qelim,
                                epsilon=Fraction(args.epsilon),
                                simplify_effects=simplify_effects,
-                               learn=not args.no_learning)
+                               bound=args.bound,
+                               assume_positive=args.assume_positive,
+                               timeout=args.timeout)
         if res:
             for p, (l, u) in res.items():
                 stream.write("%s in [%s, %s]\n" % (p.name, l, u))
@@ -184,3 +195,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

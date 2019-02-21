@@ -7,6 +7,7 @@
     <arg name="init_problem_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05.pddl" /> 
     <arg name="problem_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05_ROSPlan.pddl" />
     <arg name="max_parameters" default="1" />
+    <arg name="stn_timeout" default="60" />
 
     <!-- knowledge base -->
     <node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
@@ -39,12 +40,13 @@
         <arg name="robust_domain_path" value="$(arg robust_domain_path)" />
         <arg name="problem_path"       value="$(arg problem_path)" />
         <arg name="max_parameters"       value="$(arg max_parameters)" />
+        <arg name="stn_timeout"       value="$(arg stn_timeout)" />
     </include>
 
     <!-- plan dispatch -->
     <include file="$(find rosplan_planning_system)/launch/includes/dispatch_interface.launch">
         <arg name="plan_topic" value="/robust_plan" />
-        <arg name="display_edge_type"     value="true" />
+        <arg name="display_edge_type"     value="false" />
     </include>
 
     <!-- sim actions -->
@@ -71,7 +73,7 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="ask_unload" />
-        <arg name="action_duration" value="5" />
+        <arg name="action_duration" value="1" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >

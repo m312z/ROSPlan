@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import time
 from itertools import cycle
 
@@ -14,6 +12,9 @@ from pysmt.oracles import get_logic
 from rosplan_planning_system.pyrobustenvelope.stn import STN
 from rosplan_planning_system.pyrobustenvelope.encoder import Encoder
 from rosplan_planning_system.pyrobustenvelope.construct import ConstructAlgorithm
+
+
+
 
 def validate_stn_plan(domain_fname, problem_fname, plan_fname, debug=False,
                       early_forall_elimination=False, compact_encoding=True,
@@ -200,11 +201,84 @@ def compute_envelope(domain_fname, problem_fname, plan_fname, debug=False,
 
 
 def compute_envelope_construct(domain_fname, problem_fname, plan_fname, debug=False,
-                     splitting=None, early_forall_elimination=False,
-                     compact_encoding=True, solver=None, qelim_name=None,
-                     epsilon=None, simplify_effects=True, learn=False):
+                               splitting=None, early_forall_elimination=False,
+                               compact_encoding=True, solver=None, qelim_name=None,
+                               epsilon=None, simplify_effects=True, rectangle_callback=None,
+                               bound=1, assume_positive=False, timeout = 60):
+    """This function iteratively constructs a rectangular robustness envelope
+
+    :param domain_fname: The path containing the domain PDDL file
+    :type domain_fname: str
+
+    :param problem_fname: The path containing the problem PDDL file
+    :type problem_fname: str
+
+    :param plan_fname: The path containing the parametrized STN plan file
+    :type plan_fname: str
+
+    :param debug: (optional) If not none, specifies the file-like
+    stream where to write the program execution log. By default,
+    nothing is printed.
+    :type debug: None or file-like object
+
+    :param splitting: (optional) Can be either 'full', 'monolithic' or
+    'partial' and specifies how and if to de-compose the universal
+    check among different solvers. Default is 'monolithic'
+    :type splitting: str or None
+
+    :param early_forall_elimination: (optional) If set to true, the
+    encoding is pre-processed with a quantifier-elimination procedure
+    to get rid of quantifiers. This needs to be true if the solver
+    specified with `solver` parameter dies not support quantified
+    formulae. Default is False.
+    :type early_forall_elimination: bool
+
+    :param compact_encoding: (optional) If set to `True`, the encoding
+    is simplified by pre-computing the possible position of each
+    happening allowed by the given STN plan. Default is True.
+    :type compact_encoding: bool
+
+    :param solver: (optional) the name of the solver to use for
+    SMT-checks, can be any solver supported by pysmt and installed on
+    the system. By default, we let pysmt decide the best solver.
+    :type solver: str
+
+    :param qelim_name: (optional) the name of the quantifier
+    eliminator to use, can be any QE supported by pysmt and installed
+    on the system. By default, we let pysmt decide the best QE.
+    :type qelim_name: str
+
+    :param epsilon: (optional) the epsilon-separation to use in the encoding
+    expressed in time-units. If None is specified the encoder assumes
+    0.001 (default).
+    :type epsilon: None or float
+
+    :param simplify_effects: (optional) Construct the encoding to summarize
+    effects at the same time. Default is True.
+    :type simplify_effects: bool
+
+    :param rectangle_callback: (optional) A function to be called each time a new
+    rectangle is found by the algorithm. Since the approach is
+    anytime, all the rectangles passed to this functions are
+    incrementally-better under-approximations of the algorithm result.
+    A rectangle is represented as a dictionary mapping parameters to
+    pairs of floats. E.g. {Parameter('a') : (10, 20)} indicates that
+    parameter a is between 10 and 20. By default, no function is called.
+    :type rectangle_callback: a function taking in input a rectangle
+
+    :param bound: The convergence value. If x is specified, the
+    rectangle generated will have bounds that are at most x distant
+    from the border of the real envelope. (default is 1)
+
+    :returns: the final rectangle. A rectangle is represented as a
+    dictionary mapping parameters to pairs of
+    floats. E.g. {Parameter('a') : (10, 20)} indicates that parameter
+    a is between 10 and 20
+
+    """
+    
     if splitting is None:
-        splitting = "partial"
+        splitting = "monolithic"
     assert splitting in ["monolithic", "partial", "full"]
 
     stn = STN(plan_fname)
@@ -213,8 +287,11 @@ def compute_envelope_construct(domain_fname, problem_fname, plan_fname, debug=Fa
                   early_elimination=early_forall_elimination,
                   compact_encoding=compact_encoding,
                   solver=solver, qelim_name=qelim_name, epsilon=epsilon,
-                  simplify_effects=simplify_effects, learning=learn)
+                  simplify_effects=simplify_effects,
+                  assume_positive_params=assume_positive)
 
     c = ConstructAlgorithm(instance, stn, enc, debug=debug, splitting=splitting,
-                           solver=solver, qelim_name=qelim_name)
-    return c.run()
+                           solver=solver, qelim_name=qelim_name, bound=bound)
+
+    return c.run(rectangle_callback=rectangle_callback, timeout=timeout)
+

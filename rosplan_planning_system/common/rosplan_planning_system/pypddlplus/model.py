@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from six import PY2
 
 def is_string(s):
@@ -785,3 +783,4 @@ class PddlInstance(object):
     def __str__(self):
         return "%s\n%s" % (self.domain, self.problem)
     __repr__ = __str__
+

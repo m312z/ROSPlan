@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import re
 from fractions import Fraction
 
@@ -61,10 +59,12 @@ class Constraint(object):
             isinstance(self.upper_bound, Parameter)
 
 class Parameter(object):
-    def __init__(self, name, weight=1, default=None):
+    def __init__(self, name, weight=1, default=None, lower_bound=None, upper_bound=None):
         self.name = name
         self.weight = weight
         self.default = default
+        self.lower_bound = lower_bound
+        self.upper_bound = upper_bound
 
     def __str__(self):
         return self.name
@@ -79,7 +79,7 @@ class Parameter(object):
 
 class STN(object):
 
-    m_parameter = re.compile(r'parameter\s+([A-Za-z_][A-Za-z0-9_]*)(\s+weight\s+((\d+)(\.\d+)?))?(\s+default\s+((\d+)(\.\d+)?))?\s*;')
+    m_parameter = re.compile(r'parameter\s+([A-Za-z_][A-Za-z0-9_]*)(\s+weight\s+((\d+)(\.\d+)?))?(\s+default\s+((\d+)(\.\d+)?))?(\s+lb\s+((\d+)(\.\d+)?))?(\s+ub\s+((\d+)(\.\d+)?))?\s*;')
 	# SYNTAX: action_name: (param1, param2, param3)
     #m_action = re.compile(r'(durative-)?action\s+instance\s+([A-Za-z_][A-Za-z0-9_]*)\s*:\s*([A-Za-z_][A-Za-z0-9_]*)((\(\))|(\(([A-Za-z_][A-Za-z0-9_]*)(\s*,\s*[A-Za-z_][A-Za-z0-9_]*)*\)))\s*;')
 	# SYNTAX: (action_name param1 param2 param3)
@@ -155,6 +155,10 @@ class STN(object):
                             self.parameters[name].weight = Fraction(m.group(3))
                         if m.group(7):
                             self.parameters[name].default = Fraction(m.group(7))
+                        if m.group(11):
+                            self.parameters[name].lower_bound = Fraction(m.group(11))
+                        if m.group(15):
+                            self.parameters[name].upper_bound = Fraction(m.group(15))
                         continue
                     m = STN.m_constraint.match(line)
                     if m:
@@ -240,3 +244,4 @@ class STN(object):
 
         p("}")
         return '\n'.join(res)
+

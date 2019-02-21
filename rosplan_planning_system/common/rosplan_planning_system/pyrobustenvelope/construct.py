@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import time
 
 from itertools import cycle
@@ -11,7 +9,7 @@ from pysmt.oracles import get_logic
 class ConstructAlgorithm(object):
 
     def __init__(self, instance, stn, enc, debug=None, splitting=None,
-                 solver=None, qelim_name=None):
+                 solver=None, qelim_name=None, bound=1):
         self.instance = instance
         self.stn = stn
         self.enc = enc
@@ -19,6 +17,7 @@ class ConstructAlgorithm(object):
         self.splitting = splitting
         self.solver = solver
         self.qelim_name = qelim_name
+        self.bound = bound
 
         self.s1 = None
         self.vsolvers = None
@@ -65,26 +64,32 @@ class ConstructAlgorithm(object):
         return True
 
 
-    def print_rectangle(self, R, title=None, deltas=None):
+    def print_rectangle(self, R, title=None, deltas=None,
+                        flexibility=None, volume=None):
         if title:
             self.p(('== %s ' % title) + '='*(80-(len(title) + 4)))
         else:
             self.p('='*80)
 
-        flexibility = 0
-        volume = 1
         for p, (l, u) in R.items():
             dt = ''
             if deltas is not None:
                 dt = 'delta: %.3f' % deltas[p]
             self.p('%s in [%.3f, %.3f] %s' % (p[0].name, l, u, dt))
+        self.p('')
+        if flexibility is not None:
+            self.p(' - Flexibility: %.3f' % flexibility)
+        if volume is not None:
+            self.p(' - Volume: %E' % volume)
+        self.p('='*80)
+
+    def get_flexibility_measures(self, R):
+        flexibility = 0
+        volume = 1
+        for (l, u) in R.values():
             flexibility += (u-l)
             volume *= (u-l)
-        self.p('')
-        self.p(' - Flexibility: %.3f' % flexibility)
-        self.p(' - Volume: %.3f' % volume)
-        self.p('='*80)
-        return flexibility
+        return flexibility, volume
 
 
     def compute_v(self, X):
@@ -161,7 +166,7 @@ class ConstructAlgorithm(object):
         self.p(" -> Done in %s seconds" % (t1 - t0))
 
 
-    def run(self):
+    def run(self, rectangle_callback=None, timeout = 60):
         t_init = time.time()
 
         mgr = self.enc.mgr
@@ -184,15 +189,25 @@ class ConstructAlgorithm(object):
         gammas = cycle(list(R))
         choices = {p:[1, -1] for p in R}
         self.print_rectangle(R, title='Initial Rectangle')
-        flex = False
+        first_flex = False
+        current_flexibility = -1
         t_flex = None
-        while any(x >= 1 for x in deltas.values()):
+        start = time.time()
+        while any(x >= self.bound for x in deltas.values()):
+            flexibility, volume = self.get_flexibility_measures(R)
             if self.debug:
-                f = self.print_rectangle(R, title='Current Rectangle', deltas=deltas)
-                if not flex and f > 0:
+                self.print_rectangle(R, title='Current Rectangle', deltas=deltas,
+                                     flexibility=flexibility, volume=volume)
+                if not first_flex and flexibility > 0:
                     t_flex = time.time()
                     self.p('First improvement after: %.2f seconds', (t_flex-t_init))
-                    flex = True
+                    first_flex = True
+
+            if rectangle_callback is not None and flexibility > current_flexibility:
+                rectangle_callback(R)
+            if time.time() > start + timeout:
+                    break
+            
 
             gamma = next(gammas)
             delta = deltas[gamma]
@@ -211,16 +226,20 @@ class ConstructAlgorithm(object):
                 else:
                     choices[gamma].remove(m)
 
-                if len(choices[gamma]) == 0 and deltas[gamma] >= 1:
+                if len(choices[gamma]) == 0 and deltas[gamma] >= self.bound:
                     can_grow[gamma] = False
                     deltas[gamma] = deltas[gamma] / 2
                     choices[gamma] = [1, -1]
+            current_flexibility = flexibility
 
         if self.debug:
             t_end = time.time()
-            self.print_rectangle(R, title='Final Result')
+            flexibility, volume = self.get_flexibility_measures(R)
+            self.print_rectangle(R, title='Final Result',
+                                 flexibility=flexibility, volume=volume)
             self.p('Total construction time: %.2f seconds', (t_end-t_init))
             if t_flex:
                 self.p('First improvement after: %.2f seconds', (t_flex-t_init))
 
         return {p:v for (p, _), v in R.items()}
+

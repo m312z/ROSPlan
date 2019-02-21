@@ -8,7 +8,8 @@ import sys
 from rosplan_dispatch_msgs.msg import *
 from std_msgs.msg import String
 from std_srvs.srv import Empty, EmptyResponse
-from rosplan_planning_system.main import compute_envelope_construct
+from rosplan_planning_system.pyrobustenvelope import compute_envelope_construct, compute_envelope
+import time
 
 
 class RobustEnvelope(object):
@@ -23,6 +24,7 @@ class RobustEnvelope(object):
         self.STN_plan_path = self.problem_path [:-5] + "_plan.stn" #self.data_path + 'STN_plan_' + problem_name[:-5] + '.stn' 
         self.Esterel_plan_path = self.problem_path [:-5] + "_plan.strl" #self.data_path + 'Esterel_plan_' + problem_name[:-5] +'.txt'
         self.max_parameters = rospy.get_param('~max_parameters', 1)
+        self.stn_timout = rospy.get_param('~stn_timout', 60)
 
         #relate the parameter to the source node and the sink node
         self.dict_pram_source_node = dict()
@@ -120,8 +122,19 @@ class RobustEnvelope(object):
                         par_edge = str(set(self.output_robust_plan_msg.nodes[0].edges_out).intersection(self.output_robust_plan_msg.nodes[key].edges_in))
                         par_edge_id = int(par_edge[1:(len(par_edge)-1)])
                         self.output_robust_plan_msg.edges[par_edge_id].duration_lower_bound = self.dict_dur_lower[line[(line.find('[')+1):line.find(',')]]
-                        self.output_robust_plan_msg.edges[par_edge_id].duration_upper_bound = self.dict_dur_upper[line[(line.find('[')+1):line.find(',')]] 
+                        self.output_robust_plan_msg.edges[par_edge_id].duration_upper_bound = self.dict_dur_upper[line[(line.find('[')+1):line.find(',')]]
+
     
+    def final_bound(self,x):
+        print('yes')
+        
+
+        # if not bool(self.dict_dur_lower) and not bool(self.dict_dur_upper):
+        #     for p, (l, u) in x.items():
+        #         self.dict_dur_lower[p.name] = float(l)
+        #         self.dict_dur_upper[p.name] = float(u)
+        # else:
+
     def serviceCB(self, req):
 
         if not self.esterel_plan_received:
@@ -131,10 +144,21 @@ class RobustEnvelope(object):
             # call STN python tool
             rospy.loginfo('KCL: (' + rospy.get_name() + ') Calling STN python tool')
 
-            res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path)
-                #, self.debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver='z3', qelim_name='msat_fm', epsilon=0.001, simplify_effects=True)
-
+            # start = time.time()
+            # PERIOD_OF_TIME = 10
+            # while True:
+            #compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path , debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver=None, qelim_name=None, epsilon=None, simplify_effects=True, rectangle_callback=None,bound=1, assume_positive=False) 
+            res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path, 
+                    rectangle_callback = self.final_bound, solver='z3', qelim_name='msat_lw',
+                    debug=False, splitting='monolithic', early_forall_elimination=False, 
+                    compact_encoding=True, bound=1, simplify_effects=True, timeout = self.stn_timout)
+            # bound=1)
+                # print('trololo')
+                # if time.time() > start + PERIOD_OF_TIME:
+                #     break
+                # #, self.debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver='z3', qelim_name='msat_fm', epsilon=0.001, simplify_effects=True)
             if res:
+
                 for p, (l, u) in res.items():
                     print(p.name + " in [" + str(l) + ", " + str(u)  + "]")
                     #the upper and lower bound on the edges for parameters
@@ -143,11 +167,11 @@ class RobustEnvelope(object):
 
                     self.output_robust_plan_msg.edges[self.dict_params[p.name]].duration_lower_bound = float(l)
                     self.output_robust_plan_msg.edges[self.dict_params[p.name]].duration_upper_bound = float(u)
+                    
                 #self.paramter_relate_edge()
                 self.publish_robust = True
             else:
                rospy.logwarning("The problem is unsatisfiable!")
-        
         return EmptyResponse()
 
         #if bool(self.dict_dur_lower[p.name] and self.dict_dur_upper[p.name]):

@@ -1,8 +1,5 @@
-#!/usr/bin/env python
-
 import warnings
 from fractions import Fraction
-
 
 from rosplan_planning_system.pypddlplus.model import *
 from rosplan_planning_system.pypddlplus.parser import PddlPlusParser
@@ -350,3 +347,4 @@ def parse_instance(domain_file, problem_file):
     domain = parse_domain_file(domain_file)
     problem = parse_problem_file(problem_file)
     return PddlInstance(domain, problem)
+

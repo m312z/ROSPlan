@@ -8,11 +8,13 @@
         <arg name="robust_domain_path" default="" />
         <arg name="problem_path"       default="" />
         <arg name="max_parameters"     default="1" />
+        <arg name="stn_timeout"     default="60" />
 
         <!-- STN tool -->
         <node name="$(arg node_name)" pkg="rosplan_planning_system" type="STN_tool.py" respawn="false" output="screen">
 
                 <param name="max_parameters" value="$(arg max_parameters)" />
+                <param name="stn_timeout" value="$(arg stn_timeout)" />
 
                 <!-- the input esterel plan topic (and STN graph) -->
                 <param name="plan_topic" value="$(arg plan_topic)" />

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import time
 
 from fractions import Fraction
@@ -19,7 +17,8 @@ class Encoder(object):
                  compact_encoding=True,
                  solver=None, qelim_name=None,
                  epsilon=None, simplify_effects=False,
-                 learning=True):
+                 learning=True,
+                 assume_positive_params=False):
         self.env = env if env else get_env()
         self.mgr = self.env.formula_manager
         self.instance = instance
@@ -29,6 +28,7 @@ class Encoder(object):
         self.early_elimination = early_elimination
         self.compact_encoding = compact_encoding
         self.learning = learning
+        self.assume_positive_params = assume_positive_params
 
         # Handle TILs by adding them to the stn
         init = self.ground_instance.problem.initial_state
@@ -858,6 +858,21 @@ class Encoder(object):
     #         eff_a = set(x for y in ll for x in y.get_free_variables())
     #     return pre_a, eff_a
 
+    def param_constraints(self):
+        res = []
+
+        for p,pv in self.parameter_vars.items():
+            lb = p.lower_bound
+            if self.assume_positive_params and (lb is None or lb < 0):
+                lb = 0
+            if lb is not None:
+                res.append(self.mgr.GE(pv, self.mgr.Real(lb)))
+
+            if p.upper_bound is not None:
+                res.append(self.mgr.LE(pv, self.mgr.Real(p.upper_bound)))
+
+        return res
+
     def encode_imp(self):
         implication = []
         add = implication.append
@@ -886,6 +901,8 @@ class Encoder(object):
                     add(self.mgr.Not(self.mgr.Equals(self.time_point(tpa),
                                                      self.time_point(tpb))))
 
+        if self.assume_positive_params:
+            implication += self.param_constraints()
         return implication
 
     def encode(self):
@@ -1010,6 +1027,7 @@ class Encoder(object):
                         q_cond = self.mgr.ForAll([self.t_var], check)
                         if self.early_elimination:
                             q_cond = qelim(q_cond, solver_name=self.qelim_name)
+                            print(q_cond.serialize())
                         durative_invariants.append(self.mgr.Implies(cond, q_cond))
 
         epsilon_separation = []
@@ -1021,11 +1039,16 @@ class Encoder(object):
                                 self.mgr.GE(diff, self.mgr.Real(self.epsilon)),
                                 self.mgr.LE(diff, self.mgr.Real(-1 * self.epsilon))))
 
+
+        if self.assume_positive_params:
+            implication += self.param_constraints()
+
         return (implication, [('action_conditions', action_conditions),
                               ('epsilon_separation', epsilon_separation),
                               ('duration_conditions', duration_conditions),
                               ('durative_invariants', durative_invariants),
-                              ('goal_achievement', [goal_achievement]),])
+                              ('goal_achievement', [goal_achievement]),
+                              ('extra_constraints', self.param_constraints())])
 
 
     def synthesize_parameter_region(self, splitting="monolithic"):
@@ -1093,3 +1116,4 @@ class Encoder(object):
                     if self.debug:
                         print("%s done in %s seconds" % (name, t1 - t0))
             return self.mgr.And(conj).simplify()
+

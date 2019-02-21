@@ -32,8 +32,8 @@ def get_instances(benchmarks, cwd):
                 yield tuple(x.format(dom_id=d, pid=pid, iid=iid, cwd=cwd) for x in tplate)
 
 
-def plot(df, logscale=False, fname=None, title=""):
-    plt.figure(figsize=(8, 7))
+def plot(df, logscale=False, fname=None, title="", legend=True):
+    plt.figure(figsize=(7, 6))
     plt.title(title, size='large', weight='bold')
     solved_df = df[df['status'] == 'ok']
     linestyles = cycle(['-', '--', '-.', ':'])
@@ -62,7 +62,8 @@ def plot(df, logscale=False, fname=None, title=""):
     if logscale:
         plt.gca().set_yscale('log')
 
-    plt.legend(loc='best')
+    if legend:
+        plt.legend(loc='best')
     plt.tight_layout()
     if fname is not None:
         plt.savefig(fname)
@@ -73,6 +74,7 @@ def main():
                         choices=['make_defaults', 'get_script', 'plot'])
     parser.add_argument('--mission-id', '-m', type=str)
     parser.add_argument('--logscale', '-l', action='store_true')
+    parser.add_argument('--show', '-s', action='store_true')
     parser.add_argument('--cluster', '-c', action='store_true')
     args = parser.parse_args()
 
@@ -107,7 +109,17 @@ def main():
                                   'dom': '{cwd}/benchmarks/solar-rover_LinearPlans/flexible/solarrover_linear.pddl',
                                   'prob': '{cwd}/benchmarks/solar-rover_LinearPlans/flexible/prob{pid}.pddl',
                                   'pstn': '{cwd}/benchmarks/solar-rover_LinearPlans/flexible/stns_params_with_values/output{iid}pram.stn',
-                                  'map': lambda x : re.sub(r'^(.*?)_\d+pram.stn$', r'\1.stn', x)}
+                                  'map': lambda x : re.sub(r'^(.*?)_\d+pram.stn$', r'\1.stn', x)},
+                  'robot_delivery': {'vdir': os.path.join(DIR, 'benchmarks/robot_delivery/stns'),
+                                     'sdir': os.path.join(DIR, 'benchmarks/robot_delivery/param_stns'),
+                                     'ddir': os.path.join(DIR, 'benchmarks/robot_delivery/param_stns'),
+                                     'match': '/*.stn',
+                                     'id_match': r'^.*?problem_(g\d+_w\d+)_ROSPlan.stn$',
+                                     'pid_match': r'^.*?problem_(g\d+_w\d+)_ROSPlan.stn$',
+                                     'dom': '{cwd}/benchmarks/robot_delivery/domain_robot_delivery.pddl',
+                                     'prob': '{cwd}/benchmarks/robot_delivery/domain/problem_{pid}.pddl',
+                                     'pstn': '{cwd}/benchmarks/robot_delivery/param_stns/STN_plan_problem_{iid}_ROSPlan.stn',
+                                     'map': None}
     }
 
 
@@ -171,7 +183,7 @@ def main():
 
                     prefix = 'runlim -t {timeout} -s {memout} -o {cwd}/results/{logfile} python3 {cwd}/main.py -o {cwd}/results/{outfile} '
                     if args.cluster:
-                        prefix = 'qsub -q es3.q -p -100 -N test-tpack -l "mf=25G" -pe smp 2 -S /bin/bash /es0/amicheli/runner.sh /es0/amicheli/myroot/bin/' + prefix
+                        prefix = 'qsub -q es3.q -p -100 -N test-tpack -l "mf=25G,h=korehpc115|korehpc116|korehpc117" -pe smp 2 -S /bin/bash /es0/amicheli/runner.sh /es0/amicheli/myroot/bin/' + prefix
 
                     cmd = (prefix + cmd_str).format(dom=dom,
                                                     prob=prob,
@@ -231,13 +243,13 @@ def main():
                                     'space' : space,
                                     'first_improvement' : first_improvement}, ignore_index=True)
         print(df)
-        plot(df, logscale=args.logscale, title = "Construct vs Envelope Overall")
-        plot(df[df['domain'] == 'auv'], logscale=args.logscale, title = "Construct vs Envelope AUV")
-        plot(df[df['domain'] == 'solar_rover'], logscale=args.logscale, title = "Construct vs Envelope Solar Rover")
-        plot(df[df['domain'] == 'generator_linear'], logscale=args.logscale, title = "Construct vs Envelope Generator Linear")
+        plot(df, logscale=args.logscale, title = "Construct vs Envelope Overall", fname='all.pdf')
+        plot(df[df['domain'] == 'auv'], logscale=args.logscale, title = "Construct vs Envelope AUV", fname='auv.pdf')
+        plot(df[df['domain'] == 'solar_rover'], logscale=args.logscale, title = "Construct vs Envelope Solar Rover", fname='solar_rover.pdf', legend=False)
+        plot(df[df['domain'] == 'generator_linear'], logscale=args.logscale, title = "Construct vs Envelope Generator Linear", fname='generator_linear.pdf', legend=False)
+        plot(df[df['domain'] == 'robot_delivery'], logscale=args.logscale, title = "Construct vs Envelope Robot Delivery", fname='robot_delivery.pdf', legend=False)
 
-        show = True
-        if show:
+        if args.show:
             plt.show()
         plt.close('all')
 
@@ -245,3 +257,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -10,6 +10,7 @@ rosservice call /rosplan_parsing_interface/parse_plan
 #echo "prepare the robust"
 rosservice call /run_STN
 
+#echo "start dispatching"
 rosservice call /rosplan_plan_dispatcher/dispatch_plan
 
 
