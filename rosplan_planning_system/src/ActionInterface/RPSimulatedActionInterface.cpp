@@ -22,10 +22,12 @@ namespace KCL_rosplan {
             double d = distribution(generator);
             if(d < 0) d = 0;
     		ROS_INFO("KCL: (%s) Action completing with probability %f and duration %f", params.name.c_str(), action_probability, d);
+		    ros::Rate wait = 1.0 / d;
+		    wait.sleep();
 		} else if(action_duration > 0) {
     		ROS_INFO("KCL: (%s) Action completing with probability %f and duration %f", params.name.c_str(), action_probability, action_duration);
-			ros::Rate wait = 1.0 / action_duration;
-			wait.sleep();
+		    ros::Rate wait = 1.0 / action_duration;
+		    wait.sleep();
         } else {
     		ROS_INFO("KCL: (%s) Action completing with probability %f and duration %f", params.name.c_str(), action_probability, action_duration);
         }
