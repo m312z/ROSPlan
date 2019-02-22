@@ -261,6 +261,8 @@ namespace KCL_rosplan {
 
 	void EsterelPlanDispatcher::initialise() {
 
+        node_real_dispatch_time.clear();
+
 		for(std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::const_iterator ci = current_plan.nodes.begin(); ci != current_plan.nodes.end(); ci++) {
 			action_dispatched[ci->action.action_id] = false;
 			action_received[ci->action.action_id] = false;
@@ -302,16 +304,24 @@ namespace KCL_rosplan {
 
 			// check action is part of current plan
 			if(!action_received[msg->action_id]) {
-				ROS_INFO("KCL: (%s) Action not yet dispatched, ignoring feedback", ros::this_node::getName().c_str());
-			}
-			action_completed[msg->action_id] = true;
-			state_changed = true;
+				ROS_WARN("KCL: (%s) Action not yet dispatched, ignoring feedback", ros::this_node::getName().c_str());
+			} else {
+			    action_completed[msg->action_id] = true;
+			    state_changed = true;
+            }
 		}
 
 		// action completed (failed)
 		if(!action_completed[msg->action_id] && 0 == msg->status.compare("action failed")) {
-			replan_requested = true;
-			action_completed[msg->action_id] = true;
+
+			// check action is part of current plan
+			if(!action_received[msg->action_id]) {
+				ROS_WARN("KCL: (%s) Action not yet dispatched, ignoring feedback", ros::this_node::getName().c_str());
+			} else {
+			    replan_requested = true;
+			    state_changed = true;
+			    action_completed[msg->action_id] = true;
+            }
 		}
 	}
 

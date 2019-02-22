@@ -119,4 +119,16 @@
 		(at end (papers_delivered ?w))
 		)
 )
+
+(:durative-action ditch
+	:parameters (?r - robot ?w - waypoint)
+	:duration (= ?duration 3)
+	:condition (and
+		(over all (robot_at ?r ?w))
+		) 
+	:effect (and
+		(at start (not (carrying_papers ?r)))
+		(at start (nocarrying_papers ?r))
+		)
+)
 )
