@@ -73,7 +73,7 @@ namespace KCL_rosplan {
 		ros::ServiceClient getTILsClient = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>(state_timed_knowledge_service);
 
 		// note the time now for TILs
-		ros::Time time = ros::Time::now() + ros::Duration(1);
+		ros::Time time = ros::Time::now();
 
 		pFile << "(:init" << std::endl;
 

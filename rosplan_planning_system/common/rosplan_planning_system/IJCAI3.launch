@@ -2,19 +2,19 @@
 <launch>
 
     <!-- arguments -->
-    <arg name="domain_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_robot_delivery.pddl" />
+    <arg name="domain_path"        default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_robot_delivery.pddl" />
     <arg name="robust_domain_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_robot_delivery_robust.pddl" />
-    <arg name="init_problem_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05.pddl" /> 
-    <arg name="problem_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05_ROSPlan.pddl" />
-    <arg name="max_parameters" default="1" />
-    <arg name="stn_timeout" default="60" />
+    <arg name="init_problem_path"  default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05.pddl" /> 
+    <arg name="problem_path"       default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05_ROSPlan.pddl" />
+    <arg name="max_parameters"     default="1" />
+    <arg name="stn_timeout"        default="60" />
 
     <!-- knowledge base -->
     <node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
-        <param name="domain_path" value="$(arg domain_path)" />
-        <param name="problem_path" value="$(arg init_problem_path)" />
+        <param name="domain_path"   value="$(arg domain_path)" />
+        <param name="problem_path"  value="$(arg init_problem_path)" />
         <param name="database_path" value="$(find rosplan_knowledge_base)/common/mongoDB/" />
-        <param name="use_unknowns" value="false" />
+        <param name="use_unknowns"  value="false" />
     </node>
 
     <!-- problem generation -->
@@ -33,6 +33,7 @@
 
     <!-- plan parsing -->
     <include file="$(find rosplan_planning_system)/launch/includes/parsing_interface.launch">
+         <arg name="epsilon_time" value="10.0" />
     </include>
 
     <!-- STN_tool-->
