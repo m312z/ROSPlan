@@ -30,7 +30,7 @@
 ;; Move to any waypoint, avoiding terrain
 (:durative-action goto_waypoint
 	:parameters (?v - robot ?from ?to - waypoint)
-	:duration (and (>= ?duration 0) (<= ?duration 100))
+	:duration ( = ?duration (distance ?from ?to))
 	:condition (and
 		(at start (robot_at ?v ?from))
 		(at start (localised ?v))
@@ -91,7 +91,7 @@
 
 (:durative-action wait_load_at_printer
         :parameters (?r ?h - robot ?p - printer)
-        :duration ( = ?duration 15)
+        :duration (and (>= ?duration 0) (<= ?duration 30))
         :condition (and
                 (at start (nocarrying_papers ?r))
                 (over all (nocarrying_papers ?h))
@@ -106,7 +106,7 @@
 
 (:durative-action wait_unload
 	:parameters (?r - robot ?w - waypoint)
-	:duration ( = ?duration 15)
+    :duration (and (>= ?duration 0) (<= ?duration 30))
 	:condition (and
 		(at start (asked_unload ?r))
 		(at start (carrying_papers ?r))
@@ -117,6 +117,18 @@
 		(at start (not (carrying_papers ?r)))
 		(at end (nocarrying_papers ?r))
 		(at end (papers_delivered ?w))
+		)
+)
+
+(:durative-action ditch
+	:parameters (?r - robot ?w - waypoint)
+	:duration (= ?duration 3)
+	:condition (and
+		(over all (robot_at ?r ?w))
+		) 
+	:effect (and
+		(at start (not (carrying_papers ?r)))
+		(at start (nocarrying_papers ?r))
 		)
 )
 )

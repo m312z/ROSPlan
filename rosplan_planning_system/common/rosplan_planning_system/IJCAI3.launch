@@ -29,22 +29,22 @@
      <include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
          <arg name="domain_path"          value="$(arg domain_path)" />
          <arg name="problem_path"         value="$(arg problem_path)" />
-         <arg name="data_path"            value="$(find rosplan_planning_system)/common/rosplan_planning_system" />
+         <arg name="data_path"            value="$(find rosplan_planning_system)/common/rosplan_planning_system/" />
          <arg name="planner_command"      value="timeout 120 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
      </include>
 
     <!-- plan parsing -->
     <include file="$(find rosplan_planning_system)/launch/includes/parsing_interface.launch">
-         <arg name="epsilon_time" value="10.0" />
+         <arg name="epsilon_time" value="1.0" />
     </include>
 
-    <!-- STN_tool-->
+    <!-- STN_tool
     <include file="$(find rosplan_planning_system)/launch/includes/stn_tool.launch">
         <arg name="robust_domain_path" value="$(arg robust_domain_path)" />
         <arg name="problem_path"       value="$(arg problem_path)" />
         <arg name="max_parameters"       value="$(arg max_parameters)" />
         <arg name="stn_timeout"       value="$(arg stn_timeout)" />
-    </include>
+    </include>-->
 
     <!-- plan dispatch -->
     <include file="$(find rosplan_planning_system)/launch/includes/dispatch_interface.launch">
@@ -58,7 +58,7 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="goto_waypoint" />
-        <arg name="action_duration" value="5" />
+        <!--arg name="action_duration" value="5" /-->
         <!--arg name="action_duration_stddev" value="5" /-->
     </include>
 
@@ -84,14 +84,14 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="wait_load_at_printer" />
-        <arg name="action_duration" value="15" />
+        <arg name="action_duration" value="13" />
         <arg name="action_duration_stddev" value="15" />
         <arg name="action_probability" value="0.95" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="wait_unload" />
-        <arg name="action_duration" value="15" />
+        <arg name="action_duration" value="13" />
         <arg name="action_duration_stddev" value="15" />
         <arg name="action_probability" value="0.95" />
     </include>
