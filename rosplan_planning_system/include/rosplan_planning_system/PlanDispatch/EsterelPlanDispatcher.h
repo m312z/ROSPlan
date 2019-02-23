@@ -65,6 +65,10 @@ namespace KCL_rosplan
 
 		bool display_edge_type_;
 
+        /* dispatch flags for robust experiment */
+        bool timeout_actions;
+        double action_timeout_fraction;
+
 	public:
 
 		/* constructor */
