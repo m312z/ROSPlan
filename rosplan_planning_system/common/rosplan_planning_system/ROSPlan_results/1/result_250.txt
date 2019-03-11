@@ -1,0 +1,111 @@
+problem_3goal_2rob_26wps_deadline250
+SUCCESS  5
+problem_1goal_3rob_24wps_deadline250
+SUCCESS  1
+problem_2goal_2rob_37wps_deadline250
+SUCCESS  1
+problem_1goal_2rob_34wps_deadline250
+SUCCESS  1
+problem_2goal_2rob_26wps_deadline250
+SUCCESS  2
+problem_1goal_2rob_37wps_deadline250
+SUCCESS  0
+problem_1goal_3rob_36wps_deadline250
+SUCCESS  1
+problem_1goal_3rob_33wps_deadline250
+SUCCESS  0
+problem_1goal_3rob_37wps_deadline250
+SUCCESS  0
+problem_2goal_3rob_23wps_deadline250
+FAILED  10
+problem_2goal_2rob_34wps_deadline250
+SUCCESS  2
+problem_2goal_2rob_27wps_deadline250
+SUCCESS  1
+problem_3goal_2rob_37wps_deadline250
+SUCCESS  3
+problem_3goal_2rob_25wps_deadline250
+SUCCESS  3
+problem_1goal_2rob_33wps_deadline250
+SUCCESS  2
+problem_3goal_3rob_26wps_deadline250
+FAILED  10
+problem_1goal_3rob_26wps_deadline250
+SUCCESS  1
+problem_1goal_2rob_25wps_deadline250
+SUCCESS  1
+problem_2goal_2rob_25wps_deadline250
+SUCCESS  2
+problem_1goal_3rob_23wps_deadline250
+SUCCESS  1
+problem_2goal_3rob_25wps_deadline250
+SUCCESS  4
+problem_2goal_2rob_23wps_deadline250
+SUCCESS  2
+problem_3goal_2rob_33wps_deadline250
+SUCCESS  2
+problem_1goal_3rob_34wps_deadline250
+SUCCESS  0
+problem_2goal_2rob_24wps_deadline250
+SUCCESS  2
+problem_3goal_2rob_23wps_deadline250
+SUCCESS  3
+problem_1goal_3rob_35wps_deadline250
+SUCCESS  3
+problem_3goal_2rob_27wps_deadline250
+SUCCESS  2
+problem_1goal_2rob_36wps_deadline250
+SUCCESS  0
+problem_3goal_2rob_24wps_deadline250
+SUCCESS  3
+problem_3goal_2rob_36wps_deadline250
+SUCCESS  4
+problem_2goal_3rob_35wps_deadline250
+FAILED  10
+problem_2goal_3rob_26wps_deadline250
+FAILED  10
+problem_2goal_3rob_27wps_deadline250
+FAILED  10
+problem_2goal_3rob_33wps_deadline250
+FAILED  10
+problem_3goal_2rob_34wps_deadline250
+SUCCESS  3
+problem_2goal_2rob_35wps_deadline250
+SUCCESS  1
+problem_1goal_3rob_25wps_deadline250
+SUCCESS  1
+problem_2goal_3rob_34wps_deadline250
+FAILED  10
+problem_1goal_2rob_35wps_deadline250
+SUCCESS  1
+problem_1goal_2rob_27wps_deadline250
+SUCCESS  0
+problem_2goal_3rob_36wps_deadline250
+SUCCESS  2
+problem_2goal_2rob_36wps_deadline250
+SUCCESS  2
+problem_1goal_3rob_27wps_deadline250
+SUCCESS  0
+problem_1goal_2rob_23wps_deadline250
+SUCCESS  1
+problem_2goal_2rob_33wps_deadline250
+SUCCESS  1
+problem_2goal_3rob_24wps_deadline250
+FAILED  10
+problem_2goal_3rob_37wps_deadline250
+FAILED  10
+problem_3goal_2rob_35wps_deadline250
+SUCCESS  2
+problem_1goal_2rob_26wps_deadline250
+SUCCESS  1
+problem_1goal_2rob_24wps_deadline250
+SUCCESS  1
+problem_3goal_3rob_25wps_deadline250
+problem_3goal_3rob_24wps_deadline250
+problem_3goal_3rob_37wps_deadline250
+problem_3goal_3rob_23wps_deadline250
+problem_3goal_3rob_27wps_deadline250
+problem_3goal_3rob_36wps_deadline250
+problem_3goal_3rob_33wps_deadline250
+problem_3goal_3rob_35wps_deadline250
+problem_3goal_3rob_34wps_deadline250

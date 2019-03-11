@@ -24,7 +24,7 @@ class RobustEnvelope(object):
         self.STN_plan_path = self.problem_path [:-5] + "_plan.stn" #self.data_path + 'STN_plan_' + problem_name[:-5] + '.stn' 
         self.Esterel_plan_path = self.problem_path [:-5] + "_plan.strl" #self.data_path + 'Esterel_plan_' + problem_name[:-5] +'.txt'
         self.max_parameters = rospy.get_param('~max_parameters', 1)
-        self.stn_timout = rospy.get_param('~stn_timout', 60)
+        self.stn_timeout = rospy.get_param('~stn_timeout', 60)
 
         #relate the parameter to the source node and the sink node
         self.dict_pram_source_node = dict()
@@ -64,51 +64,52 @@ class RobustEnvelope(object):
     
     def esterelPlanCallback(self, input_esterel_plan):
         # save in member variable
-        self.output_robust_plan_msg = input_esterel_plan
+        if input_esterel_plan:
+            self.output_robust_plan_msg = input_esterel_plan
         # raise flag indicating that msg has been received
-        self.esterel_plan_received = True
+            self.esterel_plan_received = True
 
-        stn_plan_file = open(self.STN_plan_path, 'w')
+            stn_plan_file = open(self.STN_plan_path, 'w')
 
-        # print the actions
-        for node in input_esterel_plan.nodes:
-            if node.node_type == 0: # ACTION_START
-                pddl_action = "(" + node.action.name
-                for param in node.action.parameters:
-                    pddl_action = pddl_action + " " + param.value
-                pddl_action = pddl_action + ")"
-                stn_plan_file.write("durative-action instance n" + str(node.node_id) + " : " + pddl_action + ";\n")
+            # print the actions
+            for node in input_esterel_plan.nodes:
+                if node.node_type == 0: # ACTION_START
+                    pddl_action = "(" + node.action.name
+                    for param in node.action.parameters:
+                        pddl_action = pddl_action + " " + param.value
+                    pddl_action = pddl_action + ")"
+                    stn_plan_file.write("durative-action instance n" + str(node.node_id) + " : " + pddl_action + ";\n")
 
-        # print the constraints
-        parameter_count = 0
-        for edge in input_esterel_plan.edges:
+            # print the constraints
+            parameter_count = 0
+            for edge in input_esterel_plan.edges:
 
-            if parameter_count < self.max_parameters and edge.edge_type == 1 and input_esterel_plan.nodes[edge.source_ids[0]].action.name == "goto_waypoint":
-                stn_plan_file.write("parameter dur_" + str(parameter_count) + " default " + str(edge.duration_lower_bound) + ";\n")
-                self.dict_params["dur_" + str(parameter_count)] = edge.edge_id
-                bounds = "[dur_" + str(parameter_count) + ", dur_" + str(parameter_count) + "]"
-                parameter_count += 1
-            else:
-                bounds = "[" + str(edge.duration_lower_bound) + ", "
-                if edge.duration_upper_bound >= sys.float_info.max:
-                    bounds = bounds + "inf]"
+                if parameter_count < self.max_parameters and edge.edge_type == 1 and input_esterel_plan.nodes[edge.source_ids[0]].action.name.startswith("wait"):
+                    stn_plan_file.write("parameter dur_" + str(parameter_count) + " default " + str(edge.duration_lower_bound) + ";\n")
+                    self.dict_params["dur_" + str(parameter_count)] = edge.edge_id
+                    bounds = "[dur_" + str(parameter_count) + ", dur_" + str(parameter_count) + "]"
+                    parameter_count += 1
                 else:
-                    bounds = bounds + str(edge.duration_upper_bound) + "]"
+                    bounds = "[" + str(edge.duration_lower_bound) + ", "
+                    if edge.duration_upper_bound >= sys.float_info.max:
+                        bounds = bounds + "inf]"
+                    else:
+                        bounds = bounds + str(edge.duration_upper_bound) + "]"
 
-            source = ".zero"
-            if input_esterel_plan.nodes[edge.source_ids[0]].node_type == 0: # ACTION_START
-                source = "n" + str(input_esterel_plan.nodes[edge.source_ids[0]].node_id) + ".start"
-            if input_esterel_plan.nodes[edge.source_ids[0]].node_type == 1: # ACTION_END
-                source = "n" + str(input_esterel_plan.nodes[edge.source_ids[0]].node_id-1) + ".end"
+                source = ".zero"
+                if input_esterel_plan.nodes[edge.source_ids[0]].node_type == 0: # ACTION_START
+                    source = "n" + str(input_esterel_plan.nodes[edge.source_ids[0]].node_id) + ".start"
+                if input_esterel_plan.nodes[edge.source_ids[0]].node_type == 1: # ACTION_END
+                    source = "n" + str(input_esterel_plan.nodes[edge.source_ids[0]].node_id-1) + ".end"
 
-            sink = ".zero"
-            if input_esterel_plan.nodes[edge.sink_ids[0]].node_type == 0: # ACTION_START
-                sink = "n" + str(input_esterel_plan.nodes[edge.sink_ids[0]].node_id) + ".start"
-            if input_esterel_plan.nodes[edge.sink_ids[0]].node_type == 1: # ACTION_END
-                sink = "n" + str(input_esterel_plan.nodes[edge.sink_ids[0]].node_id-1) + ".end"
+                sink = ".zero"
+                if input_esterel_plan.nodes[edge.sink_ids[0]].node_type == 0: # ACTION_START
+                    sink = "n" + str(input_esterel_plan.nodes[edge.sink_ids[0]].node_id) + ".start"
+                if input_esterel_plan.nodes[edge.sink_ids[0]].node_type == 1: # ACTION_END
+                    sink = "n" + str(input_esterel_plan.nodes[edge.sink_ids[0]].node_id-1) + ".end"
 
-            stn_plan_file.write("c: " + sink + " - " + source + " in " + bounds + ";\n")
-        stn_plan_file.close()
+                stn_plan_file.write("c: " + sink + " - " + source + " in " + bounds + ";\n")
+            stn_plan_file.close()
 
 
     def paramter_relate_edge(self):
@@ -151,7 +152,7 @@ class RobustEnvelope(object):
             res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path, 
                     rectangle_callback = self.final_bound, solver='z3', qelim_name='msat_lw',
                     debug=False, splitting='monolithic', early_forall_elimination=False, 
-                    compact_encoding=True, bound=1, simplify_effects=True, timeout = self.stn_timout)
+                    compact_encoding=True, bound=1, simplify_effects=True, timeout = self.stn_timeout)
             # bound=1)
                 # print('trololo')
                 # if time.time() > start + PERIOD_OF_TIME:
@@ -266,11 +267,11 @@ class RobustEnvelope(object):
     def republish_plan(self):
         # publish
         while not rospy.is_shutdown():
-        	if self.publish_robust:
-        		self.pub_robust_plan.publish(self.output_robust_plan_msg)
-        		self.publish_robust = False
-        	self.loop_rate.sleep()
-                   
+            if self.publish_robust:
+                self.pub_robust_plan.publish(self.output_robust_plan_msg)
+                self.publish_robust = False
+            self.loop_rate.sleep()
+
     # def start_robust_envelope(self):
     #     # wait for user to press ctrl + c (prevent the node from dying)
     #     while not rospy.is_shutdown():

@@ -1,7 +1,10 @@
-0.000: (do_hover auv wp_auv0 mission_site_start_point_1)  [5.000]
-5.001: (complete_mission auv mission0 mission_site_start_point_1)  [5.000]
-10.002: (complete_mission auv mission1 mission_site_start_point_1)  [5.000]
-15.003: (complete_mission auv mission2 mission_site_start_point_1)  [5.000]
-20.004: (complete_mission auv mission3 mission_site_start_point_1)  [5.000]
-25.005: (complete_mission auv mission4 mission_site_start_point_1)  [5.000]
-30.006: (complete_mission auv mission5 mission_site_start_point_1)  [5.000]
+Number of literals: 44
+Constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+A problem has been encountered, and the problem has been deemed unsolvable
+--------------------------------------------------------------------------
+The goal fact:
+(papers_delivered wp0)
+
+...cannot be found either in the initial state, as an add effect of an
+ action, or as a timed initial literal.  As such, the problem has been deemed
+unsolvable.

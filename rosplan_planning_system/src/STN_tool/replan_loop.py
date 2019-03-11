@@ -2,6 +2,7 @@
 import rospkg
 import rospy
 import sys
+import time
 
 from std_srvs.srv import Empty, EmptyResponse
 from rosplan_dispatch_msgs.srv import DispatchService, DispatchServiceResponse
@@ -12,7 +13,9 @@ while not goal_achieved and replans<10:
     rospy.wait_for_service('/rosplan_problem_interface/problem_generation_server')
     rospy.wait_for_service('/rosplan_planner_interface/planning_server')
     rospy.wait_for_service('/rosplan_parsing_interface/parse_plan')
+    rospy.wait_for_service('/run_STN')
     rospy.wait_for_service('/rosplan_plan_dispatcher/dispatch_plan')
+    rospy.wait_for_service('/rosplan_knowledge_base/state/propositions')
     try:
         pg = rospy.ServiceProxy('/rosplan_problem_interface/problem_generation_server', Empty)
         pg()
@@ -22,6 +25,11 @@ while not goal_achieved and replans<10:
 
         pp = rospy.ServiceProxy('/rosplan_parsing_interface/parse_plan', Empty)
         pp()
+
+        ps = rospy.ServiceProxy('/run_STN', Empty)
+        ps()
+
+        time.sleep(3)
 
         dp = rospy.ServiceProxy('/rosplan_plan_dispatcher/dispatch_plan', DispatchService)
         dsr = dp()
