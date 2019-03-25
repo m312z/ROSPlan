@@ -34,6 +34,27 @@ namespace KCL_rosplan {
     }
 
     void EsterelPlanDispatcher::reset() {
+
+        // for each node check completion, conditions, and dispatch
+        for(std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::const_iterator ci = current_plan.nodes.begin(); ci != current_plan.nodes.end(); ci++) {
+            //the main loop
+            rosplan_dispatch_msgs::EsterelPlanNode node = *ci;
+
+            // dispatch new action
+            if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_START && action_dispatched[node.action.action_id] && !action_completed[node.action.action_id]) {
+
+                // try to preempt action
+                ROS_INFO("KCL: (%s) Preempting action [%i, %s]",
+                        ros::this_node::getName().c_str(),
+                        node.action.action_id,
+                        node.action.name.c_str());
+
+                node.action.name = "cancel_action";
+                action_dispatch_publisher.publish(node.action);
+                ros::spinOnce();
+            }
+        }
+
         PlanDispatcher::reset();
         finished_execution = true;
     }
@@ -48,7 +69,7 @@ namespace KCL_rosplan {
                 if(finished_execution) {
                         ROS_INFO("KCL: (%s) Plan received.", ros::this_node::getName().c_str());
                         plan_received = true;
-                        mission_start_time = ros::WallTime::now().toSec();
+                        mission_start_time = ros::Time::now().toSec();
                         current_plan = plan;
                         printPlan();
                 } else {
@@ -184,10 +205,10 @@ namespace KCL_rosplan {
                         // check the current time with the lower bound
                          double NOW = ros::Time::now().toSec();
                          if (NOW - planStartTime < minimum_dispatch_time) { 
-                            /*if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END && action_completed[node.action.action_id]) {
+                            if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END && action_completed[node.action.action_id]) {
                                 ROS_INFO("KCL: (%s) Action completed too early, %s: %f < %f.", ros::this_node::getName().c_str(), node.name.c_str(), NOW-planStartTime, minimum_dispatch_time);
                                 replan_requested = true;
-                            }*/
+                            }
                             times_activate_action = false;
                             finished_execution = false;
                             break;
