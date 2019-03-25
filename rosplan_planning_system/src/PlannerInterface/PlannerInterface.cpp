@@ -9,7 +9,7 @@ namespace KCL_rosplan {
 	void PlannerInterface::problemCallback(const std_msgs::String& problemInstance) {
 		ROS_INFO("KCL: (%s) Problem received.", ros::this_node::getName().c_str());
 		problem_instance_received = true;
-		problem_instance_time = ros::WallTime::now().toSec();
+		problem_instance_time = ros::Time::now().toSec();
 		problem_instance = problemInstance.data;
 	}
 
@@ -38,8 +38,8 @@ namespace KCL_rosplan {
 		node_handle->getParam("planner_command", planner_command);
 
 		// call planning server
-		runPlanningServer(domain_path, problem_path, data_path, planner_command, use_problem_topic);
-		return true;
+		return runPlanningServer(domain_path, problem_path, data_path, planner_command, use_problem_topic);
+		// true;
 	}
 
 	/**
