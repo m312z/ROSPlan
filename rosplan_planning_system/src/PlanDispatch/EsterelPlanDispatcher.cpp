@@ -205,10 +205,10 @@ namespace KCL_rosplan {
                         // check the current time with the lower bound
                          double NOW = ros::Time::now().toSec();
                          if (NOW - planStartTime < minimum_dispatch_time) { 
-                            if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END && action_completed[node.action.action_id]) {
+                            /*if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END && action_completed[node.action.action_id]) {
                                 ROS_INFO("KCL: (%s) Action completed too early, %s: %f < %f.", ros::this_node::getName().c_str(), node.name.c_str(), NOW-planStartTime, minimum_dispatch_time);
                                 replan_requested = true;
-                            }
+                            }*/
                             times_activate_action = false;
                             finished_execution = false;
                             break;
