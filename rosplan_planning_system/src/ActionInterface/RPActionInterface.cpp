@@ -137,8 +137,14 @@ namespace KCL_rosplan {
 	void RPActionInterface::dispatchCallback(const rosplan_dispatch_msgs::ActionDispatch::ConstPtr& msg) {
 
 		// check action name
+		if(0==msg->name.compare("cancel_action")) {
+            action_cancelled = true;
+            return;
+        }
 		if(0!=msg->name.compare(params.name)) return;
 		ROS_INFO("KCL: (%s) action received", params.name.c_str());
+
+        action_cancelled = false;
 
 		// check PDDL parameters
 		std::vector<bool> found(params.typed_parameters.size(), false);
@@ -205,8 +211,16 @@ namespace KCL_rosplan {
 
 		// call concrete implementation
 		action_success = concreteCallback(msg);
+        ros::spinOnce();
+        if(action_cancelled) {
+            action_success = false;
+			ROS_INFO("KCL: (%s) an old action that was cancelled is stopping now", params.name.c_str());
+            return;
+        }
 
 		if(action_success) {
+
+			ROS_INFO("KCL: (%s) action completed successfully", params.name.c_str());
 
 			// update knowledge base
 			rosplan_knowledge_msgs::KnowledgeUpdateServiceArray updatePredSrv;
