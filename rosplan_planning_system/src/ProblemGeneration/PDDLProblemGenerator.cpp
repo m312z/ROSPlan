@@ -20,6 +20,10 @@ namespace KCL_rosplan {
 		ros::ServiceClient getTypesClient = nh.serviceClient<rosplan_knowledge_msgs::GetDomainTypeService>(domain_type_service);
 		ros::ServiceClient getInstancesClient = nh.serviceClient<rosplan_knowledge_msgs::GetInstanceService>(state_instance_service);
 
+                ros::service::waitForService(domain_name_service,ros::Duration(20));
+                ros::service::waitForService(domain_type_service,ros::Duration(20));
+                ros::service::waitForService(state_instance_service,ros::Duration(20));
+               
 		// get domain name
 		rosplan_knowledge_msgs::GetDomainNameService nameSrv;
 		if (!getNameClient.call(nameSrv)) {
@@ -40,10 +44,8 @@ namespace KCL_rosplan {
 
 		// get instances of each type
 		for(size_t t=0; t<typeSrv.response.types.size(); t++) {
-
 			rosplan_knowledge_msgs::GetInstanceService instanceSrv;
 			instanceSrv.request.type_name = typeSrv.response.types[t];
-
 			if (!getInstancesClient.call(instanceSrv)) {
 				ROS_ERROR("KCL: (PDDLProblemGenerator) Failed to call service %s: %s", state_instance_service.c_str(), instanceSrv.request.type_name.c_str());
 			} else {
@@ -55,7 +57,6 @@ namespace KCL_rosplan {
 				pFile << "- " << typeSrv.response.types[t] << std::endl;
 			}
 		}
-
 		pFile << ")" << std::endl;
 	}
 
@@ -72,6 +73,12 @@ namespace KCL_rosplan {
 		ros::ServiceClient getFuncsClient = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>(state_function_service);
 		ros::ServiceClient getTILsClient = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>(state_timed_knowledge_service);
 
+                ros::service::waitForService(domain_predicate_service,ros::Duration(20));
+                ros::service::waitForService(domain_function_service,ros::Duration(20));
+                ros::service::waitForService(state_proposition_service,ros::Duration(20));
+                ros::service::waitForService(state_function_service,ros::Duration(20));
+                ros::service::waitForService(state_timed_knowledge_service,ros::Duration(20));
+                
 		// note the time now for TILs
 		ros::Time time = ros::Time::now();
 
@@ -200,7 +207,9 @@ namespace KCL_rosplan {
 			
 		ros::NodeHandle nh;
 		ros::ServiceClient getCurrentGoalsClient = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>(state_goal_service);
+                ros::service::waitForService(state_goal_service,ros::Duration(20));
 
+                
 		pFile << "(:goal (and" << std::endl;
 
 		// get current goals
@@ -262,6 +271,7 @@ namespace KCL_rosplan {
 
 		// get current metric
 		ros::ServiceClient getCurrentMetricClient = nh.serviceClient<rosplan_knowledge_msgs::GetMetricService>(state_metric_service);
+                ros::service::waitForService(state_metric_service,ros::Duration(20));
 		rosplan_knowledge_msgs::GetMetricService currentMetricSrv;
 		if (!getCurrentMetricClient.call(currentMetricSrv)) {
 

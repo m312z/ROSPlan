@@ -18,9 +18,9 @@
 
     (dock_at wp0)
 
-    (delivery_destination wp0) (at 160.0075 (not (delivery_destination wp0)))
-    (delivery_destination wp1) (at 160.0075 (not (delivery_destination wp1)))
-    (delivery_destination wp2) (at 160.0075 (not (delivery_destination wp2)))
+    (delivery_destination wp0) (at 675.005 (not (delivery_destination wp0)))
+    (delivery_destination wp1) (at 675.005 (not (delivery_destination wp1)))
+    (delivery_destination wp2) (at 675.005 (not (delivery_destination wp2)))
 
     (= (distance wp0 wp1) 15)
     (= (distance wp1 wp0) 15)
