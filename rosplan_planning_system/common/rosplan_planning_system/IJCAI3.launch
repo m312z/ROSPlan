@@ -6,8 +6,8 @@
     <!-- arguments -->
     <arg name="domain_path"        default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_robot_delivery.pddl" />
     <arg name="robust_domain_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_robot_delivery_robust.pddl" />
-    <arg name="init_problem_path"  default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05.pddl" /> 
-    <arg name="problem_path"       default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem_g01_w05_ROSPlan.pddl" />
+    <arg name="init_problem_path"  default="$(find rosplan_planning_system)/common/rosplan_planning_system/problems_deadlines_250/problem_3goal_3rob_33wps_deadline250.pddl" /> 
+    <arg name="problem_path"       default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem.pddl" />
     <arg name="max_parameters"     default="2" />
     <arg name="stn_timeout"        default="60" />
     <arg name="timeout_actions"         default="true" />
