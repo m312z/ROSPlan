@@ -64,6 +64,6 @@ file_path = "~/" + os.path.basename(problem_path)[:-5] + '_result_batch' +str(ex
 elapsed = time.time() - snap
 elapsed_sim = rospy.get_time()
 success = "SUCCESS" if goal_achieved else "FAILED"
-with open(file_path, 'wt') as result:
+with open(os.path.expanduser(file_path), 'wt') as result:
     result.write("%s, %f, %f, %s, %d\n"%(os.path.basename(problem_path), elapsed, elapsed_sim, success, replans))
 print("%s, %f, %f, %s, %d\n"%(os.path.basename(problem_path), elapsed, elapsed_sim, success, replans))
