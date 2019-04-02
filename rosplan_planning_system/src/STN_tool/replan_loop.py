@@ -15,19 +15,24 @@ rospy.init_node("coordinator_non_adaptable")
 
 problem_path = rospy.get_param('/coordinator_non_adaptable/problem_path', "problem.pddl")
 experiment_batch = rospy.get_param('/coordinator_non_adaptable/experiment_batch', '0')
+use_stn_tool = rospy.get_param('/coordinator_non_adaptable/stn_tool', True)
 
+print("Coordinator using STN tool: %i"%(use_stn_tool))
 
 goal_achieved = False
 replans = 0
 snap = time.time()
 while not goal_achieved and replans<10:
+
     rospy.wait_for_service('/rosplan_problem_interface/problem_generation_server')
     rospy.wait_for_service('/rosplan_planner_interface/planning_server')
     rospy.wait_for_service('/rosplan_parsing_interface/parse_plan')
-    rospy.wait_for_service('/run_STN')
     rospy.wait_for_service('/rosplan_plan_dispatcher/dispatch_plan')
     rospy.wait_for_service('/rosplan_knowledge_base/state/propositions')
-    rospy.wait_for_service('/sim_clock/set_time_scale')    
+    rospy.wait_for_service('/sim_clock/set_time_scale')
+    if use_stn_tool:
+        rospy.wait_for_service('/run_STN')
+
     try:
         pg = rospy.ServiceProxy('/rosplan_problem_interface/problem_generation_server', Empty)
         if not pg():
@@ -42,8 +47,9 @@ while not goal_achieved and replans<10:
             pp = rospy.ServiceProxy('/rosplan_parsing_interface/parse_plan', Empty)
             pp()
             
-            ps = rospy.ServiceProxy('/run_STN', Empty)
-            ps()
+            if use_stn_tool:
+                ps = rospy.ServiceProxy('/run_STN', Empty)
+                ps()
             
             time.sleep(3)
 
