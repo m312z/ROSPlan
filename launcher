@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source /ROSPlan/devel/setup.bash
+echo "running: "
+echo "roslaunch rosplan_planning_system IJCAI3.launch init_problem_path:=$1 experiment_batch:=$2 stn_tool:=$3 action_timeout_fraction:=$4"
+roslaunch rosplan_planning_system IJCAI3.launch init_problem_path:=$1 experiment_batch:=$2 stn_tool:=$3 action_timeout_fraction:=$4
