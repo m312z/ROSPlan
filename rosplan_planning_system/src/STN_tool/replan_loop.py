@@ -71,7 +71,7 @@ while not goal_achieved and replans<10:
 
 tool = "stntool" if use_stn_tool else "vanilla"
 fname = "%s_result_batch_%s_%s_%s" % (os.path.basename(problem_path)[:-5], experiment_batch, tool, action_timeout_fraction)
-file_path = os.path.join((os.path.expanduser(output_directory), fname))
+file_path = os.path.join(os.path.expanduser(output_directory), fname)
 elapsed = time.time() - snap
 elapsed_sim = rospy.get_time()
 success = "SUCCESS" if goal_achieved else "FAILED"
