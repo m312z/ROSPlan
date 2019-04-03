@@ -75,7 +75,7 @@ file_path = os.path.join((os.path.expanduser(output_directory), fname))
 elapsed = time.time() - snap
 elapsed_sim = rospy.get_time()
 success = "SUCCESS" if goal_achieved else "FAILED"
-line = "%s, %s, %s, %s, %f, %f, %s, %d\n" % (os.path.basename(problem_path)
+line = "%s, %s, %s, %s, %f, %f, %s, %d\n" % (os.path.basename(problem_path),
                                              experiment_batch, tool,
                                              action_timeout_fraction,
                                              elapsed, elapsed_sim,
