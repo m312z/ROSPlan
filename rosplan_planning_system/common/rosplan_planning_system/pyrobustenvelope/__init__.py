@@ -204,7 +204,7 @@ def compute_envelope_construct(domain_fname, problem_fname, plan_fname, debug=Fa
                                splitting=None, early_forall_elimination=False,
                                compact_encoding=True, solver=None, qelim_name=None,
                                epsilon=None, simplify_effects=True, rectangle_callback=None,
-                               bound=1, assume_positive=False, timeout = 60):
+                               bound=1, assume_positive=False, timeout=None):
     """This function iteratively constructs a rectangular robustness envelope
 
     :param domain_fname: The path containing the domain PDDL file
@@ -276,7 +276,7 @@ def compute_envelope_construct(domain_fname, problem_fname, plan_fname, debug=Fa
     a is between 10 and 20
 
     """
-    
+
     if splitting is None:
         splitting = "monolithic"
     assert splitting in ["monolithic", "partial", "full"]
@@ -293,5 +293,17 @@ def compute_envelope_construct(domain_fname, problem_fname, plan_fname, debug=Fa
     c = ConstructAlgorithm(instance, stn, enc, debug=debug, splitting=splitting,
                            solver=solver, qelim_name=qelim_name, bound=bound)
 
-    return c.run(rectangle_callback=rectangle_callback, timeout=timeout)
+    if timeout is None:
+        return c.run(rectangle_callback=rectangle_callback)
+    else:
+        import multiprocessing
 
+        p = multiprocessing.Process(target=c.run, args=(rectangle_callback, ))
+        p.start()
+
+        # Wait for timeout seconds or until process finishes
+        p.join(timeout)
+
+        # If thread is still active
+        if p.is_alive():
+            p.terminate()
