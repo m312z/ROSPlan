@@ -14,6 +14,27 @@ from rosplan_planning_system.pyrobustenvelope.encoder import Encoder
 from rosplan_planning_system.pyrobustenvelope.construct import ConstructAlgorithm
 
 
+import ctypes
+
+def terminate_thread(thread):
+    """Terminates a python thread from another thread.
+
+    :param thread: a threading.Thread instance
+    """
+    if not thread.is_alive():
+        return
+
+    exc = ctypes.py_object(SystemExit)
+    res = ctypes.pythonapi.PyThreadState_SetAsyncExc(
+        ctypes.c_long(thread.ident), exc)
+    if res == 0:
+        raise ValueError("nonexistent thread id")
+    elif res > 1:
+        # """if it returns a number greater than one, you're in trouble,
+        # and you should call it again with exc=NULL to revert the effect"""
+        ctypes.pythonapi.PyThreadState_SetAsyncExc(thread.ident, None)
+        raise SystemError("PyThreadState_SetAsyncExc failed")
+
 
 
 def validate_stn_plan(domain_fname, problem_fname, plan_fname, debug=False,
@@ -296,9 +317,15 @@ def compute_envelope_construct(domain_fname, problem_fname, plan_fname, debug=Fa
     if timeout is None:
         return c.run(rectangle_callback=rectangle_callback)
     else:
-        import multiprocessing
+        import threading
 
-        p = multiprocessing.Process(target=c.run, args=(rectangle_callback, ))
+        rects = []
+        def cb(r):
+            rects.append(r)
+            if rectangle_callback:
+                rectangle_callback(r)
+
+        p = threading.Thread(target=c.run, args=(cb, ))
         p.start()
 
         # Wait for timeout seconds or until process finishes
@@ -306,4 +333,9 @@ def compute_envelope_construct(domain_fname, problem_fname, plan_fname, debug=Fa
 
         # If thread is still active
         if p.is_alive():
-            p.terminate()
+            terminate_thread(p)
+
+        if len(rects):
+            return {p:v for (p, _), v in rects[-1].items()}
+        else:
+            return None

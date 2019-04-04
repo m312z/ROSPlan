@@ -172,7 +172,7 @@ class RobustEnvelope(object):
                 #self.paramter_relate_edge()
                 self.publish_robust = True
             else:
-               rospy.logwarning("The problem is unsatisfiable!")
+                rospy.logwarn("The problem is unsatisfiable!")
         return EmptyResponse()
 
         #if bool(self.dict_dur_lower[p.name] and self.dict_dur_upper[p.name]):
