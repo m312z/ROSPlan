@@ -61,6 +61,8 @@ class RobustEnvelope(object):
         rospy.loginfo('KCL: (' + rospy.get_name() + ') Using problem: ' + self.problem_path)
         rospy.loginfo('KCL: (' + rospy.get_name() + ') Ready to compute robust envelopes')
 
+        self.best_rect = None
+
 
     def esterelPlanCallback(self, input_esterel_plan):
         # save in member variable
@@ -126,7 +128,8 @@ class RobustEnvelope(object):
                         self.output_robust_plan_msg.edges[par_edge_id].duration_upper_bound = self.dict_dur_upper[line[(line.find('[')+1):line.find(',')]]
 
 
-    def final_bound(self,x):
+    def final_bound(self,r):
+        self.best_rect = {p:v for (p, _), v in r.items()}
         print('yes')
 
 
@@ -149,17 +152,21 @@ class RobustEnvelope(object):
             # PERIOD_OF_TIME = 10
             # while True:
             #compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path , debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver=None, qelim_name=None, epsilon=None, simplify_effects=True, rectangle_callback=None,bound=1, assume_positive=False)
+
+            self.best_rect = None
             res = compute_envelope_construct(self.domain_path,self.problem_path,self.STN_plan_path,
                     rectangle_callback = self.final_bound, solver='z3', qelim_name='msat_lw',
                     debug=False, splitting='monolithic', early_forall_elimination=False,
                     compact_encoding=True, bound=1, simplify_effects=True, timeout=self.stn_timeout)
-            # bound=1)
-                # print('trololo')
-                # if time.time() > start + PERIOD_OF_TIME:
-                #     break
-                # #, self.debug=False, splitting=None, early_forall_elimination=False, compact_encoding=True, solver='z3', qelim_name='msat_fm', epsilon=0.001, simplify_effects=True)
-            if res:
+            rospy.loginfo('KCL: (' + rospy.get_name() + ') STNTool terminated')
 
+            # Even if the algorithm is not completed, we might have a valid
+            # rectangle stored in self.best_rect!
+            if res is None:
+                res = self.best_rect
+
+            if res:
+                rospy.loginfo('KCL: (' + rospy.get_name() + ') STNTool returned a meaningful rectangle')
                 for p, (l, u) in res.items():
                     print(p.name + " in [" + str(l) + ", " + str(u)  + "]")
                     #the upper and lower bound on the edges for parameters
