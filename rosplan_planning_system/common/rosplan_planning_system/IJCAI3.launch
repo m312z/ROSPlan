@@ -9,7 +9,7 @@
     <arg name="init_problem_path"  default="$(find rosplan_planning_system)/common/rosplan_planning_system/problems_deadlines_250/problem_1goal_2rob_23wps_deadline250.pddl" />
     <arg name="problem_path"       default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem.pddl" />
     <arg name="max_parameters"     default="2" />
-    <arg name="stn_timeout"        default="60" />
+    <arg name="stn_timeout"        default="600" />
     <arg name="stn_tool"           default="true" />
     <arg name="experiment_batch"   default="1" />
     <arg name="timeout_actions"         default="true" />

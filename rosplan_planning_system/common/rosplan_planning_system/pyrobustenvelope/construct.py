@@ -166,7 +166,7 @@ class ConstructAlgorithm(object):
         self.p(" -> Done in %s seconds" % (t1 - t0))
 
 
-    def run(self, rectangle_callback=None, timeout = 60):
+    def run(self, rectangle_callback=None):
         t_init = time.time()
 
         mgr = self.enc.mgr
@@ -192,7 +192,6 @@ class ConstructAlgorithm(object):
         first_flex = False
         current_flexibility = -1
         t_flex = None
-        start = time.time()
         while any(x >= self.bound for x in deltas.values()):
             flexibility, volume = self.get_flexibility_measures(R)
             if self.debug:
@@ -205,9 +204,6 @@ class ConstructAlgorithm(object):
 
             if rectangle_callback is not None and flexibility > current_flexibility:
                 rectangle_callback(R)
-            if time.time() > start + timeout:
-                    break
-            
 
             gamma = next(gammas)
             delta = deltas[gamma]
@@ -242,4 +238,3 @@ class ConstructAlgorithm(object):
                 self.p('First improvement after: %.2f seconds', (t_flex-t_init))
 
         return {p:v for (p, _), v in R.items()}
-
