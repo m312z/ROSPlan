@@ -18,6 +18,10 @@ namespace KCL_rosplan {
         nh.getParam("timeout_actions", timeout_actions);
         nh.getParam("action_timeout_fraction", action_timeout_fraction);
 
+        std::string planTopic = "complete_plan";
+        nh.getParam("plan_topic", planTopic);
+        bl_end = (planTopic == "/robust_plan");
+
         std::string plan_graph_topic = "plan_graph";
         nh.getParam("plan_graph_topic", plan_graph_topic);
         plan_graph_publisher = node_handle->advertise<std_msgs::String>(plan_graph_topic, 1000, true);
@@ -205,10 +209,10 @@ namespace KCL_rosplan {
                         // check the current time with the lower bound
                          double NOW = ros::Time::now().toSec();
                          if (NOW - planStartTime < minimum_dispatch_time) { 
-                            /*if(node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END && action_completed[node.action.action_id]) {
+                            if(bl_end && node.node_type == rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END && action_completed[node.action.action_id]) {
                                 ROS_INFO("KCL: (%s) Action completed too early, %s: %f < %f.", ros::this_node::getName().c_str(), node.name.c_str(), NOW-planStartTime, minimum_dispatch_time);
                                 replan_requested = true;
-                            }*/
+                            }
                             times_activate_action = false;
                             finished_execution = false;
                             break;
