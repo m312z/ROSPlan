@@ -22,7 +22,7 @@ namespace KCL_rosplan {
         }
 
 		if(action_duration_stddev > 0) {
-            std::default_random_engine generator(ros::Time::now().toSec());
+            std::default_random_engine generator(ros::WallTime::now().toSec());
             std::normal_distribution<double> distribution(duration, action_duration_stddev);
             double d = distribution(generator);
             if(d < duration) d = duration + (duration - d);
