@@ -28,12 +28,16 @@ namespace KCL_rosplan {
             if(d < duration) d = duration + (duration - d);
             if(d < 0) d = 0;
     		ROS_INFO("KCL: (%s) Action completing with probability %f and duration %f", params.name.c_str(), action_probability, d);
-		    ros::Rate wait = 1.0 / d;
-		    wait.sleep();
+            if(d>0) {
+		        ros::Rate wait = 1.0 / d;
+		        wait.sleep();
+            }
         } else {
     		ROS_INFO("KCL: (%s) Action completing with probability %f and duration %f", params.name.c_str(), action_probability, duration);
-		    ros::Rate wait = 1.0 / duration;
-		    wait.sleep();
+            if(duration>0)
+		        ros::Rate wait = 1.0 / duration;
+		        wait.sleep();
+            }
         }
 
 		// complete the action
