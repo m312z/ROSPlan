@@ -23,13 +23,13 @@
 
     (dock_at wp0)
 
-    (delivery_destination wp0) (at 137.5075 (not (delivery_destination wp0)))
-    (delivery_destination wp1) (at 137.5075 (not (delivery_destination wp1)))
-    (delivery_destination wp2) (at 137.5075 (not (delivery_destination wp2)))
-    (delivery_destination wp3) (at 137.5075 (not (delivery_destination wp3)))
-    (delivery_destination wp4) (at 137.5075 (not (delivery_destination wp4)))
-    (delivery_destination wp5) (at 137.5075 (not (delivery_destination wp5)))
-    (delivery_destination wp6) (at 137.5075 (not (delivery_destination wp6)))
+    (delivery_destination wp0) (at 850.0074999999999 (not (delivery_destination wp0)))
+    (delivery_destination wp1) (at 850.0074999999999 (not (delivery_destination wp1)))
+    (delivery_destination wp2) (at 850.0074999999999 (not (delivery_destination wp2)))
+    (delivery_destination wp3) (at 850.0074999999999 (not (delivery_destination wp3)))
+    (delivery_destination wp4) (at 850.0074999999999 (not (delivery_destination wp4)))
+    (delivery_destination wp5) (at 850.0074999999999 (not (delivery_destination wp5)))
+    (delivery_destination wp6) (at 850.0074999999999 (not (delivery_destination wp6)))
 
     (= (distance wp0 wp1) 12)
     (= (distance wp1 wp0) 12)

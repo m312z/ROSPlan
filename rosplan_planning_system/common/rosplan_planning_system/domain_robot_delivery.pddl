@@ -30,7 +30,7 @@
 ;; Move to any waypoint, avoiding terrain
 (:durative-action goto_waypoint
 	:parameters (?v - robot ?from ?to - waypoint)
-	:duration ( = ?duration (distance ?from ?to))
+	:duration ( = ?duration (* (distance ?from ?to) 10))
 	:condition (and
 		(at start (robot_at ?v ?from))
 		(at start (localised ?v))
@@ -46,7 +46,7 @@
 ;; Localise
 (:durative-action localise
 	:parameters (?v - robot)
-	:duration ( = ?duration 60)
+	:duration ( = ?duration 120)
 	:condition (over all (undocked ?v))
 	:effect (at end (localised ?v))
 )
@@ -55,7 +55,7 @@
 ;; Dock to charge
 (:durative-action dock
 	:parameters (?v - robot ?wp - waypoint)
-	:duration ( = ?duration 30)
+	:duration ( = ?duration 120)
 	:condition (and
 		(over all (dock_at ?wp))
 		(at start (robot_at ?v ?wp))
@@ -67,7 +67,7 @@
 
 (:durative-action undock
 	:parameters (?v - robot ?wp - waypoint)
-	:duration ( = ?duration 10)
+	:duration ( = ?duration 20)
 	:condition (and
 		(over all (dock_at ?wp))
 		(at start (docked ?v)))
@@ -78,7 +78,7 @@
 
 (:durative-action ask_unload
         :parameters (?r - robot ?w - waypoint)
-        :duration ( = ?duration 5)
+        :duration ( = ?duration 20)
         :condition (and
                 (over all (carrying_papers ?r))
                 (over all (delivery_destination ?w))
@@ -91,7 +91,7 @@
 
 (:durative-action wait_load_at_printer
         :parameters (?r ?h - robot ?p - printer)
-        :duration ( = ?duration 15)
+        :duration ( = ?duration 60)
         :condition (and
                 (at start (nocarrying_papers ?r))
                 (over all (nocarrying_papers ?h))
@@ -106,7 +106,7 @@
 
 (:durative-action wait_unload
 	:parameters (?r - robot ?w - waypoint)
-	:duration ( = ?duration 15)
+	:duration ( = ?duration 60)
 	:condition (and
 		(at start (asked_unload ?r))
 		(at start (carrying_papers ?r))
@@ -122,7 +122,7 @@
 
 (:durative-action ditch
 	:parameters (?r - robot ?w - waypoint)
-	:duration (= ?duration 3)
+	:duration (= ?duration 5)
 	:condition (and
 		(over all (robot_at ?r ?w))
 		) 
@@ -132,3 +132,4 @@
 		)
 )
 )
+
