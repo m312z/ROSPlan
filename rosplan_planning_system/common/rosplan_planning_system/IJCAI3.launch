@@ -94,7 +94,6 @@
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="localise" />
         <arg name="action_duration" value="119" />
-        <arg name="action_probability" value="0.95" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
@@ -114,15 +113,15 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="wait_load_at_printer" />
-        <arg name="action_duration" value="60" />
-        <arg name="action_duration_stddev" value="20" />
+        <arg name="action_duration" value="52" />
+        <arg name="action_duration_stddev" value="60" />
         <arg name="action_probability" value="0.95" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="wait_unload" />
-        <arg name="action_duration" value="60" />
-        <arg name="action_duration_stddev" value="20" />
+        <arg name="action_duration" value="52" />
+        <arg name="action_duration_stddev" value="60" />
         <arg name="action_probability" value="0.95" />
     </include>
 

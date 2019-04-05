@@ -52,6 +52,7 @@ namespace KCL_rosplan
 
 		bool state_changed;
 		bool finished_execution;
+		bool bl_end;
 
 		//map real time dispatch for each node
 		std::map<int,double> node_real_dispatch_time;
