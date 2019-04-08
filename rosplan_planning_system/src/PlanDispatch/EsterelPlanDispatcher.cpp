@@ -20,7 +20,7 @@ namespace KCL_rosplan {
 
         std::string planTopic = "complete_plan";
         nh.getParam("plan_topic", planTopic);
-        bl_end = (planTopic == "/robust_plan");
+        bl_end = (planTopic != "/robust_plan");
 
         std::string plan_graph_topic = "plan_graph";
         nh.getParam("plan_graph_topic", plan_graph_topic);
