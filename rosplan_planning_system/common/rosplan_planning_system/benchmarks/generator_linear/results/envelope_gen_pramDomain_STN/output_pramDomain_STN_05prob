@@ -1,6 +1,0 @@
-n4.?refueling_rate in [0.0, 0.0]
-n3.?refueling_rate in [80.0, 80.0]
-n2.?refueling_rate in [0.0, 0.0]
-n1.?refueling_rate in [0.0, 0.0]
-23.10user 0.05system 0:23.15elapsed 99%CPU (0avgtext+0avgdata 122768maxresident)k
-0inputs+8outputs (0major+42331minor)pagefaults 0swaps

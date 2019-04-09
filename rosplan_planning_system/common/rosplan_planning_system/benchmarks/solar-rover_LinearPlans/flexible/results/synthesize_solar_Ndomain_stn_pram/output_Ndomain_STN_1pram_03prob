@@ -1,3 +1,0 @@
-((param_dur_1_31 <= 14/5) & (1.0 <= param_dur_1_31))
-3.83user 0.02system 0:03.86elapsed 99%CPU (0avgtext+0avgdata 99328maxresident)k
-0inputs+8outputs (0major+22031minor)pagefaults 0swaps

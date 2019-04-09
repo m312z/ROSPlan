@@ -1,3 +1,0 @@
-((1/1000 <= param_dur_1_43) & ((param_?energy_amount_462 + (param_dur_1_43 * -10.0)) <= 485.0) & (param_dur_1_43 <= 11/5) & (-485.0 <= ((param_dur_1_43 * 10.0) + (param_?energy_amount_462 * -1.0))))
-9.34user 0.03system 0:09.38elapsed 99%CPU (0avgtext+0avgdata 127860maxresident)k
-0inputs+8outputs (0major+31371minor)pagefaults 0swaps

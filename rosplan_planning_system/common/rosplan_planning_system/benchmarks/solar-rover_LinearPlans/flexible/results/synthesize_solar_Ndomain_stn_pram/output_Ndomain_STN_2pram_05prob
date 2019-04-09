@@ -1,3 +1,0 @@
-((3.0 <= (param_dur_1_37 + param_dur_2_38)) & (param_dur_1_37 <= 12/5) & (param_dur_2_38 <= 12/5) & (3.0 <= (param_dur_2_38 + param_dur_1_37)))
-8.32user 0.04system 0:08.37elapsed 99%CPU (0avgtext+0avgdata 113048maxresident)k
-0inputs+8outputs (0major+30175minor)pagefaults 0swaps

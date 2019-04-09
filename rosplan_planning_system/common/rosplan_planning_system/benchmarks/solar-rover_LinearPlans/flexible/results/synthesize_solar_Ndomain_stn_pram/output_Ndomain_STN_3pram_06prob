@@ -1,3 +1,0 @@
-((param_dur_2_44 <= 11/5) & (param_dur_3_45 <= 11/5) & (param_dur_1_43 <= 11/5) & (11/2 <= (param_dur_3_45 + (param_dur_2_44 + param_dur_1_43))) & (! ((param_dur_2_44 <= 11/5) & (param_dur_3_45 <= 11/5) & (param_dur_1_43 <= 11/5) & (! (11/2 <= (param_dur_2_44 + (param_dur_3_45 + param_dur_1_43)))))) & (! ((param_dur_2_44 <= 11/5) & (param_dur_3_45 <= 11/5) & (param_dur_1_43 <= 11/5) & (! (11/2 <= (param_dur_1_43 + (param_dur_3_45 + param_dur_2_44)))))))
-19.70user 0.05system 0:19.77elapsed 99%CPU (0avgtext+0avgdata 160976maxresident)k
-0inputs+8outputs (0major+52045minor)pagefaults 0swaps
