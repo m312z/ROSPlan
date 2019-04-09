@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-    <param name="use_sim_time" value="true" />
+    <param name="use_sim_time" value="false" />
 
     <!-- arguments -->
     <arg name="domain_path"        default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_robot_delivery.pddl" />
@@ -32,8 +32,7 @@
         <param name="output_directory" value="$(arg output_directory)" />
     </node>
 
-  <node name="sim_clock" pkg="sim_clock" type="simclock" required="true" >
-    </node>
+  <!-- node name="sim_clock" pkg="sim_clock" type="simclock" required="true" ></node -->
 
     <!-- problem generation -->
     <include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
@@ -88,45 +87,45 @@
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="goto_waypoint" />
         <!--arg name="action_duration" value="5" /-->
-
+        <!--arg name="action_duration_stddev" value="5" /-->
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="localise" />
-        <arg name="action_duration" value="119" />
+        <arg name="action_duration" value="5" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="dock" />
-        <arg name="action_duration" value="119" />
+        <arg name="action_duration" value="5" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="undock" />
-        <arg name="action_duration" value="19" />
+        <arg name="action_duration" value="5" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="ask_unload" />
-        <arg name="action_duration" value="19" />
+        <arg name="action_duration" value="4" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="wait_load_at_printer" />
-        <arg name="action_duration" value="52" />
-        <arg name="action_duration_stddev" value="60" />
+        <arg name="action_duration" value="13" />
+        <arg name="action_duration_stddev" value="15" />
         <arg name="action_probability" value="0.95" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="wait_unload" />
-        <arg name="action_duration" value="52" />
-        <arg name="action_duration_stddev" value="60" />
+        <arg name="action_duration" value="13" />
+        <arg name="action_duration_stddev" value="15" />
         <arg name="action_probability" value="0.95" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="ditch" />
-        <arg name="action_duration" value="4" />
+        <arg name="action_duration" value="1" />
     </include>
 </launch>

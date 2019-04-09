@@ -31,7 +31,7 @@ while not goal_achieved and replans<10:
     rospy.wait_for_service('/rosplan_parsing_interface/parse_plan')
     rospy.wait_for_service('/rosplan_plan_dispatcher/dispatch_plan')
     rospy.wait_for_service('/rosplan_knowledge_base/state/propositions')
-    rospy.wait_for_service('/sim_clock/set_time_scale')
+    # rospy.wait_for_service('/sim_clock/set_time_scale')
     if use_stn_tool:
         rospy.wait_for_service('/run_STN')
 
@@ -41,7 +41,7 @@ while not goal_achieved and replans<10:
             print('NO PROBLEM')
 
         #back time to 1
-        pt = rospy.ServiceProxy('/sim_clock/set_time_scale', SetInt)
+        # pt = rospy.ServiceProxy('/sim_clock/set_time_scale', SetInt)
         pi = rospy.ServiceProxy('/rosplan_planner_interface/planning_server', Empty)
         if not pi():
             replans += 1
@@ -56,9 +56,9 @@ while not goal_achieved and replans<10:
             time.sleep(3)
 
             dp = rospy.ServiceProxy('/rosplan_plan_dispatcher/dispatch_plan', DispatchService)
-            pt(10)
+            # pt(10)
             dsr = dp()
-            pt(1)
+            # pt(1)
 
             goal_achieved = dsr.goal_achieved
             if not dsr.goal_achieved:
