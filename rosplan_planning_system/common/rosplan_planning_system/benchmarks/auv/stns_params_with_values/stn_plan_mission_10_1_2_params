@@ -1,0 +1,13 @@
+parameter dur_0 weight 1 default 112;
+durative-action instance n0 : (do_hover auv wp_auv0 mission_site_start_point_1);
+durative-action instance n1 : (complete_mission auv mission1 mission_site_start_point_1);
+durative-action instance n2 : (complete_mission auv mission0 mission_site_start_point_1);
+durative-action instance n3 : (complete_mission auv mission6 mission_site_start_point_1);
+c: n0.end - n0.start in [dur_0, dur_0];
+c: n0.start - .zero in [0, 0];
+c: n1.start - n0.end in [1/1000, 1/1000];
+c: n1.end - n1.start in [242, 242];
+c: n2.start - n1.end in [1/1000, 1/1000];
+c: n2.end - n2.start in [261, 261];
+c: n3.start - n2.end in [1/1000, 1/1000];
+c: n3.end - n3.start in [283, 283];

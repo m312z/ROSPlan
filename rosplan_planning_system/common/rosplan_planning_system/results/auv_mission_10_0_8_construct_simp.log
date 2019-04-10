@@ -1,0 +1,65 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/auv_mission_10_0_8_construct_simp.res
+[runlim] argv[4]:		construct
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/domains/pandora_domain_strategic_for_validation.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/problems/mission_10_0_8.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/auv/stns_params_with_values/stn_plan_mission_10_0_8_params
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		monolithic
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		z3
+[runlim] argv[13]:		-q
+[runlim] argv[14]:		msat_lw
+[runlim] start:			Tue Jan 15 07:03:04 2019
+[runlim] main pid:		126613
+[runlim] sample:		9.9 seconds, 49.3 MB
+[runlim] sample:		19.9 seconds, 59.3 MB
+[runlim] sample:		29.9 seconds, 69.3 MB
+[runlim] sample:		39.9 seconds, 75.9 MB
+[runlim] sample:		49.9 seconds, 81.9 MB
+[runlim] sample:		59.9 seconds, 94.2 MB
+[runlim] sample:		69.9 seconds, 119.0 MB
+[runlim] sample:		79.9 seconds, 124.2 MB
+[runlim] sample:		89.9 seconds, 125.7 MB
+[runlim] sample:		99.9 seconds, 165.8 MB
+[runlim] sample:		109.9 seconds, 170.1 MB
+[runlim] sample:		119.9 seconds, 177.0 MB
+[runlim] sample:		129.9 seconds, 178.9 MB
+[runlim] sample:		139.9 seconds, 182.6 MB
+[runlim] sample:		149.9 seconds, 184.3 MB
+[runlim] sample:		159.9 seconds, 186.0 MB
+[runlim] sample:		169.9 seconds, 187.8 MB
+[runlim] sample:		179.9 seconds, 188.2 MB
+[runlim] sample:		189.9 seconds, 193.1 MB
+[runlim] sample:		199.9 seconds, 193.5 MB
+[runlim] sample:		209.9 seconds, 198.1 MB
+[runlim] sample:		219.9 seconds, 198.8 MB
+[runlim] sample:		229.9 seconds, 199.4 MB
+[runlim] sample:		239.9 seconds, 200.0 MB
+[runlim] sample:		249.9 seconds, 201.1 MB
+[runlim] sample:		259.9 seconds, 201.3 MB
+[runlim] sample:		269.9 seconds, 202.2 MB
+[runlim] sample:		279.9 seconds, 203.1 MB
+[runlim] sample:		289.9 seconds, 203.6 MB
+[runlim] sample:		299.9 seconds, 203.8 MB
+[runlim] sample:		309.9 seconds, 204.6 MB
+[runlim] sample:		319.9 seconds, 205.4 MB
+[runlim] sample:		329.9 seconds, 205.4 MB
+[runlim] sample:		339.9 seconds, 205.7 MB
+[runlim] sample:		349.9 seconds, 205.8 MB
+[runlim] sample:		359.9 seconds, 206.3 MB
+[runlim] end:			Tue Jan 15 07:09:05 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			361.63 seconds
+[runlim] time:			361.27 seconds
+[runlim] space:			206.3 MB
+[runlim] samples:		3614

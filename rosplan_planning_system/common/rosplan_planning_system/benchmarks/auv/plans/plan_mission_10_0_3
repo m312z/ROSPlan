@@ -1,0 +1,28 @@
+Number of literals: 26
+Constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%] [110%] [120%] [130%] [140%] [150%] [160%] [170%] [180%] [190%]
+Post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%] [110%] [120%] [130%] [140%] [150%] [160%] [170%] [180%] [190%]
+No semaphore facts found, returning
+Have identified that bigger values of (mission_total) are preferable
+Have identified that bigger values of (charge auv) are preferable
+Seeing if there's a goal limit
+((mission_total) += 1.000) affects one of the variables
+[01;34mNo analytic limits found, not considering limit effects of goal-only operators[00m
+Not looking for earlier-is-better time-dependent rewards: no goal limits
+10% of the ground temporal actions in this problem are compression-safe
+Initial heuristic = 10.000
+b (9.000 | 112.805)b (6.000 | 112.805)b (5.000 | 354.872)b (3.000 | 616.740)
+Resorting to best-first search
+;;;; Solution Found
+; States evaluated: 984
+; Cost: 3659.137
+; Time 0.08
+0.000: (do_hover auv wp_auv0 mission_site_start_point_1)  [112.805]
+112.806: (complete_mission auv mission1 mission_site_start_point_1)  [242.066]
+354.873: (complete_mission auv mission2 mission_site_start_point_1)  [336.170]
+691.044: (do_hover auv mission_site_start_point_1 mission_site_start_point_0)  [269.444]
+960.489: (dock_auv auv mission_site_start_point_0)  [20.000]
+980.489: (recharge auv mission_site_start_point_0)  [1800.000]
+2780.490: (undock_auv auv mission_site_start_point_0)  [10.000]
+2790.490: (do_hover auv mission_site_start_point_0 mission_site_start_point_1)  [269.444]
+3059.935: (complete_mission auv mission0 mission_site_start_point_1)  [261.867]
+3321.803: (complete_mission auv mission5 mission_site_start_point_1)  [337.334]

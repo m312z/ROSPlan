@@ -1,0 +1,34 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/solar_rover_04_1_envelope_simp.res
+[runlim] argv[4]:		envelope
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/solarrover_linear.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/prob04.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/stns_params_with_values/output04_1pram.stn
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		partial
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		msat
+[runlim] argv[13]:		-e
+[runlim] argv[14]:		-q
+[runlim] argv[15]:		msat_lw
+[runlim] start:			Tue Jan 15 03:52:19 2019
+[runlim] main pid:		9354
+[runlim] sample:		10.0 seconds, 146.4 MB
+[runlim] sample:		20.0 seconds, 260.3 MB
+[runlim] sample:		30.0 seconds, 338.3 MB
+[runlim] sample:		40.0 seconds, 331.4 MB
+[runlim] end:			Tue Jan 15 03:53:00 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			41.12 seconds
+[runlim] time:			40.87 seconds
+[runlim] space:			446.5 MB
+[runlim] samples:		409

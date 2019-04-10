@@ -1,0 +1,61 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/solar_rover_01_2_envelope_nosimp.res
+[runlim] argv[4]:		envelope
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/solarrover_linear.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/prob01.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/solar-rover_LinearPlans/flexible/stns_params_with_values/output01_2pram.stn
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		partial
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		msat
+[runlim] argv[13]:		-e
+[runlim] argv[14]:		-q
+[runlim] argv[15]:		msat_lw
+[runlim] argv[16]:		-c
+[runlim] start:			Tue Jan 15 04:10:04 2019
+[runlim] main pid:		125331
+[runlim] sample:		9.9 seconds, 123.4 MB
+[runlim] sample:		19.9 seconds, 208.1 MB
+[runlim] sample:		29.9 seconds, 315.9 MB
+[runlim] sample:		39.9 seconds, 366.1 MB
+[runlim] sample:		49.9 seconds, 459.9 MB
+[runlim] sample:		59.9 seconds, 509.4 MB
+[runlim] sample:		69.9 seconds, 569.2 MB
+[runlim] sample:		79.9 seconds, 617.5 MB
+[runlim] sample:		89.9 seconds, 695.8 MB
+[runlim] sample:		99.9 seconds, 744.6 MB
+[runlim] sample:		109.9 seconds, 842.8 MB
+[runlim] sample:		119.9 seconds, 897.9 MB
+[runlim] sample:		129.9 seconds, 936.8 MB
+[runlim] sample:		139.9 seconds, 982.3 MB
+[runlim] sample:		149.9 seconds, 1040.9 MB
+[runlim] sample:		159.9 seconds, 1082.2 MB
+[runlim] sample:		169.9 seconds, 1118.2 MB
+[runlim] sample:		179.9 seconds, 1491.6 MB
+[runlim] sample:		189.9 seconds, 1375.2 MB
+[runlim] sample:		199.9 seconds, 1414.2 MB
+[runlim] sample:		209.9 seconds, 1462.2 MB
+[runlim] sample:		219.9 seconds, 1492.7 MB
+[runlim] sample:		229.9 seconds, 1529.1 MB
+[runlim] sample:		239.9 seconds, 1570.2 MB
+[runlim] sample:		249.9 seconds, 1612.2 MB
+[runlim] sample:		259.9 seconds, 1461.2 MB
+[runlim] sample:		269.9 seconds, 1516.4 MB
+[runlim] sample:		279.9 seconds, 1536.1 MB
+[runlim] sample:		289.9 seconds, 1575.2 MB
+[runlim] sample:		299.9 seconds, 1613.2 MB
+[runlim] end:			Tue Jan 15 04:15:09 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			305.10 seconds
+[runlim] time:			304.69 seconds
+[runlim] space:			1765.1 MB
+[runlim] samples:		3049

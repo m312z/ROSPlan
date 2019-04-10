@@ -1,0 +1,101 @@
+[runlim] version:		1.7
+[runlim] time limit:		3600 seconds
+[runlim] real time limit:	311040000 seconds
+[runlim] space limit:		20000 MB
+[runlim] argv[0]:		python3
+[runlim] argv[1]:		/es0/amicheli/pyrobustnessenvelopes/main.py
+[runlim] argv[2]:		-o
+[runlim] argv[3]:		/es0/amicheli/pyrobustnessenvelopes/results/generator_linear_08_1_envelope_simp.res
+[runlim] argv[4]:		envelope
+[runlim] argv[5]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/generator_linear/gen_linear_domain.pddl
+[runlim] argv[6]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/generator_linear/gen_linear_prob08.pddl
+[runlim] argv[7]:		/es0/amicheli/pyrobustnessenvelopes/benchmarks/generator_linear/stns_params_with_values/output08_1pram.stn
+[runlim] argv[8]:		-d
+[runlim] argv[9]:		-S
+[runlim] argv[10]:		partial
+[runlim] argv[11]:		-s
+[runlim] argv[12]:		msat
+[runlim] argv[13]:		-e
+[runlim] argv[14]:		-q
+[runlim] argv[15]:		msat_lw
+[runlim] start:			Mon Jan 14 19:43:49 2019
+[runlim] main pid:		5499
+[runlim] sample:		10.0 seconds, 55.6 MB
+[runlim] sample:		20.0 seconds, 75.1 MB
+[runlim] sample:		30.0 seconds, 77.0 MB
+[runlim] sample:		40.0 seconds, 91.9 MB
+[runlim] sample:		50.0 seconds, 96.0 MB
+[runlim] sample:		60.0 seconds, 99.2 MB
+[runlim] sample:		70.0 seconds, 102.3 MB
+[runlim] sample:		79.9 seconds, 105.8 MB
+[runlim] sample:		89.9 seconds, 106.4 MB
+[runlim] sample:		99.9 seconds, 113.3 MB
+[runlim] sample:		109.9 seconds, 123.2 MB
+[runlim] sample:		119.9 seconds, 129.3 MB
+[runlim] sample:		129.9 seconds, 136.0 MB
+[runlim] sample:		139.9 seconds, 136.0 MB
+[runlim] sample:		149.9 seconds, 136.1 MB
+[runlim] sample:		159.9 seconds, 136.2 MB
+[runlim] sample:		169.9 seconds, 137.7 MB
+[runlim] sample:		179.9 seconds, 144.9 MB
+[runlim] sample:		189.9 seconds, 150.5 MB
+[runlim] sample:		199.9 seconds, 150.5 MB
+[runlim] sample:		209.9 seconds, 150.5 MB
+[runlim] sample:		219.9 seconds, 150.5 MB
+[runlim] sample:		229.9 seconds, 150.5 MB
+[runlim] sample:		239.9 seconds, 150.7 MB
+[runlim] sample:		249.9 seconds, 155.7 MB
+[runlim] sample:		259.9 seconds, 155.0 MB
+[runlim] sample:		269.9 seconds, 155.0 MB
+[runlim] sample:		279.9 seconds, 155.0 MB
+[runlim] sample:		289.9 seconds, 155.0 MB
+[runlim] sample:		299.9 seconds, 155.1 MB
+[runlim] sample:		309.9 seconds, 155.8 MB
+[runlim] sample:		319.9 seconds, 155.5 MB
+[runlim] sample:		329.9 seconds, 155.5 MB
+[runlim] sample:		339.9 seconds, 155.5 MB
+[runlim] sample:		349.9 seconds, 155.5 MB
+[runlim] sample:		359.9 seconds, 155.5 MB
+[runlim] sample:		369.9 seconds, 155.5 MB
+[runlim] sample:		379.9 seconds, 155.7 MB
+[runlim] sample:		389.9 seconds, 155.7 MB
+[runlim] sample:		399.9 seconds, 155.8 MB
+[runlim] sample:		409.9 seconds, 155.8 MB
+[runlim] sample:		419.9 seconds, 155.8 MB
+[runlim] sample:		429.9 seconds, 155.8 MB
+[runlim] sample:		439.9 seconds, 156.0 MB
+[runlim] sample:		449.9 seconds, 162.7 MB
+[runlim] sample:		459.9 seconds, 167.3 MB
+[runlim] sample:		469.9 seconds, 211.5 MB
+[runlim] sample:		479.9 seconds, 308.2 MB
+[runlim] sample:		489.9 seconds, 340.5 MB
+[runlim] sample:		499.9 seconds, 351.3 MB
+[runlim] sample:		509.9 seconds, 366.9 MB
+[runlim] sample:		519.9 seconds, 376.7 MB
+[runlim] sample:		529.9 seconds, 386.2 MB
+[runlim] sample:		539.9 seconds, 397.3 MB
+[runlim] sample:		549.9 seconds, 408.6 MB
+[runlim] sample:		559.9 seconds, 417.6 MB
+[runlim] sample:		569.9 seconds, 417.6 MB
+[runlim] sample:		579.9 seconds, 417.9 MB
+[runlim] sample:		589.9 seconds, 418.6 MB
+[runlim] sample:		599.9 seconds, 419.0 MB
+[runlim] sample:		609.9 seconds, 420.2 MB
+[runlim] sample:		619.9 seconds, 429.7 MB
+[runlim] sample:		629.9 seconds, 436.3 MB
+[runlim] sample:		639.9 seconds, 444.0 MB
+[runlim] sample:		649.9 seconds, 451.4 MB
+[runlim] sample:		659.9 seconds, 457.6 MB
+[runlim] sample:		669.9 seconds, 457.6 MB
+[runlim] sample:		679.9 seconds, 458.0 MB
+[runlim] sample:		689.9 seconds, 458.8 MB
+[runlim] sample:		699.9 seconds, 460.6 MB
+[runlim] sample:		709.8 seconds, 453.7 MB
+[runlim] end:			Mon Jan 14 19:55:40 2019
+[runlim] status:		ok
+[runlim] result:		0
+[runlim] children:		0
+[runlim] real:			711.49 seconds
+[runlim] time:			711.14 seconds
+[runlim] space:			461.9 MB
+[runlim] samples:		7113

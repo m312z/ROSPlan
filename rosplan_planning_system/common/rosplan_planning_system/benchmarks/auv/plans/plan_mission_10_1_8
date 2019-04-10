@@ -1,0 +1,36 @@
+Number of literals: 26
+Constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%] [110%] [120%] [130%] [140%] [150%] [160%] [170%] [180%] [190%]
+Post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%] [110%] [120%] [130%] [140%] [150%] [160%] [170%] [180%] [190%]
+No semaphore facts found, returning
+Have identified that bigger values of (mission_total) are preferable
+Have identified that bigger values of (charge auv) are preferable
+Seeing if there's a goal limit
+((mission_total) += 1.000) affects one of the variables
+[01;34mNo analytic limits found, not considering limit effects of goal-only operators[00m
+Not looking for earlier-is-better time-dependent rewards: no goal limits
+10% of the ground temporal actions in this problem are compression-safe
+Initial heuristic = 20.000
+;;;; Solution Found
+; States evaluated: 64
+; Cost: 8008.717
+; Time 0.00
+0.000: (do_hover auv wp_auv0 mission_site_start_point_1)  [112.805]
+112.806: (complete_mission auv mission1 mission_site_start_point_1)  [242.066]
+354.873: (complete_mission auv mission0 mission_site_start_point_1)  [261.867]
+616.741: (complete_mission auv mission6 mission_site_start_point_1)  [283.019]
+899.761: (do_hover auv mission_site_start_point_1 mission_site_start_point_0)  [269.444]
+1169.206: (dock_auv auv mission_site_start_point_0)  [20.000]
+1189.206: (recharge auv mission_site_start_point_0)  [1800.000]
+2989.207: (undock_auv auv mission_site_start_point_0)  [10.000]
+2999.207: (do_hover auv mission_site_start_point_0 mission_site_start_point_1)  [269.444]
+3268.652: (complete_mission auv mission2 mission_site_start_point_1)  [336.170]
+3604.823: (complete_mission auv mission5 mission_site_start_point_1)  [337.334]
+3942.158: (complete_mission auv mission4 mission_site_start_point_1)  [340.969]
+4283.128: (complete_mission auv mission8 mission_site_start_point_1)  [364.384]
+4647.513: (do_hover auv mission_site_start_point_1 mission_site_start_point_0)  [269.444]
+4916.958: (dock_auv auv mission_site_start_point_0)  [20.000]
+4936.958: (recharge auv mission_site_start_point_0)  [1800.000]
+6736.959: (undock_auv auv mission_site_start_point_0)  [10.000]
+6746.959: (do_hover auv mission_site_start_point_0 mission_site_start_point_1)  [269.444]
+7016.404: (complete_mission auv mission3 mission_site_start_point_1)  [365.490]
+7381.895: (complete_mission auv mission9 mission_site_start_point_1)  [626.822]
