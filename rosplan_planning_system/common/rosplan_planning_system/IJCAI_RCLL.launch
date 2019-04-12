@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name="use_sim_time" value="false" />
+
+    <!-- arguments -->
+    <arg name="domain_path"        default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_rcll_simple.pddl" />
+    <arg name="robust_domain_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_rcll_simple_robust.pddl" />
+    <arg name="init_problem_path"  default="$(find rosplan_planning_system)/common/rosplan_planning_system/RCLL_problems/example_problem.pddl" />
+    <arg name="problem_path"       default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem.pddl" />
+    <arg name="max_parameters"     default="2" />
+    <arg name="stn_timeout"        default="600" />
+    <arg name="stn_tool"           default="true" />
+    <arg name="experiment_batch"   default="1" />
+    <arg name="timeout_actions"         default="true" />
+    <arg name="action_timeout_fraction" default="0.0" />
+    <arg name="output_directory" default="~/" />
+
+    <!-- knowledge base -->
+    <node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
+        <param name="domain_path"   value="$(arg domain_path)" />
+        <param name="problem_path"  value="$(arg init_problem_path)" />
+        <param name="database_path" value="$(find rosplan_knowledge_base)/common/mongoDB/" />
+        <param name="use_unknowns"  value="false" />
+    </node>
+
+    <node name="coordinator_non_adaptable" pkg="rosplan_planning_system" type="replan_loop.py" output="screen" required="true" >
+        <param name="problem_path" type="str" value="$(arg init_problem_path)" />
+        <param name="experiment_batch"        value="$(arg experiment_batch)" />
+        <param name="stn_tool"                value="$(arg stn_tool)" />
+        <param name="action_timeout_fraction" value="$(arg action_timeout_fraction)" />
+        <param name="output_directory" value="$(arg output_directory)" />
+    </node>
+
+  <!-- node name="sim_clock" pkg="sim_clock" type="simclock" required="true" ></node -->
+
+    <!-- problem generation -->
+    <include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
+        <arg name="domain_path"      value="$(arg domain_path)" />
+        <arg name="problem_path"     value="$(arg problem_path)" />
+    </include>
+
+     <!-- planner interface -->
+     <include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
+         <arg name="domain_path"          value="$(arg domain_path)" />
+         <arg name="problem_path"         value="$(arg problem_path)" />
+         <arg name="data_path"            value="$(find rosplan_planning_system)/common/rosplan_planning_system/" />
+         <arg name="planner_command"      value="timeout 120 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
+     </include>
+
+    <!-- plan parsing -->
+    <include file="$(find rosplan_planning_system)/launch/includes/parsing_interface.launch">
+         <arg name="epsilon_time" value="1.0" />
+    </include>
+
+    <group if="$(arg stn_tool)">
+        <!-- STN_tool-->
+        <include file="$(find rosplan_planning_system)/launch/includes/stn_tool.launch">
+            <arg name="robust_domain_path" value="$(arg robust_domain_path)" />
+            <arg name="problem_path"       value="$(arg problem_path)" />
+            <arg name="max_parameters"       value="$(arg max_parameters)" />
+            <arg name="stn_timeout"       value="$(arg stn_timeout)" />
+        </include>
+
+        <!-- plan dispatch -->
+        <include file="$(find rosplan_planning_system)/launch/includes/dispatch_interface.launch">
+            <arg name="plan_topic" value="/robust_plan" />
+            <arg name="display_edge_type"       value="false" />
+            <arg name="timeout_actions"         value="$(arg timeout_actions)" />
+            <arg name="action_timeout_fraction" value="$(arg action_timeout_fraction)" />
+        </include>
+    </group>
+
+
+    <group unless="$(arg stn_tool)">
+        <!-- plan dispatch -->
+        <include file="$(find rosplan_planning_system)/launch/includes/dispatch_interface.launch">
+            <arg name="display_edge_type"       value="false" />
+            <arg name="timeout_actions"         value="$(arg timeout_actions)" />
+            <arg name="action_timeout_fraction" value="$(arg action_timeout_fraction)" />
+        </include>
+    </group>
+
+
+<!-- sim actions -->
+
+    <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+        <arg name="pddl_action_name" value="goto_waypoint" />
+        <arg name="action_duration" value="20" />
+        <arg name="action_duration_stddev" value="20" />
+    </include>
+
+    <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+        <arg name="pddl_action_name" value="collect_order" />
+        <arg name="action_duration_stddev" value="60" />
+        <arg name="action_probability" value="0.95" />
+    </include>
+
+    <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+        <arg name="pddl_action_name" value="produce_base" />
+        <arg name="action_duration" value="60" />
+    </include>
+
+    <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+        <arg name="pddl_action_name" value="stack_ring" />
+    </include>
+
+    <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+        <arg name="pddl_action_name" value="deliver_order" />
+        <arg name="action_duration" value="60" />
+    </include>
+
+    <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+        <arg name="pddl_action_name" value="dispose" />
+        <arg name="action_duration" value="10" />
+    </include>
+</launch>
