@@ -87,13 +87,11 @@
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="goto_waypoint" />
         <arg name="action_duration" value="20" />
-        <arg name="action_duration_stddev" value="20" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="collect_order" />
         <arg name="action_duration_stddev" value="60" />
-        <arg name="action_probability" value="0.95" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
