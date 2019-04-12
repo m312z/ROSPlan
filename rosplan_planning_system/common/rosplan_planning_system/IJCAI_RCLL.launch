@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-    <param name="use_sim_time" value="false" />
+    <param name="use_sim_time" value="true" />
 
     <!-- arguments -->
     <arg name="domain_path"        default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_rcll_simple.pddl" />
