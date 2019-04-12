@@ -6,7 +6,7 @@
     <!-- arguments -->
     <arg name="domain_path"        default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_rcll_simple.pddl" />
     <arg name="robust_domain_path" default="$(find rosplan_planning_system)/common/rosplan_planning_system/domain_rcll_simple_robust.pddl" />
-    <arg name="init_problem_path"  default="$(find rosplan_planning_system)/common/rosplan_planning_system/RCLL_problems/example_problem.pddl" />
+    <arg name="init_problem_path"  default="$(find rosplan_planning_system)/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.05.pddl" />
     <arg name="problem_path"       default="$(find rosplan_planning_system)/common/rosplan_planning_system/problem.pddl" />
     <arg name="max_parameters"     default="2" />
     <arg name="stn_timeout"        default="600" />
@@ -32,7 +32,8 @@
         <param name="output_directory" value="$(arg output_directory)" />
     </node>
 
-  <!-- node name="sim_clock" pkg="sim_clock" type="simclock" required="true" ></node -->
+    <node name="sim_clock" pkg="sim_clock" type="simclock" required="true" >
+    </node >
 
     <!-- problem generation -->
     <include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
