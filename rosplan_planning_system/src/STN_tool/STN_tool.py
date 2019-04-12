@@ -86,7 +86,7 @@ class RobustEnvelope(object):
             parameter_count = 0
             for edge in input_esterel_plan.edges:
 
-                if parameter_count < self.max_parameters and edge.edge_type == 1 and input_esterel_plan.nodes[edge.source_ids[0]].action.name.startswith("wait"):
+                if parameter_count < self.max_parameters and edge.edge_type == 1 and input_esterel_plan.nodes[edge.source_ids[0]].action.name.startswith("collect"):
                     stn_plan_file.write("parameter dur_" + str(parameter_count) + " default " + str(edge.duration_lower_bound) + ";\n")
                     self.dict_params["dur_" + str(parameter_count)] = edge.edge_id
                     bounds = "[dur_" + str(parameter_count) + ", dur_" + str(parameter_count) + "]"
