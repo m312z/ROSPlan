@@ -18,10 +18,10 @@ namespace KCL_rosplan {
 		// wait for some time
         double duration = msg->duration - 1;
         if(action_duration > 0) {
-            duration = action_duration;
+            duration = action_duration - 1;
         }
 
-		if(action_duration_stddev > 0) {
+        if(action_duration_stddev > 0) {
             std::default_random_engine generator(ros::WallTime::now().toSec());
             std::normal_distribution<double> distribution(duration, action_duration_stddev);
             double d = distribution(generator);
