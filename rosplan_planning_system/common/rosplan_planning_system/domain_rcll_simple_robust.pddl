@@ -20,6 +20,7 @@
 
     ;; orders
     (not_collected ?o - order)
+    (collected ?r - robot ?o - order)
     (base_produced ?o - order)
     (ring_produced ?o - order)
     (order_delivered)
@@ -52,6 +53,7 @@
 	:effect (and
 		(at start (not (not_carrying_order ?r)))
 		(at start (not (not_collected ?o)))
+       		(at start (collected ?r ?o))
 		(at end (carrying_order ?r ?o))
 		)
 )
@@ -107,10 +109,11 @@
 	:parameters (?r - robot ?s - shelf ?o - order)
 	:duration (= ?duration 10)
 	:condition (and
-		(over all (carrying_order ?r ?o))
+		(at start (collected ?r ?o))
 		(over all (robot_at ?r ?s))
 		)
 	:effect (and
+   		(at end (not (collected ?r ?o)))
 		(at end (not (carrying_order ?r ?o)))
 		(at end (not_carrying_order ?r))
 		(at end (not_collected ?o))
