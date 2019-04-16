@@ -87,17 +87,17 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="goto_waypoint" />
-        <arg name="action_duration" value="20" />
+        <arg name="action_duration" value="19.99" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="collect_order" />
-        <arg name="action_duration_stddev" value="60" />
+        <arg name="action_duration_stddev" value="59.99" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="produce_base" />
-        <arg name="action_duration" value="60" />
+        <arg name="action_duration" value="59.99" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
@@ -106,11 +106,11 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="deliver_order" />
-        <arg name="action_duration" value="60" />
+        <arg name="action_duration" value="59.99" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="dispose" />
-        <arg name="action_duration" value="10" />
+        <arg name="action_duration" value="9.99" />
     </include>
 </launch>
