@@ -1,0 +1,200 @@
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.05.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.15.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.25.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.35.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.45.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.55.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.65.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.75.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.85.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.95.pddl 0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.05_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.15_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.25_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.35_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.45_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.55_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.65_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.75_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.85_hp0.95.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.05.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.15.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.25.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.35.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.45.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.55.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.65.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.75.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.85.pddl 0 false 3.0
+bash run_singularity.sh /ROSPlan/src/ROSPlan/launcher_RCLL /ROSPlan/src/ROSPlan/rosplan_planning_system/common/rosplan_planning_system/RCLL_problems/problem_lp0.95_hp0.95.pddl 0 false 3.0
