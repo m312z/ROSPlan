@@ -97,7 +97,7 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="produce_base" />
-        <arg name="action_duration" value="59.99" />
+        <arg name="action_duration" value="120" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
@@ -106,7 +106,7 @@
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
         <arg name="pddl_action_name" value="deliver_order" />
-        <arg name="action_duration" value="59.99" />
+        <arg name="action_duration" value="1" />
     </include>
 
     <include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >

@@ -4,7 +4,7 @@
 
 (:types
     order robot waypoint - object
-	shelf ring_station base_station order_window - waypoint
+    shelf ring_station base_station order_window - waypoint
 )
 
 (:functions
@@ -14,7 +14,7 @@
 (:predicates
 
     ;; robot
-	(robot_at ?v - robot ?wp - waypoint)
+    (robot_at ?v - robot ?wp - waypoint)
     (carrying_order ?r - robot ?o - order)
     (not_carrying_order ?r - robot)
 
@@ -44,7 +44,7 @@
 ;; Collect order from shelf
 (:durative-action collect_order
 	:parameters (?r - robot ?s - shelf ?o - order)
-	:duration (and (>= ?duration 0) (<= ?duration 180))
+	:duration (and (>= ?duration 0) (<= ?duration 1800))
 	:condition (and
 		(over all (robot_at ?r ?s))
 		(at start (not_carrying_order ?r))
@@ -53,7 +53,7 @@
 	:effect (and
 		(at start (not (not_carrying_order ?r)))
 		(at start (not (not_collected ?o)))
-       		(at start (collected ?r ?o))
+                (at start (collected ?r ?o))
 		(at end (carrying_order ?r ?o))
 		)
 )
@@ -61,7 +61,7 @@
 ;; Wait for and retrieve a base from the base station
 (:durative-action produce_base
 	:parameters (?r - robot ?bs - base_station ?o - order)
-	:duration (= ?duration 60)
+	:duration (= ?duration 120)
 	:condition (and
 		(over all (robot_at ?r ?bs))
 		(over all (carrying_order ?r ?o))
@@ -74,7 +74,7 @@
 ;; Stack a ring onto the base at the ring station
 (:durative-action stack_ring
 	:parameters (?r - robot ?rs - ring_station ?o - order)
-	:duration (= ?duration (* 60 (+ 1 (ring_count ?o))))
+	:duration (= ?duration (* 60 (ring_count ?o)))
 	:condition (and
 		(over all (robot_at ?r ?rs))
 		(at start (base_produced ?o))
@@ -88,7 +88,7 @@
 ;; Deliver an order at an order window
 (:durative-action deliver_order
 	:parameters (?r - robot ?ow - order_window ?o - order)
-	:duration (= ?duration 60)
+	:duration (= ?duration 1)
 	:condition (and
 		(at start (base_produced ?o))
 		(at start (ring_produced ?o))
@@ -116,7 +116,6 @@
    		(at end (not (collected ?r ?o)))
 		(at end (not (carrying_order ?r ?o)))
 		(at end (not_carrying_order ?r))
-		(at end (not_collected ?o))
 		(at end (not (base_produced ?o)))
 		(at end (not (ring_produced ?o)))
 		)
