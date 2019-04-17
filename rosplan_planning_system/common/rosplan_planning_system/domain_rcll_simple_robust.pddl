@@ -74,7 +74,7 @@
 ;; Stack a ring onto the base at the ring station
 (:durative-action stack_ring
 	:parameters (?r - robot ?rs - ring_station ?o - order)
-	:duration (= ?duration (* 60 (ring_count ?o)))
+	:duration (= ?duration (* 60 (+ 1 (ring_count ?o))))
 	:condition (and
 		(over all (robot_at ?r ?rs))
 		(at start (base_produced ?o))
@@ -95,7 +95,7 @@
 		(at start (accepts_order ?o ?ow))
 		(over all (carrying_order ?r ?o))
 		(over all (robot_at ?r ?ow))
-		(over all (open ?ow))
+		(at start (open ?ow))
 		)
 	:effect (and
 		(at end (order_delivered))
