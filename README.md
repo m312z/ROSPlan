@@ -1,14 +1,17 @@
 # ROSPlan Framework
 
-[![Build Status](https://travis-ci.com/KCL-Planning/ROSPlan.svg?branch=master)](https://travis-ci.com/KCL-Planning/ROSPlan)
+![Build status](https://github.com/KCL-Planning/ROSPlan/workflows/build/badge.svg)
+![Test status](https://github.com/KCL-Planning/ROSPlan/workflows/test/badge.svg)
 
 The main ROSPlan website and documentation is available [here](http://kcl-planning.github.io/ROSPlan).
 
 The ROSPlan framework provides a generic method for task planning in a ROS system. ROSPlan encapsulates both planning and dispatch. It provides with a simple interface, and already includes interfaces to common ROS libraries.
 
-## Important note:
+## ROSPlan Demos:
 
-rosplan_demos are moved now to a separate [repository](https://github.com/KCL-Planning/rosplan_demos), check the following [pinned issue](https://github.com/KCL-Planning/ROSPlan/issues/189) for details.
+Several demos are available in the [rosplan_demos repository](https://github.com/KCL-Planning/rosplan_demos). More will be added over time.
+
+<p align="center"><img src="https://github.com/KCL-Planning/rosplan_demos/blob/master/rosplan_stage_demo/stage_demo.png" width="50%"><img src="https://github.com/KCL-Planning/rosplan_demos/blob/master/rosplan_stage_exploration_demo/rosplan_exploration_demo.png" width="50%"></p>
 
 ## Installation
 
@@ -39,6 +42,19 @@ catkin build
 ## Running a demo with the turtlebot 2, using Gazebo simulator (kinetic only)
 
 This demo has been migrated to a separate repo, please follow up this link: [rosplan_demos](https://github.com/KCL-Planning/rosplan_demos)
+
+## Using ROSPlan's docker image
+Get your docker image from the [Docker Hub](https://hub.docker.com/r/kclplanning/rosplan):
+
+```
+docker pull kclplanning/rosplan
+```
+
+Run an interactive bash shell inside the docker, ready to run ROSPlan:
+```
+docker run -it --rm kclplanning/rosplan bash
+```
+
 
 ## Related repositories:
 
