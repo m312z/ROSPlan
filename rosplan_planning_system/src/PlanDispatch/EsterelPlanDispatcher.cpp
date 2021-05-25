@@ -384,14 +384,14 @@ namespace KCL_rosplan {
 
             std::stringstream params;
             // do not print parameters for start node
-            if(nit->node_type != rosplan_dispatch_msgs::EsterelPlanNode::PLAN_START) {
+            if(nit->node_type != rosplan_dispatch_msgs::EsterelPlanNode::PLAN_START && nit->action.parameters.size()>0) {
                 // to print action parameters in graph, get parameters from action
                 for(auto pit = nit->action.parameters.begin(); pit != nit->action.parameters.end(); pit++) {
                     params << pit-> value << ",";
                 }
                 // replace last character "," with a ")"
                 params.seekp(-1, params.cur); params << ')';
-                dest <<  nit->node_id << "[ label=\"" << nit->name << "\n(" << params.str();
+                dest <<  nit->node_id << "[ label=\"" << nit->name << "(" << params.str();
             }
             else {
 
@@ -432,10 +432,17 @@ namespace KCL_rosplan {
             for(int i=0; i<eit->source_ids.size(); i++) {
 
                 dest << "\"" << eit->source_ids[i] << "\"" << " -> \"" << eit->sink_ids[j] << "\"";
-                if(eit->duration_upper_bound == std::numeric_limits<double>::max()) {
-                    dest << " [ label=\"[" << eit->duration_lower_bound << ", " << "inf]\"";
+
+                if(eit->duration_upper_bound == -std::numeric_limits<float>::infinity()) {
+                    dest << " [ label=\"[" << "-inf";
                 } else {
-                    dest << " [ label=\"[" << eit->duration_lower_bound << ", " << eit->duration_upper_bound << "]\"";
+                    dest << " [ label=\"[" << eit->duration_lower_bound;
+                }
+
+                if(eit->duration_upper_bound == std::numeric_limits<double>::max()) {
+                    dest << ", " << "inf]\"";
+                } else {
+                    dest << ", " << eit->duration_upper_bound << "]\"";
                 }
 
                 // decide edge color

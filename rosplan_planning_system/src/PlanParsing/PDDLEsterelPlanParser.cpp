@@ -42,6 +42,9 @@ namespace KCL_rosplan {
 		std::string planTopic = "complete_plan";
 		node_handle->getParam("plan_topic", planTopic);
 		plan_publisher = node_handle->advertise<rosplan_dispatch_msgs::EsterelPlan>(planTopic, 1, true);
+
+
+        make_til_nodes = true;
 	}
 
 	PDDLEsterelPlanParser::~PDDLEsterelPlanParser()
@@ -259,6 +262,38 @@ namespace KCL_rosplan {
 				// save TIL
 				double key = (attsrv.response.attributes[i].initial_time - time).toSec();
 				til_list.insert(std::make_pair(key,attsrv.response.attributes[i]));
+
+                if (make_til_nodes) {
+
+			        std::stringstream ss;
+			        ss << attsrv.response.attributes[i].attribute_name;
+
+                    // create dummy action for TIL
+        			rosplan_dispatch_msgs::ActionDispatch msg;
+				    msg.name = ss.str();
+			        msg.action_id = -1;
+        			msg.dispatch_time = (attsrv.response.attributes[i].initial_time - time).toSec();
+
+        			// check for parameters
+        			bool paramsExist = (attsrv.response.attributes[i].values.size() > 0);
+                    if(paramsExist) {
+                        msg.parameters = attsrv.response.attributes[i].values;
+			        }
+
+			        msg.duration = 0;
+			        action_list.push_back(msg);
+
+			        // create TIL node
+			        rosplan_dispatch_msgs::EsterelPlanNode node_start;
+			        node_start.node_type = rosplan_dispatch_msgs::EsterelPlanNode::TIL;
+			        node_start.node_id = last_plan.nodes.size();
+			        node_start.name = ss.str();
+                    node_start.action = msg;
+			        last_plan.nodes.push_back(node_start);
+
+                    // map til to node
+    				til_node_map.insert(std::make_pair(key,node_start));
+                }
 			}
 		}
 
@@ -280,6 +315,7 @@ namespace KCL_rosplan {
 			// get node time
 			double time = 0;
 			switch(ait->node_type) {
+			case rosplan_dispatch_msgs::EsterelPlanNode::TIL:
 			case rosplan_dispatch_msgs::EsterelPlanNode::ACTION_START:
 				time = ait->action.dispatch_time;
 				break;
@@ -302,6 +338,12 @@ namespace KCL_rosplan {
 			rosplan_dispatch_msgs::EsterelPlanNode *node = &last_plan.nodes[nit->second];
 
 			switch(node->node_type) {
+			case rosplan_dispatch_msgs::EsterelPlanNode::TIL:
+
+				// insert timing edge for TIL
+				makeEdge(0, node->node_id, nit->first, nit->first, rosplan_dispatch_msgs::EsterelPlanEdge::START_END_ACTION_EDGE);
+                break;
+
 			case rosplan_dispatch_msgs::EsterelPlanNode::ACTION_END:
 
 				// if action end, insert edge from action start with duration equal to action duration
@@ -372,9 +414,21 @@ namespace KCL_rosplan {
 			if(satisfiesPrecondition(condition, tit->second, !negative_condition)) {
 				if(overall_condition) {
 					// edge goes to end action node instead of start action
-					makeEdge(0, current_node->second + 1, 0, tit->first - epsilon_time, rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    if (make_til_nodes) {
+                        // edge comes from TIL node
+                        int tni = getTilNodeId(tit->first, condition, !negative_condition);
+    					makeEdge(current_node->second + 1, tni, -std::numeric_limits<float>::infinity(), 0, rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    } else {
+                    	makeEdge(0, current_node->second + 1, 0, tit->first - epsilon_time, rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    }
 				} else {
-					makeEdge(0, current_node->second, 0, tit->first - epsilon_time, rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    if (make_til_nodes) {
+                        // edge comes from TIL node
+                        int tni = getTilNodeId(tit->first, condition, negative_condition);
+    					makeEdge(current_node->second, tni, -std::numeric_limits<float>::infinity(), 0, rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    } else {
+    					makeEdge(0, current_node->second, 0, tit->first - epsilon_time, rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    }
 				}
 			}
 			tit++;
@@ -388,7 +442,14 @@ namespace KCL_rosplan {
 
 				// check TIL support
 				if(satisfiesPrecondition(condition, tit->second, negative_condition)) {
-					makeEdge(0, current_node->second, tit->first, std::numeric_limits<double>::max(), rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+
+                    if (make_til_nodes) {
+                        // edge comes from TIL node
+                        int tni = getTilNodeId(tit->first, condition, negative_condition);
+    					makeEdge(tni, current_node->second, 0, std::numeric_limits<double>::max(), rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    } else {
+    					makeEdge(0, current_node->second, tit->first, std::numeric_limits<double>::max(), rosplan_dispatch_msgs::EsterelPlanEdge::CONDITION_EDGE);
+                    }
 					return true;
 				}
 				tit++;
@@ -478,10 +539,8 @@ namespace KCL_rosplan {
 
 		// add epsilon separation; TODO paramterize
 		if(lower_bound == 0)
-			lower_bound = 0.001;
-		if(upper_bound == 0)
-			upper_bound = 0.001;
-
+			lower_bound = epsilon_time;
+            
 		// see if there is already an existing edge
 		std::vector<int>::iterator eit = last_plan.nodes[source_node_id].edges_out.begin();
 		std::vector<int>::iterator nit = last_plan.nodes[source_node_id].edges_out.begin();

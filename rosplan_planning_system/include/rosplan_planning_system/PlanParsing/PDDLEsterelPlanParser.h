@@ -93,6 +93,25 @@ namespace KCL_rosplan {
 		/* GRAPH METHODS */
 		/*---------------*/
 
+		int getTilNodeId(double time, rosplan_knowledge_msgs::DomainFormula& condition, bool negative_condition) {
+            auto range = til_node_map.equal_range(time);
+            // Iterate over the range
+            for (auto it = range.first; it != range.second; ++it) {              
+                if (condition.name != it->second.name) continue;
+                if (condition.typed_parameters.size() != it->second.action.parameters.size()) continue;
+                bool params_match = true;
+                for (int i=0; i<condition.typed_parameters.size(); i++) {
+                    if (condition.typed_parameters[i].value != it->second.action.parameters[i].value) {
+                        params_match = false;
+                        break;
+                    }
+                }
+                return it->second.node_id;
+		    }
+            ROS_WARN("KCL: (%s) TIL not found", ros::this_node::getName().c_str());
+            return 0;
+        }
+
 		void makeEdge(int source_node_id, int sink_node_id, int edge_type) {
 			// create an ordering that only specifies after
 			makeEdge(source_node_id, sink_node_id, 0, std::numeric_limits<double>::max(), edge_type);
@@ -163,6 +182,10 @@ namespace KCL_rosplan {
 
 		/* TILs */
 		std::multimap<double, rosplan_knowledge_msgs::KnowledgeItem> til_list;
+		std::multimap<double, rosplan_dispatch_msgs::EsterelPlanNode> til_node_map;
+
+        /* parameters */
+        bool make_til_nodes;
 
 	protected:
 
